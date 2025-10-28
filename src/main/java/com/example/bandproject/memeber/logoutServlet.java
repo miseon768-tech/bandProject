@@ -19,7 +19,7 @@ public class logoutServlet extends HttpServlet {
         resp.addCookie(cookie);
 
         req.getSession().removeAttribute("logonUser");
-        resp.sendRedirect("/main");
+        resp.sendRedirect("/index");
     }
 
 

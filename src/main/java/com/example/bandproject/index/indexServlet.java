@@ -1,4 +1,4 @@
-package com.example.bandproject.main;
+package com.example.bandproject.index;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 @WebServlet("/main")
-public class mainServlet extends HttpServlet {
+public class indexServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

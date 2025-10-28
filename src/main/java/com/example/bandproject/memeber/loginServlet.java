@@ -41,11 +41,11 @@ public class loginServlet extends HttpServlet {
 
             int r = sqlSession.insert("mappers.LoginHistoryMapper.insertOne", id);
             req.getSession().setAttribute("logonUser", found);
-            resp.sendRedirect("/main");
+            resp.sendRedirect("/index");
         } else {
             req.setAttribute("tryId", id);
 
-            req.getRequestDispatcher("/main/login-fail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/member/login-fail.jsp").forward(req, resp);
         }
 
         sqlSession.close();
