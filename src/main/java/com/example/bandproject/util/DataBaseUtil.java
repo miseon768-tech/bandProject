@@ -1,6 +1,8 @@
 package com.example.bandproject.util;
 
-import com.example.app.model.Member;
+
+
+import com.example.bandproject.model.Member;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,10 +12,6 @@ import java.time.LocalDateTime;
 
 public class DataBaseUtil {
 
-    /*
-    insert into member(id, password, email, name, nickname, interest, agree)
-        values(?, ?, ?, ?, ?, ?, ?);
-     */
 
 
     public static int insertMember(String id, String password, String email, String name, String nickname, String interest, boolean agree) {

@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/edit/profile")
+@WebServlet("/editProfile")
 public class editProfileServlet extends HttpServlet {
 
     @Override
