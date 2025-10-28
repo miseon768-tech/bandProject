@@ -1,5 +1,6 @@
 
-package com.example.bandproject.member;
+
+package com.example.bandproject.memeber;
 
 import com.example.bandproject.model.Member;
 import com.example.bandproject.model.UpdatePassword;
@@ -18,7 +19,6 @@ public class editPWServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 인증 유무
         Member logonUser =(Member)req.getSession().getAttribute("logonUser");
         if(logonUser == null) {
             resp.sendRedirect("/login");
