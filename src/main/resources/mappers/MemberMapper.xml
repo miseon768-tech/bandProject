@@ -7,3 +7,32 @@
         insert into member(id, password, email, name, nickname, interest, agree)
         values(#{id}, #{password}, #{email}, #{name}, #{nickname}, #{interest}, #{agree})
     </insert>
+
+    <select id="selectById" parameterType="java.lang.String" resultType="com.example.app.model.Member">
+        select * from member where id = #{id}
+    </select>
+    <select id="selectById" parameterType="String" resultType="com.example.app.model.Member">
+        select * from member where id = #{id}
+    </select>
+    <select id="selectByNickname" parameterType="String" resultType="com.example.app.model.Member">
+        select * from member where nickname = #{nickname}
+    </select>
+    <select id="selectAccount" resultType="Member" parameterType="String">
+        select * from member where id=#{id}
+    </select>
+
+
+    <update id="updateOne" parameterType="Member">
+        update member set name = #{name}, nickname=#{nickname}, email=#{email}, interest=#{interest}
+        where id=#{id}
+    </update>
+    <update id="updatePassword" parameterType="updatePassword">
+        update member
+        set password = #{password}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="string">
+        delete from member where id=#{id}
+    </delete>
+</mapper>
