@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
+<h2>회원가입 성공</h2>
+
 
 </body>
 </html>

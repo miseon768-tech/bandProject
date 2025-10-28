@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<h2>로그아웃</h2>
 
 </body>
 </html>

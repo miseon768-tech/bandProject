@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<h2>회원탈퇴</h2>
 
 </body>
 </html>

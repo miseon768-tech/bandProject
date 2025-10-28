@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<h2>정보수정</h2>
 
 </body>
 </html>
