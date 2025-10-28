@@ -20,5 +20,6 @@
     <mappers>
         <mapper resource="mappers/MemberMapper.xml"/>
 
+
     </mappers>
 </configuration>
