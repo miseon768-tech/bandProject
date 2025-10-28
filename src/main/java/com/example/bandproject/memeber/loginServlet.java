@@ -1,3 +1,4 @@
+
 package com.example.bandproject.memeber;
 
 
@@ -47,8 +48,6 @@ public class loginServlet extends HttpServlet {
             req.getRequestDispatcher("/main/login-fail.jsp").forward(req, resp);
         }
 
-
         sqlSession.close();
-
     }
 }
