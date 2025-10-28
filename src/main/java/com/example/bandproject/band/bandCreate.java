@@ -9,20 +9,23 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/bandcreate")
+@WebServlet("/band/create")
 public class bandCreate extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("admin") == null) {
+
+
+
+        if (req.getSession().getAttribute("logonUser") == null) {
             resp.sendRedirect("/login");
             return;
         }
 
-        Member admin = (Member) req.getSession().getAttribute("admin");
+        Member master = (Member) req.getSession().getAttribute("master");
         req.setAttribute("auth", true);
-        req.setAttribute("admin", req.getSession().getAttribute("admin"));
-        req.setAttribute("adminNickname", admin.getNickname());
+        req.setAttribute("master", req.getSession().getAttribute("master"));
+        req.setAttribute("masterNickname", master.getNickname());
 
         req.getRequestDispatcher("/band/create.jsp").forward(req, resp);
 
