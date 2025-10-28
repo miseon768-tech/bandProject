@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.bandproject.memeber;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
