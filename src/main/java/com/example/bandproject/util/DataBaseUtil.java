@@ -1,6 +1,8 @@
 package com.example.bandproject.util;
 
-import com.example.app.model.Member;
+
+
+import com.example.bandproject.model.Member;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
