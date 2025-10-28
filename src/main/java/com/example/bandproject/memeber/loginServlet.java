@@ -18,7 +18,7 @@ public class loginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/mamber/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class loginServlet extends HttpServlet {
         } else {
             req.setAttribute("tryId", id);
 
-            req.getRequestDispatcher("/login-fail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/main/login-fail.jsp").forward(req, resp);
         }
 
 
