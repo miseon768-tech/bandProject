@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/article.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/articleHate.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/articleLike.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/band.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/comment.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/1d4203c0-34c2-4637-bd3a-965af7629178/member.sql" value="1d4203c0-34c2-4637-bd3a-965af7629178" />
+  </component>
+</project>
