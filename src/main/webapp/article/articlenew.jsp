@@ -1,16 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: summer
-  Date: 25. 10. 28.
-  Time: 오전 11:36
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>새 글 작성</title>
+    <style>
+        body {
+            font-family: "맑은 고딕", serif; margin: 40px auto; width: 80%; }
+        textarea, input { width: 100%; padding: 10px; margin-bottom: 15px; }
+        button { background: #0066cc; color: white; padding: 8px 15px; border: none; border-radius: 5px; }
+        button:hover { background: #004999; }
+    </style>
 </head>
 <body>
+<h2>✏️ 새 글 작성</h2>
 
+<form action="${pageContext.request.contextPath}/article/new" method="post">
+    <p><input type="text" name="title" placeholder="제목을 입력하세요" required></p>
+    <p><textarea name="content" rows="10" placeholder="내용을 입력하세요" required></textarea></p>
+    <button type="submit">등록</button>
+    <a href="${pageContext.request.contextPath}/article/list" style="margin-left:10px;">목록으로</a>
+</form>
 </body>
 </html>
