@@ -15,6 +15,6 @@ public class indexServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        req.getRequestDispatcher("/index.jsp").forward(req,resp);
+        req.getRequestDispatcher("/main/index.jsp").forward(req,resp);
     }
 }
