@@ -10,11 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-/**
- * ✅ 밴드 생성 서블릿
- * - MyBatis / DB 연결 없음
- * - 밴드 생성 후 ArticleServlet("/article/list") 으로 이동
- */
+
 @WebServlet("/band/create")
 public class bandCreate extends HttpServlet {
 
