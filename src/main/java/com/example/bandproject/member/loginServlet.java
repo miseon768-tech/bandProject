@@ -45,7 +45,7 @@ public class loginServlet extends HttpServlet {
         } else {
             req.setAttribute("tryId", id);
 
-            req.getRequestDispatcher("/member/community.jsp").forward(req, resp);
+            req.getRequestDispatcher("/member/login-fail.jsp").forward(req, resp);
         }
 
         sqlSession.close();
