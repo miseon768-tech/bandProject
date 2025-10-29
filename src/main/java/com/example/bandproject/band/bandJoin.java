@@ -22,7 +22,7 @@ public class bandJoin extends HttpServlet {
             resp.sendRedirect("/login");
             return;
         }
-        
+
 
         resp.sendRedirect("/band/list");
 
