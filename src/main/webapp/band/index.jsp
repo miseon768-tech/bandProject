@@ -12,74 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <title>메인</title>
+    <link rel="stylesheet" href="/css/css.css"/>
+
     <style>
-        * { box-sizing: border-box; }
-        html, body { height: 100%; }
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-            background: #f2f2f2;
-            color: #222;
-        }
-
-        .topbar {
-            position: fixed;
-            inset: 16px 16px auto 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-btn {
-            padding: 8px 16px;
-            border: 2px solid #666;
-            border-radius: 10px;
-            background: #fafafa;
-            color: #222;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .right-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .ghost-btn, .solid-btn {
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-
-        .ghost-btn {
-            border: 2px solid #666;
-            background: #fafafa;
-            color: #222;
-        }
-
-        .solid-btn {
-            background: #666;
-            color: #fff;
-            border: none;
-        }
-
-        .profile-dot {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            border: 2px solid #666;
-            background: #fafafa;
-            display: inline-block;
-        }
-
-        .center {
-            min-height: 100%;
-            display: grid;
-            place-items: center;
-            padding-top: 80px;
-        }
 
         /* 중앙 카드 버튼 */
         .card-btn {
@@ -126,17 +61,8 @@
         }
     </style>
 </head>
+
 <body>
-<div class="topbar">
-    <a href="/" class="logo-btn">로고버튼</a>
-
-    <div class="right-actions">
-
-        <a href="/login" class="ghost-btn">로그인</a>
-        <a href="/signup" class="solid-btn">회원가입</a>
-        <span class="profile-dot"></span>
-    </div>
-</div>
 
 <main class="center">
     <a href="/band/create" class="card-btn">

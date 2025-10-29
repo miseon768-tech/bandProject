@@ -15,7 +15,7 @@ import java.util.Objects;
  * - band 테이블과 band_member 테이블에 직접 insert
  */
 @WebServlet("/band/create")
-public class BandCreateServlet extends HttpServlet {
+public class bandCreate extends HttpServlet {
 
     // ✅ DB 접속 정보 (본인 DB 환경에 맞게 변경)
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bandproject?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul";

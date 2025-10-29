@@ -15,7 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class loginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 
             int r = sqlSession.insert("mappers.LoginHistoryMapper.insertOne", id);
             req.getSession().setAttribute("logonUser", found);
-            resp.sendRedirect("/index");
+            resp.sendRedirect("/band/index");
         } else {
             req.setAttribute("tryId", id);
             req.getRequestDispatcher("/login-fail.jsp").forward(req, resp);

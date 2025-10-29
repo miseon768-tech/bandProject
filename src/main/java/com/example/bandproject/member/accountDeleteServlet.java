@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 @WebServlet("/account/delete")
-public class AccountDeleteServlet extends HttpServlet {
+public class accountDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

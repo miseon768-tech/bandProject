@@ -8,48 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>커뮤니티</title>
-    <style>
-        body {
-            margin: 0px;
-        }
-        .signup-wrap{
-            margin-top: 8rem;
-            display: flex;
-            justify-content: center;
-        }
-        .signup {
-            max-width: 28rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-gray {
-            color : #8f8f8f
-        }
-        .mt-1 {
-            margin-top: 0.25rem;
-        }
-        .input {
-            width: 100%;
-            padding : 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            border-color : #8f8f8f;
-        }
-        .signup-form > div {
-            margin-top: 1.5rem;
-        }
-        .bt-submit{
-            width: 100%;
-            padding: 0.5rem 1rem;
-            border: none;
-            cursor: pointer;
-        }
-        .bt-submit:hover{
-            background-color: #777777;
-            color: #efefef;
-        }
-    </style>
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/css.css"/>
+
 </head>
 <body>
 <h2>회원가입</h2>

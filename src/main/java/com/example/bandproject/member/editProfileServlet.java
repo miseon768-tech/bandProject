@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 @WebServlet("/editProfile")
-public class EditProfileServlet extends HttpServlet {
+public class editProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,10 +54,6 @@ public class EditProfileServlet extends HttpServlet {
         int r = sqlSession.update("mappers.MemberMapper.updateOne", p);
 
         resp.sendRedirect("/editProfile");
-
-
-
-
 
     }
 }
