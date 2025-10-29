@@ -3,7 +3,45 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- ✅ 밴드 멤버 관리용 Mapper -->
 <mapper namespace="mappers.BandMemberMapper">
 
+    <!-- ✅ 밴드 멤버 등록 -->
+    <insert id="insertOne" parameterType="com.example.bandproject.model.BandMember">
+        INSERT INTO band_member
+        (band_no, member_id, role, approved, joined_at)
+        VALUES
+        (#{band_no}, #{member_id}, #{role}, #{approved}, NOW());
+    </insert>
+
+    <!-- ✅ 특정 밴드의 모든 멤버 조회 -->
+    <select id="selectByBandNo" parameterType="int" resultType="com.example.bandproject.model.BandMember">
+        SELECT
+        no, band_no, member_id, role, approved, joined_at
+        FROM band_member
+        WHERE band_no = #{band_no}
+        ORDER BY joined_at DESC;
+    </select>
+
+    <!-- ✅ 특정 멤버의 밴드 목록 조회 -->
+    <select id="selectByMemberId" parameterType="String" resultType="com.example.bandproject.model.BandMember">
+        SELECT
+        no, band_no, member_id, role, approved, joined_at
+        FROM band_member
+        WHERE member_id = #{member_id};
+    </select>
+
+    <!-- ✅ 승인 상태 변경 -->
+    <update id="updateApproval" parameterType="com.example.bandproject.model.BandMember">
+        UPDATE band_member
+        SET approved = #{approved}
+        WHERE no = #{no};
+    </update>
+
+    <!-- ✅ 밴드 멤버 삭제 -->
+    <delete id="deleteByMemberId" parameterType="String">
+        DELETE FROM band_member
+        WHERE member_id = #{member_id};
+    </delete>
 
 </mapper>
