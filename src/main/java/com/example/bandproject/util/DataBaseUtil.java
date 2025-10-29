@@ -19,7 +19,7 @@ public class DataBaseUtil {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn =
                     DriverManager.getConnection(
-                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/community",
+                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/bandProject",
                             "admin", "miseon8976!");
 
 
@@ -54,7 +54,7 @@ public class DataBaseUtil {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn =
                     DriverManager.getConnection(
-                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/community",
+                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/bandProject",
                             "admin", "miseon8976!");
 
 
@@ -92,7 +92,7 @@ public class DataBaseUtil {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn =
                     DriverManager.getConnection(
-                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/community",
+                            "jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/bandProject",
                             "admin", "miseon8976!");
 
 
