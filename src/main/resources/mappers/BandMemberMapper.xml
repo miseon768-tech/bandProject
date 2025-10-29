@@ -7,7 +7,7 @@
 <mapper namespace="mappers.BandMemberMapper">
 
     <!-- ✅ 밴드 멤버 등록 (MASTER 자동 등록) -->
-    <insert id="insertOne" parameterType="com.example.bandproject.model.BandMember">
+    <insert id="insertOne" parameterType="BandMember">
         INSERT INTO band_member
         (band_no, member_id, role, approved, joined_at)
         VALUES
@@ -15,7 +15,7 @@
     </insert>
 
     <!-- ✅ 밴드 번호로 모든 멤버 조회 -->
-    <select id="selectByBandNo" parameterType="int" resultType="com.example.bandproject.model.BandMember">
+    <select id="selectByBandNo" parameterType="int" resultType="BandMember">
         SELECT no, band_no, member_id, role, approved, joined_at
         FROM band_member
         WHERE band_no = #{band_no}
@@ -23,14 +23,14 @@
     </select>
 
     <!-- ✅ 특정 멤버가 속한 밴드 조회 -->
-    <select id="selectByMemberId" parameterType="String" resultType="com.example.bandproject.model.BandMember">
+    <select id="selectByMemberId" parameterType="String" resultType="BandMember">
         SELECT no, band_no, member_id, role, approved, joined_at
         FROM band_member
         WHERE member_id = #{member_id};
     </select>
 
     <!-- ✅ 승인 상태 변경 -->
-    <update id="updateApproval" parameterType="com.example.bandproject.model.BandMember">
+    <update id="updateApproval" parameterType="BandMember">
         UPDATE band_member
         SET approved = #{approved}
         WHERE no = #{no};

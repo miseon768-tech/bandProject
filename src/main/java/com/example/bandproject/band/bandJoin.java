@@ -1,10 +1,13 @@
 package com.example.bandproject.band;
 
+import com.example.bandproject.model.BandMember;
+import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
@@ -22,6 +25,24 @@ public class bandJoin extends HttpServlet {
             resp.sendRedirect("/login");
             return;
         }
+        int no = Integer.parseInt(req.getParameter("no"));
+        int band_no = Integer.parseInt(req.getParameter("band_no"));
+        String member_id = req.getParameter("member_id");
+        String role = req.getParameter("role");
+        boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
+
+        BandMember bandmember = new BandMember();
+        bandmember.setNo(no);
+        bandmember.setBand_no(band_no);
+        bandmember.setMember_id(member_id);
+        bandmember.setRole(role);
+        bandmember.setApproved(approved);
+
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+        sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
+
+
+
 
 
         resp.sendRedirect("/band/join");
