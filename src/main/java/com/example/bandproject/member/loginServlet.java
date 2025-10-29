@@ -41,7 +41,7 @@ public class loginServlet extends HttpServlet {
 
             int r = sqlSession.insert("mappers.LoginHistoryMapper.insertOne", id);
             req.getSession().setAttribute("logonUser", found);
-            resp.sendRedirect("/index");
+            resp.sendRedirect("/band/index");
         } else {
             req.setAttribute("tryId", id);
             req.getRequestDispatcher("/login-fail.jsp").forward(req, resp);

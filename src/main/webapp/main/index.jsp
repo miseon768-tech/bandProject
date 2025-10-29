@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>가제</title>
+    <link rel="stylesheet" href="/css/css.css"/>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
+<div>
 
+</div>
 </body>
 </html>
