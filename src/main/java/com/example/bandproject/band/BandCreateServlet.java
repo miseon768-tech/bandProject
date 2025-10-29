@@ -106,7 +106,7 @@ public class BandCreateServlet extends HttpServlet {
             session.commit();
 
             // 생성 완료 → 상세/메인 페이지로 이동
-            resp.sendRedirect(req.getContextPath() + "/band/index?bandNo=" + bandNo);
+            resp.sendRedirect("/article/list" );
         } catch (Exception e) {
             // 실패 시 메시지와 함께 폼으로
             req.setAttribute("error", "생성 중 오류가 발생했습니다: " + e.getMessage());
