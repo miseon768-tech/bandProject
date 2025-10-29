@@ -43,7 +43,7 @@ public class DataBaseUtil {
             return r;
 
         } catch (Exception e) {
-            System.out.println("에러가 발생했습니다." + e);
+            e.printStackTrace();
             return -1;
         }
     }
@@ -58,7 +58,7 @@ public class DataBaseUtil {
                             "admin", "miseon8976!");
 
 
-            PreparedStatement ps = conn.prepareStatement("select *from Member where id = ? ");
+            PreparedStatement ps = conn.prepareStatement("select *from member where id = ? ");
             ps.setObject(1, id);
 
             ResultSet rs = ps.executeQuery();
@@ -75,14 +75,13 @@ public class DataBaseUtil {
                 member.setPassword(rs.getObject("password", String.class));
                 member.setNickname(rs.getObject("nickname", String.class));
 
-                conn.close();
-                return member;
+
             }
 
             conn.close();
-            return null;
+            return member;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         }
     }
@@ -114,7 +113,7 @@ public class DataBaseUtil {
             conn.close();
             return member;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         }
     }

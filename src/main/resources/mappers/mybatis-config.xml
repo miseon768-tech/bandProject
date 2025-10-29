@@ -12,6 +12,7 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://database-1.cvkqiwea22jn.ap-northeast-2.rds.amazonaws.com:3306/bandProject"/>
+
                 <property name="username" value="admin"/>
                 <property name="password" value="miseon8976!"/>
             </dataSource>
