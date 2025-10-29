@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 @WebServlet("/article/edit")
-public class ArticleEditServlet extends HttpServlet {
+public class ArticleEdit extends HttpServlet {
 
     private SqlSessionFactory sqlSessionFactory;
 
