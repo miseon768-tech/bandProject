@@ -13,7 +13,7 @@ public class bandJoin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("/band/bandJoin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/band/join.jsp").forward(req, resp);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class bandJoin extends HttpServlet {
         }
 
 
-        resp.sendRedirect("/band/list");
+        resp.sendRedirect("/band/join");
 
     }
 }
