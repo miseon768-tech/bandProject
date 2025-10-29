@@ -18,16 +18,7 @@ import java.io.Reader;
 @WebServlet("/band/create")
 public class bandCreate extends HttpServlet {
 
-    private SqlSessionFactory sqlSessionFactory;
 
-    @Override
-    public void init() throws ServletException {
-        try (Reader reader = Resources.getResourceAsReader("mappers/mybatis-config.xml")) {
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-        } catch (IOException e) {
-            throw new ServletException("MyBatis 초기화 실패", e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -37,7 +28,7 @@ public class bandCreate extends HttpServlet {
         Member loginUser = (Member) req.getSession().getAttribute("logonUser");
         if (loginUser == null) {
             // 로그인 페이지로
-            resp.sendRedirect(req.getContextPath() + "/member/login.jsp");
+            resp.sendRedirect(req.getContextPath() + "/member/login");
             return;
         }
 
@@ -53,7 +44,7 @@ public class bandCreate extends HttpServlet {
 
         Member loginUser = (Member) req.getSession().getAttribute("logonUser");
         if (loginUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/member/login.jsp");
+            resp.sendRedirect(req.getContextPath() + "/member/login");
             return;
         }
 
