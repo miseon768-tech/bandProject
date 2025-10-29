@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.MemberMapper">
-    <insert id="insertOne" parameterType="com.example.app.model.Member">
-        insert into member(id, password, email, name, nickname, interest, agree)
-        values(#{id}, #{password}, #{email}, #{name}, #{nickname}, #{interest}, #{agree})
+
+<mapper namespace="mappers.BandMapper">
+
+    <insert id="insertOne" parameterType="map" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO band (name, description, master_member_id, is_public, created_at, updated_at)
+        VALUES (#{name}, #{description}, #{masterMemberId}, #{isPublic}, NOW(), NOW())
     </insert>
+
+    <select id="selectLastInsertId" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </select>
+
 </mapper>
