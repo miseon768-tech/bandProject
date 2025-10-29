@@ -42,7 +42,7 @@ public class bandJoin extends HttpServlet {
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
 
 
-
+        sqlSession.close();
 
 
         resp.sendRedirect("/band/join");
