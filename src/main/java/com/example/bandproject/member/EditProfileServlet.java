@@ -55,9 +55,5 @@ public class EditProfileServlet extends HttpServlet {
 
         resp.sendRedirect("/editProfile");
 
-
-
-
-
     }
 }
