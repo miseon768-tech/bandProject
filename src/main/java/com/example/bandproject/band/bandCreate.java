@@ -2,14 +2,52 @@ package com.example.bandproject.band;
 
 import com.example.bandproject.model.Band;
 import com.example.bandproject.model.BandMember;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
 
-public class bandCreate {
+/**
+ * ✅ 밴드 생성 서블릿
+ * - MyBatis / DB 연결 없음
+ * - 밴드 생성 후 ArticleServlet("/article/list") 으로 이동
+ */
+@WebServlet("/band/create")
+public class bandCreate extends HttpServlet {
 
-    /**
-     * 새 밴드 등록 시 전달될 Band 데이터 준비
-     */
-    public Band createBand(String name, String description, String masterMemberId, boolean isPublic) {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        // 단순히 밴드 생성 폼을 보여주는 역할 (지금은 폼 없이 즉시 POST로 테스트 가능)
+        resp.setContentType("text/plain; charset=UTF-8");
+        resp.getWriter().println("🎸 [GET] BandCreateServlet 동작 중...");
+        resp.getWriter().println("POST /band/create 로 요청을 보내면 밴드가 생성됩니다.");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8");
+
+        // 입력값 수신
+        String name = req.getParameter("name");
+        String description = req.getParameter("description");
+        String masterMemberId = "test_user"; // 로그인 미사용 버전
+        boolean isPublic = "on".equalsIgnoreCase(req.getParameter("is_public"));
+
+        // 단순 유효성 체크
+        if (name == null || name.isBlank()) {
+            resp.setContentType("text/plain; charset=UTF-8");
+            resp.getWriter().println("⚠️ 밴드 이름이 비어 있습니다. 다시 시도하세요.");
+            return;
+        }
+
+        // 밴드 객체 구성 (DB에 저장하지 않음)
         Band band = new Band();
         band.setName(name);
         band.setDescription(description);
@@ -18,37 +56,22 @@ public class bandCreate {
         band.setCreated_at(java.time.LocalDateTime.now());
         band.setUpdated_at(java.time.LocalDateTime.now());
 
+        // 밴드 멤버 객체 구성 (마스터 자동 등록)
+        BandMember master = new BandMember();
+        master.setBand_no(1); // 임시 밴드 번호
+        master.setMember_id(masterMemberId);
+        master.setRole("MASTER");
+        master.setApproved(true);
+        master.setJoined_at(java.time.LocalDateTime.now());
 
-        return band;
-    }
+        // 콘솔 로그 (실행 확인용)
+        System.out.println("✅ [밴드 생성 완료]");
+        System.out.println(" - 밴드명: " + band.getName());
+        System.out.println(" - 마스터: " + master.getMember_id());
+        System.out.println(" - 공개여부: " + band.is_public());
+        System.out.println("→ ArticleServlet(/article/list)으로 이동합니다.");
 
-    /**
-     * 밴드 생성 후 자동으로 밴드 멤버 등록용 데이터 생성
-     */
-    public BandMember registerMaster(int bandNo, String memberId) {
-        BandMember bm = new BandMember();
-        bm.setBand_no(bandNo);
-        bm.setMember_id(memberId);
-        bm.setRole("MASTER");
-        bm.setApproved(true);
-        bm.setJoined_at(java.time.LocalDateTime.now());
-
-
-        return bm;
-    }
-
-    /**
-     * 콘솔 테스트용 (실제 insert 없음)
-     */
-    public static void main(String[] args) {
-        bandCreate creator = new bandCreate();
-
-        // 1️⃣ 밴드 생성 객체 준비
-        Band band = creator.createBand("테스트 밴드", "밴드 소개 텍스트", "test_user", true);
-        System.out.println("[Band 생성] " + band.getName() + " / " + band.getDescription());
-
-        // 2️⃣ 밴드 마스터 멤버 객체 준비
-        BandMember master = creator.registerMaster(1, "test_user");
-        System.out.println("[BandMember 등록] 밴드번호=" + master.getBand_no() + ", 역할=" + master.getRole());
+        // ✅ ArticleServlet으로 리다이렉트
+        resp.sendRedirect(req.getContextPath() + "/article/list");
     }
 }
