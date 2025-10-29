@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 @WebServlet("/article/delete")
-public class ArticleDelete extends HttpServlet {
+public class ArticleDeleteServlet extends HttpServlet {
 
     private SqlSessionFactory sqlSessionFactory;
 

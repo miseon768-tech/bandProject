@@ -1,4 +1,4 @@
-package com.example.bandproject.index;
+package com.example.bandproject.band;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,13 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
-@WebServlet("/index")
-public class indexServlet extends HttpServlet {
+@WebServlet("/band")
+public class BandIndexServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        req.getRequestDispatcher("/main/index.jsp").forward(req,resp);
+        req.getRequestDispatcher("/band/index.jsp").forward(req,resp);
     }
 }
