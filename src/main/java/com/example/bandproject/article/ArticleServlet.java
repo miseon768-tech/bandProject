@@ -15,13 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-/**
- * 목록 & 상세 전용 서블릿 (MyBatis 직접 초기화)
- * JSP: /article/article.jsp, /article/articleDetail.jsp
- * URL:
- *   - GET /article/list
- *   - GET /article/list?no={번호}
- */
+
 @WebServlet("/article/list")
 public class ArticleServlet extends HttpServlet {
 
