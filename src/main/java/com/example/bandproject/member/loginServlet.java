@@ -1,5 +1,5 @@
 
-package com.example.bandproject.memeber;
+package com.example.bandproject.member;
 
 
 import com.example.bandproject.model.Member;
