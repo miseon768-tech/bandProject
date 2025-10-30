@@ -57,12 +57,13 @@ public class bandCreate extends HttpServlet {
         master.setJoined_at(java.time.LocalDateTime.now());
 
         SqlSession sqlsession = MyBatisUtil.build().openSession(true);
-        Band bd = sqlsession.insert("mappers.BandMapper.insertOne");
-        BandMember mt = sqlsession.insert("mappers.BandMemberMapper.insertOne", master);
+        // 밴드 정보 DB에 저장
+        sqlsession.insert("mappers.BandMapper.insertOne", band);
+        // 밴드 마스터 멤버 DB에 저장
+        sqlsession.insert("mappers.BandMemberMapper.insertOne", master);
 
+        sqlsession.close();
 
-
-        SqlSession close();
 
         // ✅ ArticleServlet으로 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/article/list");
