@@ -36,8 +36,6 @@ public class bandJoin extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
 
-
-
         sqlSession.close();
 
 

@@ -23,7 +23,7 @@
         <p class="text-center text-gray">
             다양한 취미들이 모여 하나의 즐거움이 되는 공간
         </p>
-        <form class="signup-form" action="/signup" method="post">
+        <form class="signup-form" action="/signup" method="post" onsubmit="validateForm(event)">
             <div>
                 <label for="id"><small>아이디</small></label>
                 <div class="mt-1">
@@ -78,5 +78,37 @@
         </form>
     </div>
 </div>`
+<script>
+    function validateForm(evt) {
+        const id = document.getElementById("id").value;
+        const password = document.getElementById("password").value;
+        const nickname = document.getElementById("nickname").value;
+
+
+        // 아이디 검사
+        if (id === "") {
+            alert("아이디는 소문자와 숫자 조합으로 4~15자 이내여야 합니다.");
+            document.getElementById("id").focus();
+            evt.preventDefault();
+        }
+
+        // 비밀번호 검사
+        if (password==="") {
+            alert("비밀번호는 소문자와 숫자를 포함하여 6자 이상이어야 합니다.");
+            document.getElementById("password").focus();
+            evt.preventDefault();
+        }
+
+        // 닉네임 검사
+        if (nickname==="") {
+            alert("닉네임에는 특수문자를 사용할 수 없습니다. (2~15자)");
+            document.getElementById("nickname").focus();
+            evt.preventDefault();
+        }
+
+        return true;
+    }
+</script>
+
 </body>
 </html>
