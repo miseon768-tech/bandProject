@@ -1,7 +1,6 @@
 package com.example.bandproject.member;
 
 import com.example.bandproject.model.Member;
-import com.example.bandproject.util.DataBaseUtil;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
