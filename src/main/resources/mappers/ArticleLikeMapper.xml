@@ -2,7 +2,37 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="mappers.ArticleLikeMapper">
+    <!-- 등록 -->
+    <insert id="insertOne" parameterType="articleLike">
+        insert into articleLike(memberId, articleNo) values(#{memberId}, #{articleNo})
+    </insert>
+    <!-- 삭제 -->
+    <delete id="deleteByIdx" parameterType="int">
+        delete from articleLike where idx=#{idx}
+    </delete>
+    <delete id="deleteByMemberIdAndArticleNo" parameterType="articleLike">
+        delete from articleLike where memberId=#{memberId} and articleNo=#{articleNo}
+    </delete>
+    <delete id="deleteByArticleNo" parameterType="int">
+        delete from articleLike where articleNo=#{no}
+    </delete>
 
+    <!-- -->
+    <select id="countByMemberIdAndArticleNo" resultType="int" parameterType="map">
+        select count(*) from articleLike
+        where memberId=#{memberId} and articleNo=#{articleNo}
+    </select>
+    <select id="selectByMemberIdAndArticleNo" resultType="articleLike" parameterType="articleLike">
+        select * from articleLike
+        where memberId=#{memberId} and articleNo=#{articleNo}
+    </select>
+
+    <select id="selectLikedArticlesByMemberId"
+            parameterType="string" resultType="LikedArticle">
+        select *
+        from articleLike join article
+        on articleLike.articleNo = article.no
+        where articleLike.memberId = #{id}
+    </select>
 </mapper>
