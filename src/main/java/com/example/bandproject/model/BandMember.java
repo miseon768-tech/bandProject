@@ -10,11 +10,10 @@ import java.time.LocalDateTime;
 @Setter
 public class BandMember {
 
-    int no;
-    int band_no;
     String id;
-    String role;
+    String name;
     String nickname;
+    String role;
     boolean approved;
     LocalDateTime joined_at;
 

@@ -30,43 +30,25 @@ public class BandServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
+        // 밴드 생성 처리
         if (req.getSession().getAttribute("logonUser") == null) {
             resp.sendRedirect("/login");
             return;
         }
-
-        // 밴드 생성 처리
-        // 입력값 수신
-        String no = req.getParameter("no");
+        String name = req.getParameter("name");
         String nickname = req.getParameter("nickname");
         String description = req.getParameter("description");
 
-
-
-        // 밴드 객체 구성 (DB에 저장하지 않음)
         Band band = new Band();
-        band.setNo(Integer.parseInt(no));
+        band.setName(name);
         band.setNickname(nickname);
         band.setDescription(description);
 
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+        sqlSession.insert("mappers.BandMapper.insertOne", band);
+        sqlSession.close();
 
+        resp.sendRedirect("/band");
 
-        // 밴드 멤버 객체 구성 (마스터 자동 등록)
-        BandMember master = new BandMember();
-        master.setRole("MASTER");
-        master.setApproved(true);
-
-        SqlSession sqlsession = MyBatisUtil.build().openSession(true);
-        // 밴드 정보 DB에 저장
-        sqlsession.insert("mappers.BandMapper.insertOne", band);
-        // 밴드 마스터 멤버 DB에 저장
-        sqlsession.insert("mappers.BandMemberMapper.insertOne", master);
-
-        sqlsession.close();
-
-
-        // ✅ ArticleServlet으로 리다이렉트
-        resp.sendRedirect(req.getContextPath() + "/article/list");
     }
-}
+    }

@@ -36,6 +36,7 @@ public class editPWServlet extends HttpServlet {
         Member logonUser =(Member)req.getSession().getAttribute("logonUser");
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         Member found = sqlSession.selectOne("mappers.MemberMapper.selectById", logonUser.getId());
+
         if(!found.getPassword().equals(password)) {
             req.setAttribute("error", "현재 비밀번호가 일치하지 않습니다.");
             req.getRequestDispatcher("/member/editPW-fail.jsp").forward(req, resp);

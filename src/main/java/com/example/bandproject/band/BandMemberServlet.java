@@ -25,24 +25,24 @@ public class BandMemberServlet extends HttpServlet {
             resp.sendRedirect("/login");
             return;
         }
+        String name = req.getParameter("name");
+        String role = req.getParameter("role");
 
-        int band_no = Integer.parseInt(req.getParameter("no"));
+        BandMember bandMember = new BandMember();
+        bandMember.setName(name);
 
-        BandMember bandmember = new BandMember();
-        bandmember.setBand_no(band_no);
-
-
+        bandMember.setRole(role);
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-
-        sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
-
-
-
-
+        sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
         sqlSession.close();
-
-
         resp.sendRedirect("/band/member");
-
     }
+    .
+
+           // 멤버 설정
+
+
+
+
+
 }
