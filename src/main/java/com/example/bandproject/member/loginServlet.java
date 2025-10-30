@@ -39,9 +39,9 @@ public class loginServlet extends HttpServlet {
                 resp.addCookie(cookie);
             }
 
-            int r = sqlSession.insert("mappers.LoginHistoryMapper.insertOne", id);
+          // int r = sqlSession.insert("mappers.LoginHistoryMapper.insertOne", id);
             req.getSession().setAttribute("logonUser", found);
-            resp.sendRedirect("/band/index");
+            resp.sendRedirect("/band");
         } else {
             req.setAttribute("tryId", id);
             req.getRequestDispatcher("/login-fail.jsp").forward(req, resp);
