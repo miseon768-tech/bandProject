@@ -13,14 +13,14 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 
-@WebServlet("/band/create")
+@WebServlet("/band")
 public class BandServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        req.getRequestDispatcher("/band/create.jsp").forward(req, resp);
+        req.getRequestDispatcher("/band/band.jsp").forward(req, resp);
 //        // 단순히 밴드 생성 폼을 보여주는 역할 (지금은 폼 없이 즉시 POST로 테스트 가능)
 //        resp.setContentType("text/plain; charset=UTF-8");
 //        resp.getWriter().println("🎸 [GET] BandCreateServlet 동작 중...");
