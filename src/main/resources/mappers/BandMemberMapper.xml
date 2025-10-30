@@ -41,6 +41,12 @@
         SET member_cnt = member_cnt + 1
         WHERE no = #{band_no};
     </update>
+    <update id="decreaseMemberCnt" parameterType="int">
+        UPDATE band
+        SET member_cnt = member_cnt - 1
+        WHERE no = #{band_no};
+    </update>
+
 
     <!-- ✅ 밴드 멤버 삭제 -->
     <delete id="deleteByMemberId" parameterType="String">
