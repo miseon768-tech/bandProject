@@ -1,7 +1,6 @@
 package com.example.bandproject.member;
 
 import com.example.bandproject.model.Member;
-import com.example.bandproject.util.DataBaseUtil;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -53,7 +52,6 @@ public class signupServlet extends HttpServlet {
                 r = sqlSession.insert("mappers.MemberMapper.insertOne", member);
             }
         }
-        sqlSession.close();
         if (r == 1) {
             req.setAttribute("nickname", nickname);
             req.getRequestDispatcher("/member/signup-success.jsp").forward(req, resp);
@@ -66,14 +64,16 @@ public class signupServlet extends HttpServlet {
             req.setAttribute("interest", interest);
             req.setAttribute("agree", agree);
 
-            if (DataBaseUtil.selectMemberById(id) != null) {
+            if (sqlSession.selectOne("mappers.MemberMapper.selectById", id) != null) {
                 req.setAttribute("mainError", "이미 사용되고 있는 아이디 입니다.");
             }
-            if (DataBaseUtil.selectMemberByNickname(nickname) != null) {
+            if (sqlSession.selectOne("mappers.MemberMapper.selectByNickname", nickname) != null) {
                 req.setAttribute("mainError", "이미 사용되고 있는 닉네임 입니다.");
             }
             req.getRequestDispatcher("/member/signup-fail.jsp").forward(req, resp);
         }
+        sqlSession.close();
+
     }
 
 
