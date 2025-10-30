@@ -17,7 +17,9 @@ public class CommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Member logonUser = (Member)req.getSession().getAttribute("logonUser");
+
         int articleNo= Integer.parseInt(req.getParameter("articleNo"));
         String content = req.getParameter("content");
         String writerId = logonUser.getId();
