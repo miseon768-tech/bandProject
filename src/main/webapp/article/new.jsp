@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <h2>✏️ 새 글 작성</h2>
 
 <form method="post" action="${pageContext.request.contextPath}/article/new">

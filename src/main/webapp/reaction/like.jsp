@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 
 </body>
 </html>

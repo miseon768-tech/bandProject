@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <h2>비밀번호 변경 실패</h2>
 
 </body>

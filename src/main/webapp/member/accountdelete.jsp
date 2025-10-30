@@ -13,36 +13,12 @@
 <html>
 <head>
     <title>회원탈퇴 완료</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 80px;
-        }
-        .container {
-            display: inline-block;
-            border: 1px solid #ddd;
-            padding: 40px 60px;
-            border-radius: 10px;
-            background-color: #f8f8f8;
-        }
-        .btn {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #d6d6d6;
-            color: white;
-            font-size: 14px;
-            text-decoration: none;
-        }
-        .btn:hover {
-            background-color: #757575;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/css.css"/>
+
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
+<div class="deletemessage">
 <div class="container">
     <h2>회원탈퇴가 정상적으로 처리되었습니다.</h2>
     <p>그동안 이용해 주셔서 감사합니다.</p>

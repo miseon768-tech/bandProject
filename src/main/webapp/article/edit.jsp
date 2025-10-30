@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <h2>✏️ 글 수정</h2>
 
 <form method="post" action="${pageContext.request.contextPath}/article/edit">
