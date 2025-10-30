@@ -44,7 +44,7 @@ public class loginServlet extends HttpServlet {
             resp.sendRedirect("/band");
         } else {
             req.setAttribute("tryId", id);
-            req.getRequestDispatcher("/login-fail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/member/login-fail.jsp").forward(req, resp);
         }
 
         sqlSession.close();
