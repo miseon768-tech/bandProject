@@ -26,11 +26,13 @@ public class BandMemberServlet extends HttpServlet {
             return;
         }
 
+        int band_no = Integer.parseInt(req.getParameter("band_no"));
         String member_id = req.getParameter("member_id");
         String nickname = req.getParameter("nickname");
         boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
 
         BandMember bandmember = new BandMember();
+        bandmember.setBand_no(band_no);
         bandmember.setMember_id(member_id);
         bandmember.setNickname(nickname);
         bandmember.setApproved(approved);
