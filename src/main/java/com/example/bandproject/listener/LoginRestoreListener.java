@@ -34,9 +34,9 @@ public class LoginRestoreListener implements ServletRequestListener {
         }
 
         if (req.getSession().getAttribute("logonUser") == null) {
-            req.setAttribute("auth", false);
+            req.setAttribute("auth", false); // auth 라는 이름으로 인증여부를 저장, 로그인되지 않은 상태
         } else {
-            req.setAttribute("auth", true);
+            req.setAttribute("auth", true); // auth 라는 이름으로 인증여부를 저장, 로그인된 상태
         }
 
     }
