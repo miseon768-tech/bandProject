@@ -6,12 +6,24 @@
 <mapper namespace="mappers.BandMapper">
 
     <insert id="insertOne" parameterType="map" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO band (name, description, master_member_id, is_public, created_at, updated_at)
-        VALUES (#{name}, #{description}, #{masterMemberId}, #{isPublic}, NOW(), NOW())
+        INSERT INTO band (name, description, master_member_id,, created_at, updated_at is_public)
+        VALUES (#{name}, #{description}, #{masterMemberId}, NOW(), NOW(), #{isPublic})
     </insert>
 
     <select id="selectLastInsertId" resultType="int">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <update id="bandPublic" parameterType="map">
+        UPDATE band
+        SET is_public = #{isPublic}
+        WHERE no = #{bandNo}
+    </update>
+
+    <update id="bandPrivate" parameterType="int">
+        UPDATE band
+        SET is_public = FALSE
+        WHERE no = #{bandNo}
+    </update>
 
 </mapper>
