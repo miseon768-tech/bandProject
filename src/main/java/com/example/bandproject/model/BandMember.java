@@ -14,6 +14,7 @@ public class BandMember {
     int band_no;
     String member_id;
     String role;
+    String nickname;
     boolean approved;
     LocalDateTime joined_at;
 
