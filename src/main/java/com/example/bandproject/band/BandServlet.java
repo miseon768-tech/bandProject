@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @WebServlet("/band/create")
-public class bandCreate extends HttpServlet {
+public class BandServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
