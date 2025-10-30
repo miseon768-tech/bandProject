@@ -19,6 +19,19 @@ import java.util.List;
 @WebServlet("/article/list")
 public class ArticleServlet extends HttpServlet {
 
+    private SqlSessionFactory sqlSessionFactory;
+
+    @Override
+    public void init() throws ServletException {
+        // ✅ MyBatis 초기화 (서블릿 시작 시 1회 실행)
+        try {
+            Reader reader = Resources.getResourceAsReader("mappers/mybatis-config.xml");
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        } catch (IOException e) {
+            throw new ServletException("MyBatis 설정 파일 로드 실패", e);
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
