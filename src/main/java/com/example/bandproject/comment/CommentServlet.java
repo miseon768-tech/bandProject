@@ -29,6 +29,8 @@ public class CommentServlet extends HttpServlet {
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         int r = sqlSession.insert("mappers.CommentMapper.insertOne", comment);
+        sqlSession.update("mappers.ArticleMapper.increaseCommentCnt", articleNo);
+
 
         resp.sendRedirect("/article/list?no="+articleNo);
     }
