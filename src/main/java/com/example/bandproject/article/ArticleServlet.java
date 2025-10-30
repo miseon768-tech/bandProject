@@ -14,7 +14,7 @@ import java.util.List;
 @WebServlet("/article/list")
 public class ArticleServlet extends HttpServlet {
 
-    // 게시글을 메모리에 저장하는 리스트 (DB 없이 동작)
+    // 게시글을 메모리에 저장하는 리스트
     private static final List<Article> articleList = new ArrayList<>();
     private static int nextId = 1;
 

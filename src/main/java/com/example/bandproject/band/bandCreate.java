@@ -2,11 +2,13 @@ package com.example.bandproject.band;
 
 import com.example.bandproject.model.Band;
 import com.example.bandproject.model.BandMember;
+import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
@@ -29,20 +31,14 @@ public class bandCreate extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8");
-
+        // 밴드 생성 처리
         // 입력값 수신
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String masterMemberId = req.getParameter("masterMemberId");
         boolean isPublic = "on".equalsIgnoreCase(req.getParameter("is_public"));
 
-        // 단순 유효성 체크
-        if (name == null || name.isBlank()) {
-            resp.setContentType("text/plain; charset=UTF-8");
-            resp.getWriter().println("⚠️ 밴드 이름이 비어 있습니다. 다시 시도하세요.");
-            return;
-        }
+
 
         // 밴드 객체 구성 (DB에 저장하지 않음)
         Band band = new Band();
@@ -55,12 +51,18 @@ public class bandCreate extends HttpServlet {
 
         // 밴드 멤버 객체 구성 (마스터 자동 등록)
         BandMember master = new BandMember();
-        master.setBand_no(1); // 임시 밴드 번호
         master.setMember_id(masterMemberId);
         master.setRole("MASTER");
         master.setApproved(true);
         master.setJoined_at(java.time.LocalDateTime.now());
 
+        SqlSession sqlsession = MyBatisUtil.build().openSession(true);
+        Band bd = sqlsession.insert("mappers.BandMapper.insertOne");
+        BandMember mt = sqlsession.insert("mappers.BandMemberMapper.insertOne", master);
+
+
+
+        SqlSession close();
 
         // ✅ ArticleServlet으로 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/article/list");
