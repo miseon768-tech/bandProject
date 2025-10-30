@@ -5,120 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>밴드 생성</title>
-    <style>
-        :root{
-            --bg:#f6f6f7;
-            --card:#ffffff;
-            --ink:#2b2b2b;
-            --muted:#8d8d92;
-            --line:#dcdce1;
-            --accent:#6b63ff;
-            --accent-dark:#5149ff;
-        }
-        *{box-sizing:border-box}
-        body{
-            font-family: "맑은 고딕", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            background: var(--bg);
-            margin: 0;
-            padding: 48px 16px;
-            color: var(--ink);
-        }
-        .wrap{
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        h2{
-            text-align:center;
-            margin: 0 0 22px;
-            font-weight: 800;
-            letter-spacing: -.2px;
-        }
-        .card{
-            background: var(--card);
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: 0 8px 28px rgba(0,0,0,.06);
-            border: 1px solid var(--line);
-        }
+    <link rel="stylesheet" href="/css/css.css"/>
 
-        .field{ margin-bottom: 18px; }
-        .label{
-            display:block;
-            font-weight: 800;
-            margin: 6px 2px 8px;
-        }
-        .hint{
-            display:block;
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 6px;
-        }
-
-        .input, .textarea{
-            width: 100%;
-            border: 1.5px solid var(--line);
-            border-radius: 12px;
-            background: #fff;
-            padding: 12px 14px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color .15s ease, box-shadow .15s ease;
-        }
-        .input:focus, .textarea:focus{
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(107,99,255,.12);
-        }
-        .textarea{
-            min-height: 140px;
-            resize: vertical;
-        }
-        .row{
-            display:flex; gap: 14px; align-items:center; flex-wrap:wrap;
-        }
-        .radios{
-            display:flex; gap:22px; align-items:center; padding: 10px 0 2px;
-        }
-        .radio{
-            display:inline-flex; gap:10px; align-items:center; cursor:pointer;
-        }
-        .radio input{ accent-color: var(--accent); width:18px; height:18px; }
-
-        .actions{
-            display:flex; justify-content:space-between; align-items:center; margin-top: 8px;
-        }
-        .btn{
-            border: 1.5px solid var(--line);
-            background:#fff;
-            color: var(--ink);
-            border-radius: 14px;
-            padding: 12px 18px;
-            font-weight: 700;
-            cursor:pointer;
-            transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
-        }
-        .btn:hover{ box-shadow: 0 6px 16px rgba(0,0,0,.08); }
-        .btn:active{ transform: translateY(1px); }
-
-        .btn-primary{
-            background: var(--accent);
-            color:#fff;
-            border-color: var(--accent);
-            padding: 12px 24px;
-        }
-        .btn-primary:hover{ background: var(--accent-dark); border-color: var(--accent-dark); }
-
-        .msg{ text-align:center; color:#14863d; margin-top:16px; font-weight:700; }
-        .error{ text-align:center; color:#c02626; margin-top:16px; font-weight:700; }
-
-        /* 작은 화면 */
-        @media (max-width: 540px){
-            .card{ padding:20px; border-radius:18px; }
-        }
-    </style>
 </head>
 <body>
 <div class="wrap">
-    <h2>🎵 새 밴드 만들기</h2>
+    <h2>새 밴드 만들기</h2>
 
     <form class="card" method="post" action="${pageContext.request.contextPath}/band/create" id="bandForm">
         <!-- 밴드 이름 -->
@@ -180,15 +72,15 @@
 
 <script>
     // 간단 클라이언트 검증(이름 최소 2자)
-    document.getElementById('bandForm').addEventListener('submit', function(e){
+    document.getElementById('bandForm').addEventListener('submit', function (e) {
         const nm = document.getElementById('name').value.trim();
         const master = document.getElementById('masterNickname').value.trim();
-        if(nm.length < 2){
+        if (nm.length < 2) {
             alert('밴드 이름을 2자 이상 입력해 주세요.');
             e.preventDefault();
             return;
         }
-        if(master.length < 2){
+        if (master.length < 2) {
             alert('마스터 닉네임을 2자 이상 입력해 주세요.');
             e.preventDefault();
         }

@@ -9,43 +9,9 @@
 <html>
 <head>
     <title>로그인실패</title>
+    <link rel="stylesheet" href="/css/css.css"/>
     <style>
-        body {
-            margin: 0px;
-        }
-        .signup-wrap{
-            margin: 6rem 0rem;
-            display: flex;
-            justify-content: center;
-        }
-        .signup {
-            max-width: 28rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-gray {
-            color : #8f8f8f
-        }
-        .mt-1 {
-            margin-top: 0.25rem;
-        }
-        .input {
-            width: 100%;
-            padding : 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            border-color : #8f8f8f;
-        }
-        .signup-form > div {
-            margin-top: 1.5rem;
-        }
-        .bt-submit {
-            width: 100%;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            border: none;
-            cursor: pointer;
-        }
+
         .bt-submit:disabled{
             cursor : not-allowed;
             opacity: 0.7;
