@@ -12,7 +12,7 @@ public class BandMember {
 
     int no;
     int band_no;
-    String member_id;
+    String id;
     String role;
     String nickname;
     boolean approved;

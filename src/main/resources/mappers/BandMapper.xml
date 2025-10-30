@@ -6,8 +6,8 @@
 <mapper namespace="mappers.BandMapper">
 
     <insert id="insertOne" parameterType="map" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO band (name, description, master_member_id, created_at, updated_at, is_public)
-        VALUES (#{name}, #{description}, #{masterMemberId}, NOW(), NOW(), #{isPublic})
+        INSERT INTO band (name, nickname, description, id, created_at, updated_at)
+        VALUES (#{name}, #{nickname}, #{description}, #{id}, NOW(), NOW())
     </insert>
 
     <select id="selectLastInsertId" resultType="int">

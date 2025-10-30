@@ -9,9 +9,9 @@
     <!-- ✅ 밴드 멤버 등록 (MASTER 자동 등록) -->
     <insert id="insertOne" parameterType="BandMember">
         INSERT INTO band_member
-        (band_no, member_id, role, nickname, approved, joined_at)
+        (band_no, id, role, nickname, approved, joined_at)
         VALUES
-        (#{band_no}, #{member_id}, #{role}, #{nickname}, #{approved}, NOW());
+        (#{band_no}, #{id}, #{role}, #{nickname}, #{approved}, NOW());
     </insert>
 
     <!-- ✅ 밴드 번호로 모든 멤버 조회 -->

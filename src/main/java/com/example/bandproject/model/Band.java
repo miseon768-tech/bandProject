@@ -10,9 +10,10 @@ import java.time.LocalDateTime;
 public class Band {
     int no;
     String name;
+    String nickname;
     String description;
-    String master_member_id;
+    String id;
     LocalDateTime created_at;
     LocalDateTime updated_at;
-    boolean is_public;
+
 }
