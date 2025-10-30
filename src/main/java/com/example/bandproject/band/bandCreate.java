@@ -15,13 +15,14 @@ import java.io.IOException;
 public class bandCreate extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // 단순히 밴드 생성 폼을 보여주는 역할 (지금은 폼 없이 즉시 POST로 테스트 가능)
-        resp.setContentType("text/plain; charset=UTF-8");
-        resp.getWriter().println("🎸 [GET] BandCreateServlet 동작 중...");
-        resp.getWriter().println("POST /band/create 로 요청을 보내면 밴드가 생성됩니다.");
+
+        req.getRequestDispatcher("/band/create.jsp").forward(req, resp);
+//        // 단순히 밴드 생성 폼을 보여주는 역할 (지금은 폼 없이 즉시 POST로 테스트 가능)
+//        resp.setContentType("text/plain; charset=UTF-8");
+//        resp.getWriter().println("🎸 [GET] BandCreateServlet 동작 중...");
+//        resp.getWriter().println("POST /band/create 로 요청을 보내면 밴드가 생성됩니다.");
     }
 
     @Override
