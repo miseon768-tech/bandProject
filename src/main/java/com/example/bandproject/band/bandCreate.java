@@ -33,7 +33,7 @@ public class bandCreate extends HttpServlet {
         // 입력값 수신
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String masterMemberId = "test_user"; // 로그인 미사용 버전
+        String masterMemberId = req.getParameter("masterMemberId");
         boolean isPublic = "on".equalsIgnoreCase(req.getParameter("is_public"));
 
         // 단순 유효성 체크
@@ -60,12 +60,6 @@ public class bandCreate extends HttpServlet {
         master.setApproved(true);
         master.setJoined_at(java.time.LocalDateTime.now());
 
-        // 콘솔 로그 (실행 확인용)
-        System.out.println("✅ [밴드 생성 완료]");
-        System.out.println(" - 밴드명: " + band.getName());
-        System.out.println(" - 마스터: " + master.getMember_id());
-        System.out.println(" - 공개여부: " + band.is_public());
-        System.out.println("→ ArticleServlet(/article/list)으로 이동합니다.");
 
         // ✅ ArticleServlet으로 리다이렉트
         resp.sendRedirect(req.getContextPath() + "/article/list");
