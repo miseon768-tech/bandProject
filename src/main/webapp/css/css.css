@@ -306,3 +306,89 @@ h2{
     text-decoration: none;
 }
 
+/* 회원가입 실패 알림 */
+
+.alert {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 16px auto 0;
+    max-width: 720px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.alert-danger {
+    background: #fff5f5;
+    color: #b42318;
+    border: 1px solid #ffd6d6;
+}
+.text-center { text-align:center; }
+.text-gray { color:#666; }
+.mt-1 { margin-top:8px; }
+
+/* 회원 탈퇴 알림*/
+.deletemessage {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 80px;
+}
+.container {
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 40px 60px;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+.btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d6d6d6;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btn:hover {
+    background-color: #757575;
+}
+
+/* 회원 탈퇴 실패 알림 */
+.deletefailmessage {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    background: #fafafa;
+}
+.container {
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 40px 60px;
+    border-radius: 10px;
+    background-color: #fff5f5; /* 실패 느낌 살짝 연분홍 */
+}
+.msg {
+    color: #d9534f;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+.btn { /* 버튼 클래스 통일 */
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e3e3e3;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #a6a6a6;
+}
+
+/*  */
+
+
+

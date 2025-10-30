@@ -32,7 +32,7 @@
                    placeholder="닉네임 입력"
                    value="<c:out value='${adminNickname != null ? adminNickname : (admin != null ? admin.nickname : "")}'/>"
                    required>
-            <small class="hint">생성자의 표시 이름이에요. 필요하면 수정해도 돼요.</small>
+            <small class="hint">생성자의 닉네임을 입력해주세요.</small>
         </div>
 
         <!-- 설명 -->
@@ -44,7 +44,7 @@
 
         <!-- 공개/비공개 -->
         <div class="field">
-            <span class="label">밴드 공개/비공개 설정</span>
+            <span class="label">밴드 공개 / 비공개 설정</span>
             <div class="radios">
                 <label class="radio">
                     <input type="radio" name="visibility" value="PUBLIC" checked>
@@ -55,7 +55,7 @@
                     <span>비공개</span>
                 </label>
             </div>
-            <small class="hint">공개: 누구나 검색/가입 요청 가능 • 비공개: 초대만 가입</small>
+            <small class="hint">공개: 누구나 검색/가입 요청 가능  •  비공개: 초대만 가입</small>
         </div>
 
         <!-- 버튼 -->

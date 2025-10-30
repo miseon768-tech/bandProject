@@ -48,6 +48,7 @@
     </style>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <div class="signup-wrap">
     <div class="signup-success">
         <div>

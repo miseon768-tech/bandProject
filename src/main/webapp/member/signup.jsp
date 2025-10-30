@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <h2>회원가입</h2>
 
 <div class="signup-wrap">

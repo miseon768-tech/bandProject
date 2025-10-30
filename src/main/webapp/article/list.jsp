@@ -17,6 +17,7 @@
     </style>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <h2>📋 게시글 목록</h2>
 
 <div style="text-align:right; margin-bottom:10px;">

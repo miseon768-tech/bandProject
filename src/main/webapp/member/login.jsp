@@ -11,7 +11,7 @@
   Date: 25. 10. 28.
   Time: 오전 11:33
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String ctx = request.getContextPath(); // 필요시 폼 action 등에 사용
 %>
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/css/css.css"/>
 </head>
 <body>
+<%@ include file="/template/header.jspf"%>
 <div class="signup-wrap">
     <div class="signup">
         <a href="<%=ctx%>/">로고</a>
