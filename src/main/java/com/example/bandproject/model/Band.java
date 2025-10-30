@@ -9,11 +9,10 @@ import java.time.LocalDateTime;
 @Setter
 public class Band {
     int no;
-    String name;
+    String name ;
     String nickname;
     String description;
     String id;
     LocalDateTime created_at;
-    LocalDateTime updated_at;
 
 }
