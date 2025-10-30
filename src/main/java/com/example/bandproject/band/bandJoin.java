@@ -25,21 +25,17 @@ public class bandJoin extends HttpServlet {
             resp.sendRedirect("/login");
             return;
         }
-        int no = Integer.parseInt(req.getParameter("no"));
-        int band_no = Integer.parseInt(req.getParameter("band_no"));
+
         String member_id = req.getParameter("member_id");
-        String role = req.getParameter("role");
         boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
 
         BandMember bandmember = new BandMember();
-        bandmember.setNo(no);
-        bandmember.setBand_no(band_no);
         bandmember.setMember_id(member_id);
-        bandmember.setRole(role);
         bandmember.setApproved(approved);
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
+
 
 
         sqlSession.close();
