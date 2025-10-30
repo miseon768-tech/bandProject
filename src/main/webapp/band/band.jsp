@@ -76,17 +76,17 @@
 
 <script>
     // 간단 클라이언트 검증(이름 최소 2자)
-    document.getElementById('bandForm').addEventListener('submit', function (e) {
-        const nm = document.getElementById('name').value.trim();
+    document.getElementById('bandForm').addEventListener('submit', function (evt) {
+        const name = document.getElementById('name').value.trim();
         const master = document.getElementById('masterNickname').value.trim();
-        if (nm.length < 2) {
+        if (name.length < 2) {
             alert('밴드 이름을 2자 이상 입력해 주세요.');
-            e.preventDefault();
+            evt.preventDefault();
             return;
         }
         if (master.length < 2) {
             alert('마스터 닉네임을 2자 이상 입력해 주세요.');
-            e.preventDefault();
+            evt.preventDefault();
         }
     });
 </script>
