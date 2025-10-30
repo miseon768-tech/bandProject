@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/editProfile")
+@WebServlet("/editprofile")
 public class editProfileServlet extends HttpServlet {
 
     @Override
@@ -53,7 +53,7 @@ public class editProfileServlet extends HttpServlet {
 
         int r = sqlSession.update("mappers.MemberMapper.updateOne", p);
 
-        resp.sendRedirect("/editProfile");
+        resp.sendRedirect("/editprofile");
 
     }
 }

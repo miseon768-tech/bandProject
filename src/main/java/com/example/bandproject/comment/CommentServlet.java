@@ -17,7 +17,9 @@ public class CommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Member logonUser = (Member)req.getSession().getAttribute("logonUser");
+
         int articleNo= Integer.parseInt(req.getParameter("articleNo"));
         String content = req.getParameter("content");
         String writerId = logonUser.getId();
@@ -29,6 +31,8 @@ public class CommentServlet extends HttpServlet {
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         int r = sqlSession.insert("mappers.CommentMapper.insertOne", comment);
+        sqlSession.update("mappers.ArticleMapper.increaseCommentCnt", articleNo);
+
 
         resp.sendRedirect("/article/list?no="+articleNo);
     }
