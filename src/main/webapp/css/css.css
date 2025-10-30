@@ -157,12 +157,13 @@ body{
     font-family: "맑은 고딕", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     background: var(--bg);
     margin: 0;
-    padding: 48px 16px;
+
     color: var(--ink);
 }
-.wrap{
+.wrap {
     max-width: 720px;
     margin: 0 auto;
+    padding: 48px 16px;
 }
 h2{
     text-align:center;
@@ -304,5 +305,4 @@ h2{
 .header a {
     text-decoration: none;
 }
-
 

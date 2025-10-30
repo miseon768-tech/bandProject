@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +9,10 @@
     <link rel="stylesheet" href="/css/css.css"/>
 
 </head>
+
 <body>
+<%@ include file="/template/header.jspf"%>
+
 <div class="wrap">
     <h2>새 밴드 만들기</h2>
 
