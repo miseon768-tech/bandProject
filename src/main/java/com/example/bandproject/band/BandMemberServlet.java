@@ -42,7 +42,7 @@ public class BandMemberServlet extends HttpServlet {
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandmember);
 
         if(approved) {
-            sqlSession.update("mappers.BandMapper.increaseMemberCnt", req.getParameter("band_id"));
+            sqlSession.update("mappers.BandMapper.);
         }else{
             sqlSession.update("mappers.BandMapper.decreaseMemberCnt", req.getParameter("band_id"));
         }

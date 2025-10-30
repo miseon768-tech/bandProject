@@ -35,17 +35,16 @@
         SET approved = #{approved}
         WHERE no = #{no};
     </update>
+<!-- 승인되면 -->
+    <update id="updateToMember" parameterType="BandMember">
+        UPDATE band_member
+        SET band_no = #{band_no},
+            member_id = #{member_id},
+            nickname = #{nickname},
+            approved = true
+        WHERE no = #{no};
+    </update>
 
-    <update id="increaseMemberCnt" parameterType="int">
-        UPDATE band
-        SET member_cnt = member_cnt + 1
-        WHERE no = #{band_no};
-    </update>
-    <update id="decreaseMemberCnt" parameterType="int">
-        UPDATE band
-        SET member_cnt = member_cnt - 1
-        WHERE no = #{band_no};
-    </update>
 
 
     <!-- ✅ 밴드 멤버 삭제 -->
