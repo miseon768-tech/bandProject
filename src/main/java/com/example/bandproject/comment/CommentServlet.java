@@ -30,7 +30,7 @@ public class CommentServlet extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         int r = sqlSession.insert("mappers.CommentMapper.insertOne", comment);
 
-        resp.sendRedirect("/article?no="+articleNo);
+        resp.sendRedirect("/article/list?no="+articleNo);
     }
 }
 
