@@ -13,18 +13,25 @@
     <meta charset="UTF-8">
     <title>메인</title>
 
-    <link rel="stylesheet" href="/css/css.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
 
 
 </head>
 
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 
-<main class="center">
-    <a href="/band" class="card-btn">
-        <div class="card-title">밴드<br>만들기</div>
-        <div class="plus-wrap">+</div>
+
+<main class="cards">
+
+    <a href="${pageContext.request.contextPath}/band" class="card-btn" aria-label="밴드 생성하기">
+        <div class="card-title">밴드<br>생성하기</div>
+        <div class="icon-circle">+</div>
+    </a>
+
+    <a href="${pageContext.request.contextPath}/band/member" class="card-btn" aria-label="밴드 참여하기">
+        <div class="card-title">밴드<br>참여하기</div>
+        <div class="icon-circle">➔</div>
     </a>
 </main>
 </body>

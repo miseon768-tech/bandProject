@@ -1,0 +1,59 @@
+.cards{
+    min-height: calc(100vh - 120px); /* 헤더 높이에 맞춰 여백 조절 */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:28px;
+    padding:48px 16px;
+    flex-wrap:wrap;
+}
+
+.card-btn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:260px; height:260px;
+    background: var(--card, #fff);
+    border:1px solid var(--line, #e9e9ee);
+    border-radius:18px;
+    text-decoration:none;
+    box-shadow: 0 8px 28px rgba(0,0,0,.06);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.card-btn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(0,0,0,.10);
+    border-color: var(--accent, #6b63ff);
+}
+
+.card-title{
+    text-align:center;
+    font-weight:800;
+    font-size:26px;
+    line-height:1.2;
+    color: var(--ink, #2c2c2c);
+    margin-bottom:18px;
+}
+
+.icon-circle{
+    width:84px; height:84px;
+    border:2px solid var(--line, #e9e9ee);
+    border-radius:50%;
+    display:grid; place-items:center;
+    font-size:38px;
+    user-select:none;
+    transition: transform .18s ease, border-color .18s ease;
+}
+
+.card-btn:hover .icon-circle{
+    transform: scale(1.06);
+    border-color: var(--accent, #6c2835);
+}
+
+/* 키보드 포커스 접근성 */
+.card-btn:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(107,99,255,.25);
+}
