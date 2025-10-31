@@ -1,6 +1,7 @@
 package com.example.bandproject.band;
 
 import com.example.bandproject.model.BandMember;
+import com.example.bandproject.model.Member;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,11 +17,17 @@ import java.time.LocalDateTime;
 public class BandMemberServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
         req.getRequestDispatcher("/band/member.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
         if (req.getSession().getAttribute("logonUser") == null) {
             resp.sendRedirect("/login");
             return;
@@ -29,7 +36,7 @@ public class BandMemberServlet extends HttpServlet {
         String nickname = req.getParameter("nickname");
         boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
 
-        String memberId = (String) req.getSession().getAttribute("id");
+        String id = logonUser.getId();
         String name = (String) req.getSession().getAttribute("name");
         String role = (String) req.getSession().getAttribute("role");
 
@@ -37,7 +44,7 @@ public class BandMemberServlet extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
         BandMember bandMember = new BandMember();
-        bandMember.setId(memberId);
+        bandMember.setId(logonUser.getId());
         bandMember.setName(name);
         bandMember.setNickname(nickname);
         bandMember.setApproved(approved);

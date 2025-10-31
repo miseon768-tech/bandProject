@@ -52,7 +52,7 @@ public class BandServlet extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
         Band band = new Band();
-        band.setId(band.getId());
+        band.setId(logonUser.getId());
         band.setName(name);
         band.setNickname(nickname);
         band.setDescription(description);
@@ -63,7 +63,7 @@ public class BandServlet extends HttpServlet {
 
 
         BandMember bandMember = new BandMember();
-        bandMember.setId(bandMember.getId()); // 멤버의 고유 id를 사용
+        bandMember.setName(logonUser.getName());
         bandMember.setName(name);
         bandMember.setNickname(nickname);
         bandMember.setRole("MASTER");
