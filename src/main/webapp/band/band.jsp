@@ -28,9 +28,9 @@
         <!-- 밴드 마스터 닉네임 -->
         <div class="field">
             <label class="label" for="masterNickname">밴드 마스터 닉네임</label>
-            <input class="input" id="masterNickname" name="masterNickname" type="text"
+            <input class="input" id="masterNickname" name="nickname" type="text"
                    placeholder="닉네임 입력"
-                   value="<c:out value='${adminNickname != null ? adminNickname : (admin != null ? admin.nickname : "")}'/>"
+                   value="<c:out value='${masterNickname != null ? masterNickname : (master != null ? master.nickname : "")}'/>"
                    required>
             <small class="hint">생성자의 닉네임을 입력해주세요.</small>
         </div>
