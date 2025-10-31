@@ -14,7 +14,6 @@ import java.io.IOException;
 
 @WebServlet("/article/edit")
 public class ArticleEditServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -26,15 +25,15 @@ public class ArticleEditServlet extends HttpServlet {
 
         if(user != null && article != null && article.getWriterId().equals(user.getId())) {
             req.setAttribute("article", article);
-            req.getRequestDispatcher("/article/edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/article/profile.jsp").forward(req, resp);
         }else{
-            resp.sendRedirect("/article/list");
-    }
+            resp.sendRedirect("/community");
+
+        }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int no = Integer.parseInt(req.getParameter("no"));
         String title = req.getParameter("title");
         String topic = req.getParameter("topic");

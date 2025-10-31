@@ -1,75 +1,66 @@
+
 package com.example.bandproject.article;
 
+import com.example.bandproject.model.Comment;
+import com.example.bandproject.model.Member;
 import com.example.bandproject.model.Article;
+import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@WebServlet("/article/list")
+@WebServlet("/article")
 public class ArticleServlet extends HttpServlet {
 
-    // 게시글을 메모리에 저장하는 리스트
-    private static final List<Article> articleList = new ArrayList<>();
-    private static int nextId = 1;
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String noParam = req.getParameter("no");
-
-        // 상세보기
-        if (noParam != null && !noParam.isBlank()) {
-            int no = Integer.parseInt(noParam);
-            Article found = getArticleByNo(no);
-
-            if (found == null) {
-                resp.getWriter().println("⚠ 게시글을 찾을 수 없습니다.");
-                return;
-            }
-
-            req.setAttribute("article", found);
-            req.getRequestDispatcher("/article/list.jsp").forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String no = req.getParameter("no");
+        if (no == null || !no.matches("\\d+")) {
+            resp.sendRedirect("/community");
             return;
         }
-
-        // 목록 보기
-        req.setAttribute("articles", articleList);
-        req.getRequestDispatcher("/article/list.jsp").forward(req, resp);
-    }
-
-    // ✅ 새 글 추가
-    public static void addArticle(Article article) {
-        article.setNo(nextId++);
-        articleList.add(article);
-    }
-
-    // ✅ 게시글 삭제
-    public static void removeArticle(int no) {
-        articleList.removeIf(a -> a.getNo() == no);
-    }
-
-    // ✅ 게시글 수정
-    public static void updateArticle(Article updated) {
-        for (int i = 0; i < articleList.size(); i++) {
-            if (articleList.get(i).getNo() == updated.getNo()) {
-                articleList.set(i, updated);
-                break;
-            }
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+        sqlSession.update("mappers.ArticleMapper.updateViewCnt", Integer.parseInt(no));
+        Article found = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", Integer.parseInt(no));
+        if (found == null) {
+            resp.sendRedirect("/community");
+            return;
         }
-    }
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if(logonUser == null) {
+            req.setAttribute("alreadyLike", false);
+        }else {
+            Map map = Map.of("memberId", logonUser.getId(), "articleNo", no);
+            int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
+            req.setAttribute("alreadyLike", cnt == 1);
+        }
 
-    // ✅ 게시글 번호로 조회 (ArticleEditServlet, ArticleDeleteServlet 등에서 사용)
-    public static Article getArticleByNo(int no) {
-        return articleList.stream()
-                .filter(a -> a.getNo() == no)
-                .findFirst()
-                .orElse(null);
+
+        if(logonUser == null || !found.getWriterId().equals(logonUser.getId()) ) {
+            req.setAttribute("owner", false);
+        }else {
+            req.setAttribute("owner", true);
+        }
+
+
+        List<Comment> comments
+                =sqlSession.selectList("mappers.CommentMapper.selectByArticleNo", Integer.parseInt(no));
+        req.setAttribute("comments", comments);
+
+        sqlSession.close();
+
+
+        req.setAttribute("auth", req.getSession().getAttribute("logonUser") != null);
+        req.setAttribute("article", found);
+
+
+        req.getRequestDispatcher("/article.jsp").forward(req, resp);
     }
 }
