@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>app</artifactId>
+    <artifactId>bandproject</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>99_project</name>
+    <name>bandproject</name>
     <packaging>war</packaging>
 
     <properties>
