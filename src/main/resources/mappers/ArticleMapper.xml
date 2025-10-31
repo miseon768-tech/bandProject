@@ -6,7 +6,7 @@
 <mapper namespace="mappers.ArticleMapper">
 
     <!-- ✅ 게시글 등록 -->
-    <insert id="insertOne" parameterType="com.example.bandproject.model.Article">
+    <insert id="insertOne" parameterType="Article">
         INSERT INTO article (writer_id, topic, title, content, wrote_at, view_cnt, like_cnt, comment_cnt)
         VALUES (#{writerId}, #{topic}, #{title}, #{content}, NOW(), 0, 0, 0)
     </insert>
