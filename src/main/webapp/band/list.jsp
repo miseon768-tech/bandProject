@@ -18,7 +18,7 @@
 
     <div class="band-grid">
         <!-- 만들기 카드 -->
-        <a class="band-card create-card" href="${ctx}/band/create">
+        <a class="band-card create-card" href="${ctx}/band">
             <div class="create-icon">＋</div>
             <div class="create-text">만들기</div>
         </a>
