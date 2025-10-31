@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 <h2>로그아웃</h2>
 
 

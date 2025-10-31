@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 <div class="btn-wrap">
     <button class="login-btn" onclick="location.href='/login'">로그인</button>
     <button class="signup-btn" onclick="location.href='/signup'">회원가입</button>
