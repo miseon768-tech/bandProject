@@ -1,9 +1,36 @@
 package com.example.bandproject.comment;
 
+import com.example.bandproject.model.Article;
+import com.example.bandproject.model.Comment;
+import com.example.bandproject.util.MyBatisUtil;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.session.SqlSession;
+
+import java.io.IOException;
 
 @WebServlet("/comment/edit")
 public class CommentEditServlet  extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    int no = Integer.parseInt(req.getParameter("no"));
+    SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+    Comment user = (Comment) req.getSession().getAttribute("logonUser");
+    Comment comment = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", no);
+        sqlSession.close();
+
+      /*  if(user != null && comment != null && comment.getWriterId().equals(user.getId())) {
+        req.setAttribute("comment", comment);
+        req.getRequestDispatcher("/article/profile.jsp").forward(req, resp);
+    }else{
+        resp.sendRedirect("/community");
+
+    }*/
+}
 
 }
