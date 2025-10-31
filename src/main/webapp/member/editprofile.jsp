@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 <h2>정보수정</h2>
 
 <form method="post" action="/setting/profile">

@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 <div class="deletemessage">
 <div class="container">
     <h2>회원탈퇴가 정상적으로 처리되었습니다.</h2>

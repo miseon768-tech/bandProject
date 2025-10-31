@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 <div class="signup-wrap">
     <div class="signup">
         <a href="/">로고</a>
