@@ -49,21 +49,22 @@ public class BandMemberServlet extends HttpServlet {
         if ("MASTER".equals(role)) {
             bandMember.setRole("MASTER");
             bandMember.setApproved(true); // 마스터는 승인
-            resp.sendRedirect("/band");
 
         } else if ("MEMBER".equals(role)) {
             bandMember.setRole("MEMBER");
             bandMember.setApproved(true); // 멤버도 승인
-            resp.sendRedirect("/band");
 
         } else {
             // 회원이 아님/권한없음
             bandMember.setApproved(false);
-            resp.sendRedirect("/band");
+            sqlSession.close();
+            resp.sendRedirect("/band/index");
             return;
         }
 
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
+        resp.sendRedirect("/band");
+
         sqlSession.close();
     }
 }
