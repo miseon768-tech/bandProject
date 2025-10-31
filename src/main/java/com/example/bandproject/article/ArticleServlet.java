@@ -65,7 +65,7 @@ public class ArticleServlet extends HttpServlet {
         }
     }
 
-    // ✅ 게시글 번호로 조회 (ArticleEdit, ArticleDelete 등에서 사용)
+    // ✅ 게시글 번호로 조회 (ArticleEditServlet, ArticleDeleteServlet 등에서 사용)
     public static Article getArticleByNo(int no) {
         return articleList.stream()
                 .filter(a -> a.getNo() == no)

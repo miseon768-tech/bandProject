@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 @WebServlet("/article/reaction")
-public class reactionLikeServlet extends HttpServlet {
+public class ReactionLikeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

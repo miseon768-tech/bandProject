@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 
 @WebServlet("/editprofile")
-public class editProfileServlet extends HttpServlet {
+public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
