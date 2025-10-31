@@ -42,22 +42,6 @@
                       placeholder="밴드를 설명해 주세요"></textarea>
         </div>
 
-        <!-- 공개/비공개 -->
-        <div class="field">
-            <span class="label">밴드 공개 / 비공개 설정</span>
-            <div class="radios">
-                <label class="radio">
-                    <input type="radio" name="visibility" value="PUBLIC" checked>
-                    <span>공개</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="visibility" value="PRIVATE">
-                    <span>비공개</span>
-                </label>
-            </div>
-            <small class="hint">공개: 누구나 검색/가입 요청 가능  •  비공개: 초대만 가입</small>
-        </div>
-
         <!-- 버튼 -->
         <div class="actions">
             <button type="button" class="btn" onclick="history.back()">이전</button>
