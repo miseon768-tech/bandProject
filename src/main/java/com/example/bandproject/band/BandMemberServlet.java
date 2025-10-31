@@ -63,7 +63,7 @@ public class BandMemberServlet extends HttpServlet {
         }
 
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
-        resp.sendRedirect("/band");
+        resp.sendRedirect("/article/list");
 
         sqlSession.close();
     }
