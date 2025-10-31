@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-@WebServlet("/band/member")
+@WebServlet("/band/member?no={no}")
 public class BandMemberServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +32,8 @@ public class BandMemberServlet extends HttpServlet {
             resp.sendRedirect("/login");
             return;
         }
+
+        String no = req.getParameter("no");
 
         String nickname = req.getParameter("nickname");
         boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
