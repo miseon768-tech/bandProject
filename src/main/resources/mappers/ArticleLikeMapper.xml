@@ -19,7 +19,7 @@
     </delete>
 
     <!-- -->
-    <select id="countByMemberIdAndArticleNo" resultType="int" parameterType="map">
+    <select id="countByMemberIdAndArticleNo" resultType="int" parameterType="articleLike">
         select count(*) from articleLike
         where memberId=#{memberId} and articleNo=#{articleNo}
     </select>
