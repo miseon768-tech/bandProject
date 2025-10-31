@@ -5,36 +5,31 @@
 
 <mapper namespace="mappers.ArticleMapper">
 
-    <!-- ✅ 게시글 등록 -->
     <insert id="insertOne" parameterType="Article">
-        INSERT INTO article (writer_id, topic, title, content, wrote_at, view_cnt, like_cnt, comment_cnt)
+        INSERT INTO article (writerId, topic, title, content, wroteAt, viewCnt, likeCnt, commentCnt)
         VALUES (#{writerId}, #{topic}, #{title}, #{content}, NOW(), 0, 0, 0)
     </insert>
 
-    <!-- ✅ 전체 게시글 조회 -->
     <select id="selectAll" resultType="Article">
         SELECT
-        no, writer_id, topic, title, content, wrote_at, view_cnt, like_cnt, comment_cnt
+        no, writerId, topic, title, content, wroteAt, viewCnt, likeCnt, commentCnt
         FROM article
         ORDER BY no DESC
     </select>
 
-    <!-- ✅ 게시글 번호로 상세 조회 -->
     <select id="selectByNo" parameterType="int" resultType="Article">
         SELECT
-        no, writer_id, topic, title, content, wrote_at, view_cnt, like_cnt, comment_cnt
+        no, writerId, topic, title, content, wroteAt, viewCnt, likeCnt, commentCnt
         FROM article
         WHERE no = #{no}
     </select>
 
-    <!-- ✅ 조회수 증가 -->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE article
         SET view_cnt = view_cnt + 1
         WHERE no = #{no}
     </update>
 
-    <!-- ✅ 게시글 수정 -->
     <update id="updateOne" parameterType="Article">
         UPDATE article
         SET
@@ -44,7 +39,6 @@
         WHERE no = #{no}
     </update>
 
-    <!-- ✅ 게시글 삭제 -->
     <delete id="deleteOne" parameterType="int">
         DELETE FROM article WHERE no = #{no}
     </delete>
