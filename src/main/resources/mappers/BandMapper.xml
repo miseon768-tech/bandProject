@@ -16,10 +16,10 @@
         ORDER BY created_at DESC
     </select>
 
-    <select id="selectById" parameterType="int" resultType="map">
+    <select id="selectByArticleNo" parameterType="int" resultType="map">
         SELECT no, name, nickname, description, id, is_public, created_at
         FROM band
-        WHERE id = #{bandId}
+        WHERE no = #{bandNo}
     </select>
 
     <select id="selectLastInsertId" resultType="int">
