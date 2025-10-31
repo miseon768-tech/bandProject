@@ -71,11 +71,12 @@ public class BandServlet extends HttpServlet {
         bandMember.setJoined_at(LocalDateTime.now());
 
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
-        resp.sendRedirect("/band");
 
 
         sqlSession.close();
+        resp.sendRedirect("/band");
 
 
     }
+
 }
