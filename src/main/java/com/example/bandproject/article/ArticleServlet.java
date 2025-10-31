@@ -35,7 +35,7 @@ public class ArticleServlet extends HttpServlet {
             }
 
             req.setAttribute("article", found);
-            req.getRequestDispatcher("/article/articleDetail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/article/list.jsp").forward(req, resp);
             return;
         }
 

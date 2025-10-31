@@ -5,13 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글 수정</title>
-    <style>
-        body {
-            font-family: "맑은 고딕", serif; margin: 40px auto; width: 80%; }
-        textarea, input { width: 100%; padding: 10px; margin-bottom: 15px; }
-        button { background: #28a745; color: white; padding: 8px 15px; border: none; border-radius: 5px; }
-        button:hover { background: #218838; }
-    </style>
+
 </head>
 <body>
 <%@ include file="/template/header.jspf"%>
