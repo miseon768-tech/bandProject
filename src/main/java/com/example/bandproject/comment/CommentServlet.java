@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/comment/new")
+@WebServlet("/comment/new?articleNo={articleNo}")
 public class CommentServlet extends HttpServlet {
 
     @Override

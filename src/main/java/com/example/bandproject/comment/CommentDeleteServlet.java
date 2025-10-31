@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/comment/delete")
+@WebServlet("/comment/delete?articleNo={articleNo}")
 public class CommentDeleteServlet  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
