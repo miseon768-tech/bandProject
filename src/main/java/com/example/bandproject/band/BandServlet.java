@@ -2,6 +2,7 @@ package com.example.bandproject.band;
 
 import com.example.bandproject.model.Band;
 import com.example.bandproject.model.BandMember;
+import com.example.bandproject.model.Member;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 
 @WebServlet("/band")
@@ -19,6 +21,11 @@ public class BandServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
 
         req.getRequestDispatcher("/band/band.jsp").forward(req, resp);
 //        // 단순히 밴드 생성 폼을 보여주는 역할 (지금은 폼 없이 즉시 POST로 테스트 가능)
@@ -28,27 +35,47 @@ public class BandServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        // 밴드 생성 처리
-        if (req.getSession().getAttribute("logonUser") == null) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
             resp.sendRedirect("/login");
             return;
         }
+
         String name = req.getParameter("name");
         String nickname = req.getParameter("nickname");
         String description = req.getParameter("description");
 
+
+
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+
         Band band = new Band();
+        band.setId(band.getId());
         band.setName(name);
         band.setNickname(nickname);
         band.setDescription(description);
+        band.setCreated_at(LocalDateTime.now());
 
-        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+
         sqlSession.insert("mappers.BandMapper.insertOne", band);
-        sqlSession.close();
 
+
+        BandMember bandMember = new BandMember();
+        bandMember.setId(bandMember.getId()); // 멤버의 고유 id를 사용
+        bandMember.setName(name);
+        bandMember.setNickname(nickname);
+        bandMember.setRole("MASTER");
+        bandMember.setApproved(true);
+        bandMember.setJoined_at(LocalDateTime.now());
+
+        sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
         resp.sendRedirect("/band");
 
+
+        sqlSession.close();
+
+
     }
-    }
+}

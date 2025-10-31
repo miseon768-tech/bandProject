@@ -10,6 +10,18 @@
         VALUES (#{name}, #{nickname}, #{description}, #{id}, NOW())
     </insert>
 
+    <select id="selectAll" resultType="map">
+        SELECT no, name, nickname, description, id, is_public AS isPublic, created_at
+        FROM band
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="selectById" parameterType="int" resultType="map">
+        SELECT no, name, nickname, description, id, is_public, created_at
+        FROM band
+        WHERE id = #{bandId}
+    </select>
+
     <select id="selectLastInsertId" resultType="int">
         SELECT LAST_INSERT_ID()
     </select>

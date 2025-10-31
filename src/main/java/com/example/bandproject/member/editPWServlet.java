@@ -19,11 +19,7 @@ public class editPWServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
-        if(logonUser == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
+
         req.getRequestDispatcher("/member/editPW.jsp").forward(req, resp);
     }
 

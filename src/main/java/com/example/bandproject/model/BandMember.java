@@ -10,11 +10,18 @@ import java.time.LocalDateTime;
 @Setter
 public class BandMember {
 
-    String id;
-    String name;
-    String nickname;
-    String role;
-    boolean approved;
-    LocalDateTime joined_at;
+    int no;
+    String id; //회원 번호
+    String name; //밴드 이름
+    String nickname; //밴드 닉네임
+    String role; //역할: MASTER 또는 MEMBER
+    boolean approved; //가입 승인 여부
+    LocalDateTime joined_at; //가입일
 
 }
+
+/*
+    id : PK
+    FOREIGN KEY (id) REFERENCES member (id),
+    FOREIGN KEY (name) REFERENCES band (name)
+ */

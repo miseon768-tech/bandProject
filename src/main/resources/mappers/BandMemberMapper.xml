@@ -2,16 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<!-- ✅ 밴드 멤버 관리용 Mapper -->
 <mapper namespace="mappers.BandMemberMapper">
 
-    <!-- ✅ 밴드 멤버 등록 (MASTER 자동 등록) -->
     <insert id="insertOne" parameterType="BandMember">
         INSERT INTO band_member
-        (band_no, id, role, nickname, approved, joined_at)
+        (no, id, role, nickname, approved, joined_at)
         VALUES
-        (#{band_no}, #{id}, #{role}, #{nickname}, #{approved}, NOW());
+        (#{no}, #{id}, #{role}, #{nickname}, #{approved}, NOW());
     </insert>
 
     <!-- ✅ 밴드 번호로 모든 멤버 조회 -->
@@ -26,31 +23,21 @@
     <select id="selectByMemberId" parameterType="String" resultType="BandMember">
         SELECT no, band_no, member_id, role, approved, joined_at
         FROM band_member
-        WHERE member_id = #{member_id};
+        WHERE id = #{bandId};
     </select>
 
     <!-- ✅ 승인 상태 변경 -->
     <update id="updateApproval" parameterType="BandMember">
         UPDATE band_member
         SET approved = #{approved}
-        WHERE no = #{no};
+        WHERE no = #{bandNo};
     </update>
-<!-- 승인되면 -->
-    <update id="updateToMember" parameterType="BandMember">
-        UPDATE band_member
-        SET band_no = #{band_no},
-            member_id = #{member_id},
-            nickname = #{nickname},
-            approved = true
-        WHERE no = #{no};
-    </update>
-
 
 
     <!-- ✅ 밴드 멤버 삭제 -->
     <delete id="deleteByMemberId" parameterType="String">
         DELETE FROM band_member
-        WHERE member_id = #{member_id};
+        WHERE no = #{bandNo};
     </delete>
 
 </mapper>
