@@ -1,6 +1,5 @@
 package com.example.bandproject.band;
 
-import com.example.bandproject.model.Band;
 import com.example.bandproject.model.BandMember;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
@@ -28,7 +27,7 @@ public class BandMemberServlet extends HttpServlet {
         }
 
         String nickname = req.getParameter("nickname");
-        boolean approoved = Boolean.parseBoolean(req.getParameter("approved"));
+        boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
 
         String memberId = (String) req.getSession().getAttribute("id");
         String name = (String) req.getSession().getAttribute("name");
@@ -41,7 +40,7 @@ public class BandMemberServlet extends HttpServlet {
         bandMember.setId(memberId);
         bandMember.setName(name);
         bandMember.setNickname(nickname);
-        bandMember.setApproved(approoved);
+        bandMember.setApproved(approved);
         bandMember.setRole(role);
         bandMember.setJoined_at(LocalDateTime.now());
 

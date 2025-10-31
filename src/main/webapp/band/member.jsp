@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<%@ include file="/template/header.jspf"%>
+<%@ include file="/template/header.jspf" %>
 
 <div class="wrap">
     <h2>새 밴드 만들기</h2>
