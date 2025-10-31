@@ -5,20 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 목록</title>
-    <style>
-        body {
-            font-family: "맑은 고딕", serif; margin: 40px auto; width: 80%; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; }
-        th { background: #f2f2f2; }
-        tr:hover { background: #fafafa; }
-        .btn { background: #0066cc; color: white; padding: 6px 12px; border: none; border-radius: 5px; text-decoration: none; }
-        .btn:hover { background: #004999; }
-    </style>
+
 </head>
 <body>
 <%@ include file="/template/header.jspf"%>
-<h2>📋 게시글 목록</h2>
+<h2>📋 카테고리</h2>
 
 <div style="text-align:right; margin-bottom:10px;">
     <a href="${pageContext.request.contextPath}/article/new" class="btn">✏️ 새 글쓰기</a>
@@ -31,7 +22,9 @@
         <th>제목</th>
         <th>작성자</th>
         <th>조회수</th>
+        <th>좋아요</th>
         <th>등록일</th>
+
     </tr>
     </thead>
     <tbody>
@@ -46,13 +39,14 @@
                         </a>
                     </td>
                     <td>${a.writerId}</td>
-                    <td>${a.hit}</td>
+                    <td>${a.viewCnt}</td>
                     <td>${a.regDate}</td>
                 </tr>
             </c:forEach>
         </c:when>
         <c:otherwise>
             <tr><td colspan="5">등록된 게시글이 없습니다.</td></tr>
+            <button onclick="location.href='/band/member'">승인요청</button>
         </c:otherwise>
     </c:choose>
     </tbody>
