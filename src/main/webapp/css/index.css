@@ -1,3 +1,5 @@
+
+/* 밴드 인덱스 화면 버튼 ui */
 .cards{
     min-height: calc(100vh - 120px); /* 헤더 높이에 맞춰 여백 조절 */
     display:flex;
@@ -57,3 +59,57 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(107,99,255,.25);
 }
+
+/*-------------------------------------------------*/
+
+/* 밴드 방 리스트 */
+/* 컨테이너 */
+.wrap { max-width: 1080px; margin: 28px auto; padding: 0 16px; }
+.page-title { margin: 8px 0 18px; }
+
+/* 그리드 */
+.band-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+/* 카드 공통 */
+.band-card {
+    display: block;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.band-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+/* 커버 */
+.band-cover { height: 140px; background: #f5f6f7; display: flex; align-items: center; justify-content: center; }
+.band-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.band-cover.placeholder { color: #a0a3a8; font-size: 13px; }
+
+/* 본문 */
+.band-info { padding: 12px 14px 14px; }
+.band-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; letter-spacing: -.2px; }
+.band-meta { font-size: 13px; color: #7a7e85; }
+
+/* 만들기 카드 */
+.create-card {
+    border: 2px dashed #e4e6ec;
+    background: #fafbff;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 28px 0;
+}
+.create-icon { font-size: 42px; line-height: 1; }
+.create-text { font-weight: 700; }
+
+/* 빈 상태 힌트 */
+.empty-hint { margin-top: 18px; color: #7a7e85; }
