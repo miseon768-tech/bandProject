@@ -23,7 +23,7 @@
 <div class="wrap">
     <h2>새 밴드 만들기</h2>
 
-    <form class="card" method="post" action="${pageContext.request.contextPath}/band/create" id="bandForm">
+    <form class="card" method="post" action="${pageContext.request.contextPath}/band" id="bandForm">
         <!-- 밴드 이름 -->
         <div class="field">
             <label class="label" for="name">밴드이름</label>
