@@ -20,10 +20,11 @@
     </environments>
     <mappers>
         <mapper resource="mappers/MemberMapper.xml"/>
+        <mapper resource="mappers/BandMapper.xml"/>
+        <mapper resource="mappers/BandMemberMapper.xml"/>
         <mapper resource="mappers/ArticleMapper.xml"/>
         <mapper resource="mappers/ArticleLikeMapper.xml"/>
         <mapper resource="mappers/CommentMapper.xml"/>
-        <mapper resource="mappers/BandMapper.xml"/>
 
 
 

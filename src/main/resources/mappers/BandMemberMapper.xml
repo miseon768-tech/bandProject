@@ -5,10 +5,8 @@
 <mapper namespace="mappers.BandMemberMapper">
 
     <insert id="insertOne" parameterType="BandMember">
-        INSERT INTO band_member
-        (no, id, role, nickname, approved, joined_at)
-        VALUES
-        (#{no}, #{id}, #{role}, #{nickname}, #{approved}, NOW());
+        INSERT INTO band_member (id, name, nickname, role, approved, joined_at)
+        VALUES (#{id}, #{name}, #{nickname}, #{role}, #{approved}, #{joined_at})
     </insert>
 
     <!-- ✅ 밴드 번호로 모든 멤버 조회 -->
