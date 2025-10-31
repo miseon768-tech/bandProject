@@ -5,7 +5,7 @@
 
 <mapper namespace="mappers.BandMapper">
 
-    <insert id="insertOne" parameterType="Band">
+    <insert id="insertOne" parameterType="Band" useGeneratedKeys="true" keyProperty="no">
         INSERT INTO band (id, name, nickname, description, created_at)
         VALUES (#{id}, #{name}, #{nickname}, #{description}, #{created_at})
     </insert>
