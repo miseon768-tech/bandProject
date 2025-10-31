@@ -11,13 +11,13 @@
     </insert>
 
     <select id="selectAll" resultType="map">
-        SELECT no, name, nickname, description, id, is_public AS isPublic, created_at
+        SELECT no, name, nickname, description, id, created_at
         FROM band
         ORDER BY created_at DESC
     </select>
 
     <select id="selectByArticleNo" parameterType="int" resultType="map">
-        SELECT no, name, nickname, description, id, is_public, created_at
+        SELECT no, name, nickname, description, id, created_at
         FROM band
         WHERE no = #{bandNo}
     </select>
@@ -25,17 +25,5 @@
     <select id="selectLastInsertId" resultType="int">
         SELECT LAST_INSERT_ID()
     </select>
-
-    <update id="bandPublic" parameterType="map">
-        UPDATE band
-        SET is_public = #{isPublic}
-        WHERE no = #{bandNo}
-    </update>
-
-    <update id="bandPrivate" parameterType="int">
-        UPDATE band
-        SET is_public = FALSE
-        WHERE no = #{bandNo}
-    </update>
 
 </mapper>
