@@ -10,13 +10,13 @@
         VALUES (#{id}, #{name}, #{nickname}, #{description}, #{created_at})
     </insert>
 
-    <select id="selectAll" resultType="map">
+    <select id="selectAll" resultType="Band">
         SELECT no, name, nickname, description, id, created_at
         FROM band
         ORDER BY created_at DESC
     </select>
 
-    <select id="selectByArticleNo" parameterType="int" resultType="map">
+    <select id="selectByArticleNo" parameterType="int" resultType="Band">
         SELECT no, name, nickname, description, id, created_at
         FROM band
         WHERE no = #{bandNo}
