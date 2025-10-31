@@ -10,4 +10,8 @@
     <select id="selectByArticleNo" parameterType="int" resultType="comment">
         select * from comment where articleNo=#{no} order by commentedAt desc
     </select>
+
+    <delete id="deleteByNo" parameterType="int">
+    delete from comment where articleNo=#{articleNo}
+    </delete>
 </mapper>

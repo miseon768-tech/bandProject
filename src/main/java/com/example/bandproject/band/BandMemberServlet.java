@@ -1,6 +1,5 @@
 package com.example.bandproject.band;
 
-import com.example.bandproject.model.Band;
 import com.example.bandproject.model.BandMember;
 import com.example.bandproject.model.Member;
 import com.example.bandproject.util.MyBatisUtil;
@@ -35,7 +34,7 @@ public class BandMemberServlet extends HttpServlet {
         }
 
         String nickname = req.getParameter("nickname");
-        boolean approoved = Boolean.parseBoolean(req.getParameter("approved"));
+        boolean approved = Boolean.parseBoolean(req.getParameter("approved"));
 
         String id = logonUser.getId();
         String name = (String) req.getSession().getAttribute("name");
@@ -48,7 +47,7 @@ public class BandMemberServlet extends HttpServlet {
         bandMember.setId(logonUser.getId());
         bandMember.setName(name);
         bandMember.setNickname(nickname);
-        bandMember.setApproved(approoved);
+        bandMember.setApproved(approved);
         bandMember.setRole(role);
         bandMember.setJoined_at(LocalDateTime.now());
 
@@ -56,10 +55,13 @@ public class BandMemberServlet extends HttpServlet {
         if ("MASTER".equals(role)) {
             bandMember.setRole("MASTER");
             bandMember.setApproved(true); // 마스터는 승인
+            resp.sendRedirect("/article/list");
+
 
         } else if ("MEMBER".equals(role)) {
             bandMember.setRole("MEMBER");
             bandMember.setApproved(true); // 멤버도 승인
+            resp.sendRedirect("/band/member");
 
         } else {
             // 회원이 아님/권한없음
@@ -70,7 +72,6 @@ public class BandMemberServlet extends HttpServlet {
         }
 
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
-        resp.sendRedirect("/article/list");
 
         sqlSession.close();
     }
