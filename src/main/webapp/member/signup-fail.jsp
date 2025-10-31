@@ -13,7 +13,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <title>회원가입</title>
@@ -41,7 +41,7 @@
                 <div class="mt-1">
                     <input type="text" class="input" name="id" id="id"
                            placeholder="4~15자 이내로 입력해주세요"
-                           value="${fn:escapeXml(param.id)}"/>
+                           value="${param.id}"/>
                 </div>
             </div>
 

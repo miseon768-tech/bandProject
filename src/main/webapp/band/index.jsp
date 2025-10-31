@@ -14,7 +14,7 @@
     <title>메인</title>
 
     <link rel="stylesheet" href="/css/css.css"/>
-    <link rel="stylesheet" href="/css/index.css"/>
+
 
 </head>
 
@@ -22,7 +22,7 @@
 <%@ include file="/template/header.jspf"%>
 
 <main class="center">
-    <a href="/band/create" class="card-btn">
+    <a href="/band" class="card-btn">
         <div class="card-title">밴드<br>만들기</div>
         <div class="plus-wrap">+</div>
     </a>
