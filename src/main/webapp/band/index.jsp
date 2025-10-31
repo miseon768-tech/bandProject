@@ -29,7 +29,7 @@
         <div class="icon-circle">+</div>
     </a>
 
-    <a href="${pageContext.request.contextPath}/band/list" class="card-btn" aria-label="밴드 참여하기">
+    <a href="${pageContext.request.contextPath}/band/list?no={no}" class="card-btn" aria-label="밴드 참여하기">
         <div class="card-title">밴드<br>참여하기</div>
         <div class="icon-circle">➔</div>
     </a>
