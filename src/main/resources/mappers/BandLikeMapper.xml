@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.BandLikeMapper">
+
+    <insert id="insertOne" parameterType="BandLike">
+        INSERT INTO bandLike(memberId, bandNo) VALUES(#{memberId}, #{bandNo})
+    </insert>
+    <!-- 삭제 -->
+    <delete id="deleteByIdx" parameterType="int">
+        delete from bandLike where idx=#{idx}
+    </delete>
+
+    <!-- 회원ID와 밴드번호로 삭제 -->
+    <delete id="deleteByMemberIdAndBandNo" parameterType="bandLike">
+        delete from bandLike where memberId=#{memberId} and bandNo=#{bandNo}
+    </delete>
+
+    <!-- 밴드번호로 삭제 -->
+    <delete id="deleteByBandNo" parameterType="int">
+        delete from bandLike where bandNo=#{no}
+    </delete>
+
+    <!-- 회원ID와 밴드번호로 좋아요 수 카운트 -->
+    <select id="countByMemberIdAndBandNo" resultType="int" parameterType="bandLike">
+        select count(*) from bandLike
+        where memberId=#{memberId} and bandNo=#{bandNo}
+    </select>
+
+    <!-- 회원ID와 밴드번호로 좋아요 정보 조회 -->
+    <select id="selectByMemberIdAndBandNo" resultType="bandLike" parameterType="bandLike">
+        select * from bandLike
+        where memberId=#{memberId} and bandNo=#{bandNo}
+    </select>
+
+    <!-- 회원ID로 좋아요한 밴드 조회 -->
+    <select id="selectLikedBandsByMemberId"
+            parameterType="string" resultType="LikedBand">
+        select *
+        from bandLike join band
+        on bandLike.bandNo = band.no
+        where bandLike.memberId = #{id}
+    </select>
+</mapper>

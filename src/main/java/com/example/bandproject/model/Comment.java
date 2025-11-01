@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @Getter
 public class Comment {
     private int no;
-    private int bandNo;
-    private int articleNo;
     private String writerId;
     private String content;
+    private int bandNo;
+    private int articleNo;
     private  LocalDateTime commentedAt;
 
 }

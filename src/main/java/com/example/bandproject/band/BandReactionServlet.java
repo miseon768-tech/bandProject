@@ -1,5 +1,5 @@
 
-package com.example.bandproject.reaction;
+package com.example.bandproject.band;
 
 import com.example.bandproject.model.ArticleLike;
 import com.example.bandproject.model.Member;
@@ -13,8 +13,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/article/reaction")
-public class ReactionLikeServlet extends HttpServlet {
+@WebServlet("/band/reaction")
+public class BandReactionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

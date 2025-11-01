@@ -37,7 +37,7 @@ public class ArticleServlet extends HttpServlet {
         if(logonUser == null) {
             req.setAttribute("alreadyLike", false);
         }else {
-            Map map = Map.of("memberId", logonUser.getId(), "articleNo", no);
+            Map map = Map.of("bandMemberId", logonUser.getId(), "articleNo", no);
             int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
             req.setAttribute("alreadyLike", cnt == 1);
         }

@@ -16,6 +16,9 @@ public class Band {
     String description; //밴드 설명
     LocalDateTime createdAt; //생성일
 
+    int likeCnt; //좋아요 수
+    int viewCnt; //조회수
+
 }
 
 /*
