@@ -12,19 +12,25 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/comment/new?articleNo={articleNo}")
+@WebServlet("/comment/new")
 public class CommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Member logonUser = (Member)req.getSession().getAttribute("logonUser");
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
 
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));      // 밴드 번호
         int articleNo= Integer.parseInt(req.getParameter("articleNo"));
         String content = req.getParameter("content");
         String writerId = logonUser.getId();
 
         Comment comment = new Comment();
+        comment.setBandNo(bandNo);
         comment.setArticleNo(articleNo);
         comment.setContent(content);
         comment.setWriterId(writerId);
@@ -34,7 +40,8 @@ public class CommentServlet extends HttpServlet {
         sqlSession.update("mappers.ArticleMapper.increaseCommentCnt", articleNo);
 
 
-        resp.sendRedirect("/community?no="+articleNo);
+
+        resp.sendRedirect("/band?no=" + bandNo + "&articleNo=" + articleNo);
     }
 }
 

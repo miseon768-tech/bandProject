@@ -13,5 +13,5 @@ public class Article {
     private String writerId;
     private String topic;
     private int viewCnt;
-    private LocalDateTime regDate = LocalDateTime.now();
+    private LocalDateTime regDate;
 }

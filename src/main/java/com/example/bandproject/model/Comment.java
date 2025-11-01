@@ -8,9 +8,11 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class Comment {
-    int no;
-    int articleNo;
-    String writerId;
-    String content;
-    LocalDateTime commentedAt;
+    private int no;
+    private int bandNo;
+    private int articleNo;
+    private String writerId;
+    private String content;
+    private  LocalDateTime commentedAt;
+
 }
