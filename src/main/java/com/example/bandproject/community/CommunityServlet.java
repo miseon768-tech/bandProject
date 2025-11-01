@@ -42,13 +42,15 @@ public class CommunityServlet extends HttpServlet {
                 , "%" + keyword + "%");
         int lastPage = count / 10 + (count % 10 > 0 ? 1 : 0);
 
-        List<Article> top5Likes =
-                sqlSession.selectList("mappers.ArticleMapper.selectTop5Likes", LocalDate.now().minusDays(7));
-        List<WriteCounter> top5Writer
-                = sqlSession.selectList("mappers.ArticleMapper.selectTop5Writer");
+        // 조회수 TOP 5
+        List<Article> top5Likes = sqlSession.selectList("mappers.ArticleMapper.selectTop5Likes", LocalDate.now().minusDays(7));
+
+        // 좋아요 TOP 5
+        List<WriteCounter> top5Writer = sqlSession.selectList("mappers.ArticleMapper.selectTop5Writer");
 
         req.setAttribute("top5Likes", top5Likes);
         req.setAttribute("top5Writer", top5Writer);
+
         req.setAttribute("articles", articles);
         req.setAttribute("lastPage", lastPage);
         req.setAttribute("page", page);

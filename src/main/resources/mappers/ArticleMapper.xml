@@ -7,63 +7,77 @@
         insert into article(writerId, topic, title, content)
         values(#{writerId}, #{topic}, #{title}, #{content})
     </insert>
+    <!-- 전체 게시글 조회 -->
     <select id="selectAll" resultType="Article">
         select * from article order by wroteAt desc
     </select>
+    <!-- 게시글 수 카운트 -->
     <select id="countAll" resultType="int">
         select count(*) from article
     </select>
+    <!-- 키워드 검색어 게시글 수 카운트 -->
     <select id="countLikeKeyword" resultType="int">
         select count(*) from article
         where title like #{keyword} or content like #{keyword}
     </select>
+    <!-- 페이징 처리된 전체 게시글 조회 -->
     <select id="selectByOffset" resultType="Article" parameterType="int">
         select * from article order by wroteAt desc limit 10 offset #{offset}
     </select>
+
+    <!-- 키워드 검색어 찾기 -->
     <select id="selectLikeKeywordByOffset"
             resultType="article" parameterType="map">
         select * from article
         where title like #{keyword} or content like #{keyword}
         order by wroteAt desc limit 10 offset #{offset}
     </select>
-    <select id="selectTop5Likes" resultType="article"
-            parameterType="java.time.LocalDate">
+
+    <!-- 최근 일주일간 조회수 상위 5개 게시글 -->
+    <select id="selectTop5Likes" resultType="article" parameterType="java.time.LocalDate">
         select * from article
         where likeCnt > 0 and wroteAt >= #{date}
         order by likeCnt desc limit 5
     </select>
 
+    <!-- 작성자별 게시글 수 상위 5명 -->
     <select id="selectTop5Writer" resultType="writeCounter">
         select writerId, count(*) as writeCnt from article
         group by writerId order by writeCnt desc limit 5
     </select>
 
-
+    <!-- 특정 작성자의 최근 게시글 5개 -->
     <select id="selectByTopic" resultType="Article" parameterType="string">
         select * from article where topic=#{topic}
     </select>
+    <!-- 특정 게시글 상세보기 -->
     <select id="selectByNo" resultType="Article" parameterType="int">
         select * from article where no=#{no}
     </select>
+    <!-- 조회수, 댓글수, 좋아요수 증가 -->
     <update id="updateViewCnt" parameterType="int">
         update article set viewCnt=viewCnt+ 1 where no=#{no}
     </update>
+    <!-- 댓글수 증가 -->
     <update id="increaseCommentCnt" parameterType="int">
         update article set commentCnt=commentCnt+ 1 where no=#{no}
     </update>
+    <!-- 댓글수 감소 -->
     <update id="increaseLikeCnt" parameterType="int">
         update article set likeCnt=likeCnt+ 1 where no=#{no}
     </update>
+    <!-- 좋아요수 감소 -->
     <update id="decreaseLikeCnt" parameterType="int">
         update article set likeCnt=likeCnt- 1 where no=#{no}
     </update>
+    <!-- 게시글 수정 -->
     <update id="updateOne" parameterType="article">
         update article
         set topic=#{topic}, title=#{title}, content=#{content}
         where no=#{no}
     </update>
 
-
+    <!-- 게시글 삭제 -->
     <delete id="deleteByNo" parameterType="int">
         delete from article where no=#{no}
     </delete>

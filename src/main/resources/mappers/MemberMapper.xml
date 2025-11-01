@@ -9,28 +9,31 @@
         values(#{id}, #{password}, #{email}, #{name}, #{nickname}, #{interest}, #{agree})
     </insert>
 
-
+    <!-- 아이디로 멤버 조회 -->
     <select id="selectById" parameterType="String" resultType="Member">
         select * from member where id = #{id}
     </select>
+    <!-- 닉네임으로 멤버 조회 -->
     <select id="selectByNickname" parameterType="String" resultType="Member">
         select * from member where nickname = #{nickname}
     </select>
+    <!-- 계정 조회 -->
     <select id="selectAccount" resultType="Member" parameterType="String">
         select * from member where id=#{id}
     </select>
 
-
+    <!-- 멤버 정보 수정 -->
     <update id="updateOne" parameterType="Member">
         update member set name = #{name}, nickname=#{nickname}, email=#{email}, interest=#{interest}
         where id=#{id}
     </update>
+    <!-- 비밀번호 수정 -->
     <update id="updatePassword" parameterType="Member">
         update member
         set password = #{password}
         where id = #{id}
     </update>
-
+    <!-- 멤버 삭제 -->
     <delete id="deleteById" parameterType="string">
         delete from member where id=#{id}
     </delete>

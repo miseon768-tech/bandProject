@@ -9,39 +9,39 @@
         INSERT INTO band (id, name, nickname, description, created_at)
         VALUES (#{id}, #{name}, #{nickname}, #{description}, #{created_at})
     </insert>
-
+    <!-- 전체 밴드 조회 -->
     <select id="selectAll" resultType="Band">
         SELECT no, name, nickname, description, id, created_at
         FROM band
         ORDER BY created_at DESC
     </select>
-
+    <!-- 밴드 수 카운트 -->
     <select id="selectByArticleNo" parameterType="int" resultType="Band">
         SELECT *
         FROM band
         WHERE no = #{bandNo}
     </select>
-
+    <!-- 밴드 상세보기 -->
     <select id="selectLastInsertId" resultType="int">
         SELECT LAST_INSERT_ID()
     </select>
-
+    <!-- 최근 생성된 밴드 5개 -->
     <select id="selectTop5Views" resultType="Band">
         SELECT * FROM band
         ORDER BY viewCnt DESC
         LIMIT 5
     </select>
-
+    <!-- 조회수 상위 5개 밴드 -->
     <select id="selectTop5Likes" resultType="Band">
         SELECT * FROM band
         ORDER BY likeCnt DESC
         LIMIT 5
     </select>
-
+    <!-- 좋아요수 상위 5개 밴드 -->
     <update id="increaseLikeCnt" parameterType="int">
         UPDATE band SET likeCnt = likeCnt + 1 WHERE no = #{no}
     </update>
-
+    <!-- 조회수 증가 -->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE band SET viewCnt = viewCnt + 1 WHERE no = #{no}
     </update>
