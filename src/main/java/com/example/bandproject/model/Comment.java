@@ -16,3 +16,9 @@ public class Comment {
     private  LocalDateTime commentedAt;
 
 }
+
+/*
+    constraint foreign key (articleNo) references article (no)  ON DELETE CASCADE,
+    constraint foreign key (writerId) references member (id)  ON DELETE CASCADE
+    CONSTRAINT FOREIGN KEY (bandNo) REFERENCES band(no);
+ */
