@@ -51,8 +51,7 @@ public class BandMemberServlet extends HttpServlet {
         bandMember.setNickname(nickname);
         bandMember.setApproved(approved);
         bandMember.setRole(role);
-        bandMember.setjoinedAt(LocalDateTime.now());
-
+        bandMember.setJoinedAt(LocalDateTime.now());
 
         if ("MASTER".equals(role)) {
             bandMember.setRole("MASTER");
