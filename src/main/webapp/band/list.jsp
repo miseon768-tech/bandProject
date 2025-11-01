@@ -24,6 +24,7 @@
         </a>
 
         <!-- 밴드 카드들 -->
+        <!-- 최신순으로 보여주는 갯수제한 가능-->
         <c:forEach var="b" items="${bandlist}">
             <a class="band-card" href="${ctx}/band/${b.no}">
                 <div class="band-cover">
@@ -40,6 +41,8 @@
             <p class="empty-hint">아직 참여한 밴드가 없어요. ‘만들기’로 새 밴드를 시작해 보세요.</p>
         </c:if>
     </div>
+
+    <!-- 조회수 top5 밴드/좋아요 top5 밴드 추가 가능-->
 
 </main>
 </body>

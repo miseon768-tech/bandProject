@@ -25,11 +25,12 @@ public class ArticleEditServlet extends HttpServlet {
 
         if(user != null && article != null && article.getWriterId().equals(user.getId())) {
             req.setAttribute("article", article);
-            req.getRequestDispatcher("/article/profile.jsp").forward(req, resp);
-        }else{
-            resp.sendRedirect("/community");
-
-        }
+            req.getRequestDispatcher("/article/edit.jsp").forward(req, resp);
+        }/*else{
+            글을 수정할 권한이 없으면 페이지를 바꾸지 않고 알람창을 띄운다.
+            req.getRequestDispatcher("/article/access-error.jsp").forward(req, resp);
+            "권한이 없습니다"
+        }*/
     }
 
     @Override

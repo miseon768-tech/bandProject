@@ -19,7 +19,8 @@
 <body>
 <%@ include file="/template/header.jspf" %>
 <h2>📋 게시글 목록</h2>
-
+<!-- flex 나눌것,
+    flex부분에 좋아요 top5 article, 조회수 top5 article 생성가능-->
 <div style="text-align:right; margin-bottom:10px;">
     <a href="${pageContext.request.contextPath}/article/new" class="btn">✏️ 새 글쓰기</a>
 </div>

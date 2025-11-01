@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.ArticleLikeMapper">
-    <!-- 등록 -->
     <insert id="insertOne" parameterType="articleLike">
         insert into articleLike(memberId, articleNo) values(#{memberId}, #{articleNo})
     </insert>
@@ -11,23 +10,26 @@
     <delete id="deleteByIdx" parameterType="int">
         delete from articleLike where idx=#{idx}
     </delete>
+    <!-- 회원ID와 게시글번호로 삭제 -->
     <delete id="deleteByMemberIdAndArticleNo" parameterType="articleLike">
         delete from articleLike where memberId=#{memberId} and articleNo=#{articleNo}
     </delete>
+    <!-- 게시글번호로 삭제 -->
     <delete id="deleteByArticleNo" parameterType="int">
         delete from articleLike where articleNo=#{no}
     </delete>
 
-    <!-- -->
+    <!-- 회원ID와 게시글번호로 좋아요 수 카운트 -->
     <select id="countByMemberIdAndArticleNo" resultType="int" parameterType="articleLike">
         select count(*) from articleLike
         where memberId=#{memberId} and articleNo=#{articleNo}
     </select>
+    <!-- 회원ID와 게시글번호로 좋아요 정보 조회 -->
     <select id="selectByMemberIdAndArticleNo" resultType="articleLike" parameterType="articleLike">
         select * from articleLike
         where memberId=#{memberId} and articleNo=#{articleNo}
     </select>
-
+    <!-- 회원ID로 좋아요한 게시글 조회 -->
     <select id="selectLikedArticlesByMemberId"
             parameterType="string" resultType="LikedArticle">
         select *

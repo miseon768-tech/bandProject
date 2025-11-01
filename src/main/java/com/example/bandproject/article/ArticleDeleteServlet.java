@@ -31,6 +31,14 @@ public class ArticleDeleteServlet extends HttpServlet {
             sqlSession.delete("mappers.ArticleLikeMapper.deleteByArticleNo", no);
             sqlSession.delete("mappers.ArticleMapper.deleteByNo", no);
         }
+        /*else{
+            글을 삭제할 권한이 없으면 페이지를 바꾸지 않고 알람창을 띄운다.
+            req.getRequestDispatcher("/article/access-error.jsp").forward(req, resp);
+            "권한이 없습니다"
+        }*/
         resp.sendRedirect("/community");
+        /*
+        "글이 삭제되었습니다" 알람창을 띄우고 community로 이동
+         */
     }
 }
