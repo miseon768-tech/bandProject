@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Member {
 
+    int no;
     String id;
     String password;
     String email;

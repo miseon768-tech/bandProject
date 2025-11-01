@@ -5,8 +5,9 @@
 
 <mapper namespace="mappers.BandLikeMapper">
 
-    <insert id="insertOne" parameterType="BandLike">
-        INSERT INTO bandLike(memberId, bandNo) VALUES(#{memberId}, #{bandNo})
+    <insert id="insertOne" parameterType="BandLike" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO bandLike (memberNo, bandNo, bandMemberId)
+        VALUES (#{memberNo}, #{bandNo}, #{bandMemberId})
     </insert>
     <!-- 삭제 -->
     <delete id="deleteByIdx" parameterType="int">

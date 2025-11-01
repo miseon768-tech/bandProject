@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.CommentMapper">
-    <insert id="insertOne" parameterType="comment">
-        insert into comment(articleNo, writerId, content)
-        values (#{articleNo}, #{writerId}, #{content})
+    <insert id="insertOne" parameterType="Comment" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO comment (memberNo, bandNo, bandMemberNo, articleNo, content)
+        VALUES (#{memberNo}, #{bandNo}, #{bandMemberNo}, #{articleNo}, #{content})
     </insert>
     <!-- 특정 게시글의 모든 댓글 조회 -->
     <select id="selectByArticleNo" parameterType="int" resultType="comment">

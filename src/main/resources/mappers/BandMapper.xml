@@ -6,8 +6,8 @@
 <mapper namespace="mappers.BandMapper">
 
     <insert id="insertOne" parameterType="Band" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO band (id, name, nickname, description, createdAt)
-        VALUES (#{id}, #{name}, #{nickname}, #{description}, #{createdAt})
+        INSERT INTO band (memberNo, id, name, nickname, description)
+        VALUES (#{memberNo}, #{id}, #{name}, #{nickname}, #{description})
     </insert>
     <!-- 전체 밴드 조회 -->
     <select id="selectAll" resultType="Band">

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class Band {
 
     int no;
+    int memberNo; //마스터 회원 번호
     String id; //마스터 회원 번호
     String name ; //밴드 이름
     String nickname; //밴드(마스터) 닉네임

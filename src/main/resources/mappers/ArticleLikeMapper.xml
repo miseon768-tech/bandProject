@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.ArticleLikeMapper">
-    <insert id="insertOne" parameterType="articleLike">
-        insert into articleLike(memberId, articleNo) values(#{memberId}, #{articleNo})
+    <insert id="insertOne" parameterType="ArticleLike" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO articleLike (memberNo, bandNo, bandMemberNo, articleNo)
+        VALUES (#{memberNo}, #{bandNo}, #{bandMemberNo}, #{articleNo})
     </insert>
+
     <!-- 삭제 -->
     <delete id="deleteByIdx" parameterType="int">
         delete from articleLike where idx=#{idx}

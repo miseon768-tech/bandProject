@@ -52,6 +52,7 @@ public class BandServlet extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
         Band band = new Band();
+        band.setMemberNo(logonUser.getNo());
         band.setId(logonUser.getId());
         band.setName(name);
         band.setNickname(nickname);
@@ -63,10 +64,14 @@ public class BandServlet extends HttpServlet {
 
 
         BandMember bandMember = new BandMember();
-        bandMember.setName(logonUser.getName());
-        bandMember.setName(name);
-        bandMember.setNickname(nickname);
-        bandMember.setRole("MASTER");
+
+        bandMember.setMemberNo(logonUser.getNo());      // ★ 로그인한 회원의 PK
+        bandMember.setBandNo(band.getNo());             // ★ 방금 생성된 밴드의 PK
+        bandMember.setId(logonUser.getId());            // ★ 회원 아이디 정보
+        bandMember.setName(logonUser.getName());        // ★ 회원 이름 정보
+
+        bandMember.setNickname(nickname);               // 밴드 닉네임
+        bandMember.setRole("MASTER");                   // 마스터 역할
         bandMember.setApproved(true);
         bandMember.setJoinedAt(LocalDateTime.now());
 

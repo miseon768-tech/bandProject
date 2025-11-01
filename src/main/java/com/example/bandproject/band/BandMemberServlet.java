@@ -46,11 +46,14 @@ public class BandMemberServlet extends HttpServlet {
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
         BandMember bandMember = new BandMember();
+
+        bandMember.setMemberNo(logonUser.getNo());
+        bandMember.setBandNo(Integer.parseInt(no));
         bandMember.setId(logonUser.getId());
-        bandMember.setName(name);
+        bandMember.setName(logonUser.getName());
         bandMember.setNickname(nickname);
-        bandMember.setApproved(approved);
-        bandMember.setRole(role);
+        bandMember.setRole("MASTER");
+        bandMember.setApproved(true);
         bandMember.setJoinedAt(LocalDateTime.now());
 
         if ("MASTER".equals(role)) {
@@ -62,7 +65,7 @@ public class BandMemberServlet extends HttpServlet {
         } else if ("MEMBER".equals(role)) {
             bandMember.setRole("MEMBER");
             bandMember.setApproved(true); // 멤버도 승인
-            resp.sendRedirect("/band/member");
+            resp.sendRedirect("/community");
 
         } else {
             // 회원이 아님/권한없음

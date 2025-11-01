@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.ArticleMapper">
-    <insert id="insertOne" parameterType="article">
-        insert into article(writerId, topic, title, content)
-        values(#{writerId}, #{topic}, #{title}, #{content})
+    <insert id="insertOne" parameterType="Article" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO article (memberNo, writerId, bandNo, bandMemberNo, topic, title, content)
+        VALUES (#{memberNo}, #{writerId}, #{bandNo}, #{bandMemberNo}, #{topic}, #{title}, #{content})
     </insert>
     <!-- 전체 게시글 조회 -->
     <select id="selectAll" resultType="Article">
