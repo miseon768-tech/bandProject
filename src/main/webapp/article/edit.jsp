@@ -16,7 +16,7 @@
     <p><input type="text" name="title" value="${article.title}" required></p>
     <p><textarea name="content" rows="10" required>${article.content}</textarea></p>
     <button type="submit">수정 완료</button>
-    <a href="${pageContext.request.contextPath}/article/list" style="margin-left:10px;">목록으로</a>
+    <a href="${pageContext.request.contextPath}/community" style="margin-left:10px;">목록으로</a>
 </form>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <form action="${pageContext.request.contextPath}/article/delete" method="post">
     <input type="hidden" name="no" value="${param.no}">
     <button type="submit" class="btn">삭제하기</button>
-    <a href="${pageContext.request.contextPath}/article/list" style="margin-left:10px;">취소</a>
+    <a href="${pageContext.request.contextPath}/community" style="margin-left:10px;">취소</a>
 </form>
 </body>
 </html>

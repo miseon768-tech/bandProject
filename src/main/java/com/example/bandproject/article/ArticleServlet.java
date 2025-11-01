@@ -1,9 +1,8 @@
 
 package com.example.bandproject.article;
-
+import com.example.bandproject.model.Article;
 import com.example.bandproject.model.Comment;
 import com.example.bandproject.model.Member;
-import com.example.bandproject.model.Article;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,6 +32,7 @@ public class ArticleServlet extends HttpServlet {
             resp.sendRedirect("/community");
             return;
         }
+
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
         if(logonUser == null) {
             req.setAttribute("alreadyLike", false);
@@ -41,8 +41,6 @@ public class ArticleServlet extends HttpServlet {
             int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
             req.setAttribute("alreadyLike", cnt == 1);
         }
-
-
         if(logonUser == null || !found.getWriterId().equals(logonUser.getId()) ) {
             req.setAttribute("owner", false);
         }else {

@@ -17,7 +17,7 @@
     </select>
 
     <select id="selectByArticleNo" parameterType="int" resultType="Band">
-        SELECT no, name, nickname, description, id, created_at
+        SELECT *
         FROM band
         WHERE no = #{bandNo}
     </select>
@@ -25,5 +25,25 @@
     <select id="selectLastInsertId" resultType="int">
         SELECT LAST_INSERT_ID()
     </select>
+
+    <select id="selectTop5Views" resultType="Band">
+        SELECT * FROM band
+        ORDER BY viewCnt DESC
+        LIMIT 5
+    </select>
+
+    <select id="selectTop5Likes" resultType="Band">
+        SELECT * FROM band
+        ORDER BY likeCnt DESC
+        LIMIT 5
+    </select>
+
+    <update id="increaseLikeCnt" parameterType="int">
+        UPDATE band SET likeCnt = likeCnt + 1 WHERE no = #{no}
+    </update>
+
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE band SET viewCnt = viewCnt + 1 WHERE no = #{no}
+    </update>
 
 </mapper>

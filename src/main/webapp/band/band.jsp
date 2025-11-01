@@ -45,7 +45,7 @@
         <!-- 버튼 -->
         <div class="actions">
             <button type="button" class="btn" onclick="history.back()">이전</button>
-            <button type="submit" class="btn btn-primary">생성하기</button>
+            <button type="submit" class="btn btn-primary" onclick="">생성하기</button>
         </div>
 
         <!-- 생성 결과 메시지 -->

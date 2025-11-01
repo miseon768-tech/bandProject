@@ -27,6 +27,6 @@ public class CommentDeleteServlet  extends HttpServlet {
         if(user != null && comment != null && comment.getWriterId().equals(user.getId())) {
             sqlSession.delete("mappers.CommentMapper.deleteByNo", no);
         }
-        resp.sendRedirect("/article/list");
+        resp.sendRedirect("/community");
     }
 }

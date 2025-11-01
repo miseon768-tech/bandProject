@@ -57,7 +57,7 @@ public class BandMemberServlet extends HttpServlet {
         if ("MASTER".equals(role)) {
             bandMember.setRole("MASTER");
             bandMember.setApproved(true); // 마스터는 승인
-            resp.sendRedirect("/article/list");
+            resp.sendRedirect("/community");
 
 
         } else if ("MEMBER".equals(role)) {

@@ -1,5 +1,5 @@
 
-package com.example.bandproject.community;
+package com.example.bandproject.article;
 
 import com.example.bandproject.model.Article;
 import com.example.bandproject.model.Member;
@@ -13,8 +13,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/community/new")
-public class CommunityNewServlet extends HttpServlet {
+@WebServlet("/article/new")
+public class ArticleNewServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class CommunityNewServlet extends HttpServlet {
         req.setAttribute("logonUser", req.getSession().getAttribute("logonUser"));
         req.setAttribute("logonUserNickname", logonUser.getNickname());
 
-        req.getRequestDispatcher("/community/new.jsp").forward(req, resp);
+        req.getRequestDispatcher("/article/new.jsp").forward(req, resp);
 
     }
 
@@ -57,7 +57,7 @@ public class CommunityNewServlet extends HttpServlet {
         if(r == 1) {
             resp.sendRedirect("/community");
         }else {
-            req.getRequestDispatcher("/community/new-fail.jsp").forward(req, resp);
+            req.getRequestDispatcher("/article/new-fail.jsp").forward(req, resp);
 
         }
 

@@ -48,7 +48,7 @@ public class ReactionLikeServlet extends HttpServlet {
         }
         sqlSession.close();
 
-        resp.sendRedirect("/article/list?no="+articleNo);
+        resp.sendRedirect("/community?no="+articleNo);
 
     }
 }

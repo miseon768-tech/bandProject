@@ -34,7 +34,7 @@ public class CommentServlet extends HttpServlet {
         sqlSession.update("mappers.ArticleMapper.increaseCommentCnt", articleNo);
 
 
-        resp.sendRedirect("/article/list?no="+articleNo);
+        resp.sendRedirect("/community?no="+articleNo);
     }
 }
 
