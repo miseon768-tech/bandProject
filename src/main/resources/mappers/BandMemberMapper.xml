@@ -6,7 +6,7 @@
 
     <insert id="insertOne" parameterType="BandMember" useGeneratedKeys="true" keyProperty="no">
         INSERT INTO bandMember (no, bandNo, id, name, nickname, role, approved, joinedAt)
-        VALUES (#{id}, #{name}, #{nickname}, #{role}, #{approved}, #{joinedAt})
+        VALUES (#{no}, #{bandNo}, #{id}, #{name}, #{nickname}, #{role}, #{approved}, #{joinedAt});
     </insert>
 
     <!-- 밴드 번호로 모든 멤버 조회 -->
