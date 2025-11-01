@@ -13,11 +13,11 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/comment/edit?articleNo={articleNo}")
+@WebServlet("/comment/edit")
 public class CommentEditServlet  extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int no = Integer.parseInt(req.getParameter("no"));
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);

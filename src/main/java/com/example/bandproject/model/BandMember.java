@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 public class BandMember {
 
     int no;
+    int bandNo;
     String id; //회원 번호
     String name; //밴드 이름
     String nickname; //밴드 닉네임
     String role; //역할: MASTER 또는 MEMBER
     boolean approved; //가입 승인 여부
-    LocalDateTime joined_at; //가입일
+    LocalDateTime joinedAt; //가입일
 
 }
 

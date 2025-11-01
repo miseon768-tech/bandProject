@@ -5,36 +5,49 @@
 <mapper namespace="mappers.BandMemberMapper">
 
     <insert id="insertOne" parameterType="BandMember" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO band_member (id, name, nickname, role, approved, joined_at)
-        VALUES (#{id}, #{name}, #{nickname}, #{role}, #{approved}, #{joined_at})
+        INSERT INTO bandMember (no, bandNo, id, name, nickname, role, approved, joinedAt)
+        VALUES (#{id}, #{name}, #{nickname}, #{role}, #{approved}, #{joinedAt})
     </insert>
 
     <!-- 밴드 번호로 모든 멤버 조회 -->
     <select id="selectByBandNo" parameterType="int" resultType="BandMember">
-        SELECT no, band_no, member_id, role, approved, joined_at
-        FROM band_member
-        WHERE band_no = #{band_no}
-        ORDER BY joined_at DESC;
+        SELECT *
+        FROM bandMember
+        WHERE bandNo = #{bandNo}
+        ORDER BY joinedAt DESC;
+    </select>
+
+    <!-- 밴드 이름으로 모든 멤버 조회 -->
+    <select id="selectByBandName" parameterType="String" resultType="BandMember">
+        SELECT *
+        FROM bandMember
+        WHERE name = #{bandName};
     </select>
 
     <!-- 특정 멤버가 속한 밴드 조회 -->
     <select id="selectByMemberId" parameterType="String" resultType="BandMember">
-        SELECT no, band_no, member_id, role, approved, joined_at
-        FROM band_member
-        WHERE id = #{bandId};
+        SELECT *
+        FROM bandMember
+        WHERE name = #{bandName};
     </select>
 
     <!-- 승인 상태 변경 -->
     <update id="updateApproval" parameterType="BandMember">
-        UPDATE band_member
+        UPDATE bandMember
         SET approved = #{approved}
         WHERE no = #{bandNo};
     </update>
 
+    <!-- 밴드 멤버 닉네임 수정 -->
+    <update id="updateOne" parameterType="band">
+        update bandMember
+        set nickname=#{nickname}
+        where no=#{no}
+    </update>
 
     <!-- 밴드 멤버 삭제 -->
     <delete id="deleteByMemberId" parameterType="String">
-        DELETE FROM band_member
+        DELETE FROM bandMember
         WHERE no = #{bandNo};
     </delete>
 

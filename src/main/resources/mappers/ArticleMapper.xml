@@ -33,7 +33,7 @@
         order by wroteAt desc limit 10 offset #{offset}
     </select>
 
-    <!-- 최근 일주일간 조회수 상위 5개 게시글 -->
+    <!-- 최근 일주일간 좋아요수 상위 5개 게시글 -->
     <select id="selectTop5Likes" resultType="article" parameterType="java.time.LocalDate">
         select * from article
         where likeCnt > 0 and wroteAt >= #{date}
@@ -54,7 +54,7 @@
     <select id="selectByNo" resultType="Article" parameterType="int">
         select * from article where no=#{no}
     </select>
-    <!-- 조회수, 댓글수, 좋아요수 증가 -->
+    <!-- 조회수 증가 -->
     <update id="updateViewCnt" parameterType="int">
         update article set viewCnt=viewCnt+ 1 where no=#{no}
     </update>
@@ -62,7 +62,7 @@
     <update id="increaseCommentCnt" parameterType="int">
         update article set commentCnt=commentCnt+ 1 where no=#{no}
     </update>
-    <!-- 댓글수 감소 -->
+    <!-- 좋아요수 증가 -->
     <update id="increaseLikeCnt" parameterType="int">
         update article set likeCnt=likeCnt+ 1 where no=#{no}
     </update>

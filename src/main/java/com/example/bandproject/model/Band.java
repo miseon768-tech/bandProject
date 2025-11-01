@@ -14,7 +14,7 @@ public class Band {
     String name ; //밴드 이름
     String nickname; //밴드(마스터) 닉네임
     String description; //밴드 설명
-    LocalDateTime created_at; //생성일
+    LocalDateTime createdAt; //생성일
 
 }
 

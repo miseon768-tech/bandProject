@@ -56,7 +56,7 @@ public class BandServlet extends HttpServlet {
         band.setName(name);
         band.setNickname(nickname);
         band.setDescription(description);
-        band.setCreated_at(LocalDateTime.now());
+        band.setcreatedAt(LocalDateTime.now());
 
 
         sqlSession.insert("mappers.BandMapper.insertOne", band);
@@ -68,7 +68,7 @@ public class BandServlet extends HttpServlet {
         bandMember.setNickname(nickname);
         bandMember.setRole("MASTER");
         bandMember.setApproved(true);
-        bandMember.setJoined_at(LocalDateTime.now());
+        bandMember.setjoinedAt(LocalDateTime.now());
 
         sqlSession.insert("mappers.BandMemberMapper.insertOne", bandMember);
 

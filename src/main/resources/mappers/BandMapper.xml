@@ -6,44 +6,69 @@
 <mapper namespace="mappers.BandMapper">
 
     <insert id="insertOne" parameterType="Band" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO band (id, name, nickname, description, created_at)
-        VALUES (#{id}, #{name}, #{nickname}, #{description}, #{created_at})
+        INSERT INTO band (id, name, nickname, description, createdAt)
+        VALUES (#{id}, #{name}, #{nickname}, #{description}, #{createdAt})
     </insert>
     <!-- 전체 밴드 조회 -->
     <select id="selectAll" resultType="Band">
-        SELECT no, name, nickname, description, id, created_at
-        FROM band
-        ORDER BY created_at DESC
-    </select>
-    <!-- 밴드 수 카운트 -->
-    <select id="selectByArticleNo" parameterType="int" resultType="Band">
         SELECT *
         FROM band
-        WHERE no = #{bandNo}
+        ORDER BY createdAt DESC
     </select>
-    <!-- 밴드 상세보기 -->
-    <select id="selectLastInsertId" resultType="int">
-        SELECT LAST_INSERT_ID()
+
+    <!-- 밴드 번호로 특정 밴드 조회 -->
+    <select id="selectByNo" parameterType="int" resultType="Band">
+        SELECT *
+        FROM band
+        WHERE no = #{no}
     </select>
-    <!-- 최근 생성된 밴드 5개 -->
-    <select id="selectTop5Views" resultType="Band">
-        SELECT * FROM band
-        ORDER BY viewCnt DESC
-        LIMIT 5
+
+    <!-- 키워드 검색어 찾기 -->
+    <select id="selectLikeKeywordByOffset"
+            resultType="band" parameterType="map">
+        select * from band
+        where title like #{keyword} or content like #{keyword}
+        order by wroteAt desc limit 10 offset #{offset}
     </select>
-    <!-- 조회수 상위 5개 밴드 -->
+
+    <!-- 좋아요수 증가 -->
+    <update id="increaseLikeCnt" parameterType="int">
+        UPDATE band SET likeCnt = likeCnt + 1 WHERE no = #{no}
+    </update>
+    <!-- 좋아요수 감소 -->
+    <update id="decreaseLikeCnt" parameterType="int">
+        update band set likeCnt=likeCnt- 1 where no=#{no}
+    </update>
+    <!-- 좋아요수 상위 5개 밴드 -->
     <select id="selectTop5Likes" resultType="Band">
         SELECT * FROM band
         ORDER BY likeCnt DESC
         LIMIT 5
     </select>
-    <!-- 좋아요수 상위 5개 밴드 -->
-    <update id="increaseLikeCnt" parameterType="int">
-        UPDATE band SET likeCnt = likeCnt + 1 WHERE no = #{no}
-    </update>
+
     <!-- 조회수 증가 -->
     <update id="increaseViewCnt" parameterType="int">
         UPDATE band SET viewCnt = viewCnt + 1 WHERE no = #{no}
     </update>
+    <!-- 조회수 상위 5개 밴드 -->
+    <select id="selectTop5Views" resultType="Band">
+        SELECT * FROM band
+        ORDER BY viewCnt DESC
+        LIMIT 5
+    </select>
+
+
+    <!-- 밴드 수정 -->
+    <update id="updateOne" parameterType="band">
+        update band
+        set name=#{name}, description=#{description}
+        where no=#{no}
+    </update>
+
+    <!-- 밴드 삭제 -->
+    <delete id="deleteByNo" parameterType="int">
+        delete from band where no=#{no}
+    </delete>
+
 
 </mapper>
