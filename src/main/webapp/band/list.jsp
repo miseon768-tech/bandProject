@@ -26,7 +26,7 @@
         <!-- 밴드 카드들 -->
         <!-- 최신순으로 보여주는 갯수제한 가능-->
         <c:forEach var="b" items="${bandlist}">
-            <a class="band-card" href="${ctx}/band/${b.no}">
+            <a class="band-card" href="${ctx}/community?bandNo=${b.no}"> <!-- 각 밴드로 연결해둠-->
                 <div class="band-cover">
 
                 </div>
