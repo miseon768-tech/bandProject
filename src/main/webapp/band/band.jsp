@@ -46,8 +46,10 @@
         <div class="actions">
             <button type="button" class="btn" onclick="history.back()">이전</button>
             <!-- 이전버튼 눌렀을 시, /band/index로 이동-->
-            <button type="submit" class="btn btn-primary" onclick="">생성하기</button>
-            <!-- 생성하기 버튼을 누른 후 밴드가 생성되면 생성된 밴드로 이동, 밴드마다 번호 자동 설정되어 있음,
+            <button type="submit" class="btn btn-primary" >생성하기</button>
+            <!-- 생성하기 버튼을 누른 후 밴드가 생성되면 생성된 밴드로 이동
+            (button을 submit으로 변경했음/button을 그대로 사용하고 싶으면 script로 처리),
+            밴드마다 번호 자동 설정되어 있음,
             알람창 띄워주기, "밴드가 생성되었습니다" -->
         </div>
 
@@ -65,7 +67,7 @@
     // 간단 클라이언트 검증(이름 최소 2자)
     document.getElementById('bandForm').addEventListener('submit', function (evt) {
         const name = document.getElementById('name').value.trim();
-        const master = document.getElementById('masterNickname').value.trim();
+        const master = document.getElementById('nickname').value.trim();
         if (name.length < 2) {
             alert('밴드 이름을 2자 이상 입력해 주세요.');
             evt.preventDefault();
