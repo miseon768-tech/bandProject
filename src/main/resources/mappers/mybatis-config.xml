@@ -26,6 +26,8 @@
         <mapper resource="mappers/ArticleMapper.xml"/>
         <mapper resource="mappers/ArticleLikeMapper.xml"/>
         <mapper resource="mappers/CommentMapper.xml"/>
+        <mapper resource="mappers/CommentLikeMapper.xml"/>
+        <mapper resource="mappers/BandMemberCheckParam.xml"/>
 
 
 

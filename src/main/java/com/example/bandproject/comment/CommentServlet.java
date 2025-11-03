@@ -24,21 +24,37 @@ public class CommentServlet extends HttpServlet {
             return;
         }
 
-        int bandNo = Integer.parseInt(req.getParameter("bandNo"));      // 밴드 번호
-        int articleNo= Integer.parseInt(req.getParameter("articleNo"));
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
+        int articleNo = Integer.parseInt(req.getParameter("articleNo"));
         String content = req.getParameter("content");
         String writerId = logonUser.getId();
 
+        /*boolean isBandMember = false;
+        try (SqlSession sqlSession = MyBatisUtil.build().openSession()) {
+            // 승인된 멤버인지 확인
+            int count = sqlSession.selectOne("mappers.BandMapper.checkApprovedMember",
+                    new BandMemberCheckParam(bandNo, logonUser.getId()));
+            isBandMember = count > 0;
+        }
+        if (!isBandMember) {
+            resp.sendRedirect("/error?msg=승인된 밴드 멤버만 코멘트를 작성할 수 있습니다.");
+            return;
+        }*/
+
+
         Comment comment = new Comment();
+        comment.setWriterId(writerId);
+        comment.setContent(content);
         comment.setBandNo(bandNo);
         comment.setArticleNo(articleNo);
-        comment.setContent(content);
-        comment.setWriterId(writerId);
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+
         int r = sqlSession.insert("mappers.CommentMapper.insertOne", comment);
+        sqlSession.update("mappers.BandMapper.increaseCommentCnt", bandNo);
         sqlSession.update("mappers.ArticleMapper.increaseCommentCnt", articleNo);
 
+        sqlSession.close();
 
 
         resp.sendRedirect("/band?no=" + bandNo + "&articleNo=" + articleNo);
