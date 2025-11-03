@@ -20,11 +20,13 @@ public class ArticleUserLikedServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
-        if(logonUser == null) {
-            resp.sendRedirect("/login");
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
+
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         List<LikedArticle> likedArticleList =
                 sqlSession.selectList("mappers.ArticleLikeMapper.selectLikedArticlesByMemberId", logonUser.getId());

@@ -18,16 +18,12 @@ public class ArticleReactionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        if (logonUser == null) {
-            resp.sendRedirect("/login");
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
 
-        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (bandApproved == null || !bandApproved) {
-            resp.sendRedirect("/community");
-            return;
-        }
         int articleNo = Integer.parseInt(req.getParameter("no"));
 
         String memberId = logonUser.getId();

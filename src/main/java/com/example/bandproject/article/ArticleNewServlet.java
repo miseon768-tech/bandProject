@@ -19,14 +19,9 @@ public class ArticleNewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        if (logonUser == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
         Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (bandApproved == null || !bandApproved) {
-            resp.sendRedirect("/community");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
 
@@ -41,14 +36,9 @@ public class ArticleNewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        if (logonUser == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
         Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (bandApproved == null || !bandApproved) {
-            resp.sendRedirect("/community");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
 

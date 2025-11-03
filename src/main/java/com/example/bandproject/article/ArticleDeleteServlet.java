@@ -20,14 +20,9 @@ public class ArticleDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        if (logonUser == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
         Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (bandApproved == null || !bandApproved) {
-            resp.sendRedirect("/community");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
 
@@ -38,7 +33,7 @@ public class ArticleDeleteServlet extends HttpServlet {
 
         Article article = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", no);
 
-        if(logonUser != null && article != null && article.getWriterId().equals(logonUser.getId())) {
+        if (logonUser != null && article != null && article.getWriterId().equals(logonUser.getId())) {
             sqlSession.delete("mappers.ArticleLikeMapper.deleteByArticleNo", no);
             sqlSession.delete("mappers.ArticleMapper.deleteByNo", no);
         }

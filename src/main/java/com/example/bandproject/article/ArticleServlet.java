@@ -20,15 +20,10 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
         Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if(bandApproved == null || !bandApproved) {
-            resp.sendRedirect("/community");
-            return;
-        }
-
-        String no = req.getParameter("no");
-        if (no == null || !no.matches("\\d+")) {
-            resp.sendRedirect("/community");
+        if (logonUser == null || bandApproved == null || !bandApproved) {
+            resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
 
@@ -40,7 +35,6 @@ public class ArticleServlet extends HttpServlet {
             return;
         }
 
-        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
 
         if(logonUser == null) {
             req.setAttribute("alreadyLike", false);
