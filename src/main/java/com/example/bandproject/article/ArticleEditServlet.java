@@ -36,15 +36,26 @@ public class ArticleEditServlet extends HttpServlet {
         if(logonUser != null && article != null && article.getWriterId().equals(logonUser.getId())) {
             req.setAttribute("article", article);
             req.getRequestDispatcher("/article/edit.jsp").forward(req, resp);
-        }/*else{
-            글을 수정할 권한이 없으면 페이지를 바꾸지 않고 알람창을 띄운다.
-            req.getRequestDispatcher("/article/access-error.jsp").forward(req, resp);
-            "권한이 없습니다"
-        }*/
+        } else {
+            resp.sendRedirect("/article?no=" + no);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
+
         int no = Integer.parseInt(req.getParameter("no"));
         String title = req.getParameter("title");
         String topic = req.getParameter("topic");
