@@ -113,3 +113,211 @@
 
 /* 빈 상태 힌트 */
 .empty-hint { margin-top: 18px; color: #7a7e85; }
+
+
+
+/* ==============프로필 설정  ==============*/
+:root{
+    --white:#ffffff;
+    --cream:#FFF7EA;
+    --vanilla:#FFEDC1;
+    --sunray:#FEB229;
+    --maroon:#470102;
+    --ink:#3b2423;
+    --line:#FFE0A6;
+}
+
+html, body{height:100%}
+body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg, var(--cream) 0%, var(--vanilla) 100%);
+}
+
+/* --- Settings Layout (좌측 내비 + 우측 콘텐츠) --- */
+.settings{
+    max-width: 1080px;
+    margin: 32px auto 80px;
+    padding: 0 20px;
+    display:grid;
+    grid-template-columns: 240px 1fr;
+    gap: 20px;
+}
+/* 모바일 스택 */
+@media (max-width: 900px){
+    .settings{
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Left Nav --- */
+.settings-nav{
+    background: var(--white);
+    border:1px solid var(--line);
+    border-radius: 16px;
+    box-shadow:0 8px 22px rgba(71,1,2,0.06);
+    position: sticky;
+    top: 16px;
+    height: fit-content;
+}
+.settings-nav h3{
+    margin: 14px 16px 6px;
+    font-size: 14px;
+    letter-spacing: .2px;
+    color: #7a5a58;
+}
+.nav-list{
+    display:flex;
+    flex-direction:column;
+    padding: 6px;
+}
+.nav-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-radius: 12px;
+    padding: 10px 12px;
+    cursor:pointer;
+    color: var(--maroon);
+    text-decoration:none;
+    transition: background-color .15s ease, transform .05s ease;
+}
+.nav-item:hover{
+    background: color-mix(in srgb, var(--vanilla) 35%, white);
+}
+.nav-item.-active{
+    background: color-mix(in srgb, var(--sunray) 18%, white);
+    border:1px solid var(--line);
+}
+.nav-dot{
+    width:8px;height:8px;border-radius:50%;
+    background: var(--sunray);
+    flex:0 0 8px;
+}
+
+/* --- Right Content Card --- */
+.card{
+    background: var(--white);
+    border:1px solid var(--line);
+    border-radius: 16px;
+
+}
+.card-head{
+    padding: 18px 22px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: color-mix(in srgb, var(--cream) 60%, white);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+.card-head .title{
+    margin:0;
+    color:var(--maroon);
+    font-weight:900;
+    letter-spacing:-.2px;
+}
+.card-desc{
+    margin: 0;
+    color:#7a5a58;
+    font-size: 14px;
+}
+.card-body{
+    padding: 24px;
+}
+
+/* --- Form grid (2열 -> 모바일 1열) --- */
+.form-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 18px;
+}
+@media (max-width: 720px){
+    .form-grid{
+        grid-template-columns: 1fr;
+    }
+}
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.label{
+    font-weight: 800;
+    color: var(--maroon);
+}
+.input{
+    width:100%;
+    padding: 12px 14px;
+    border:1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    transition: box-shadow .16s ease, border-color .16s ease, background-color .16s ease;
+    font-size: 15px;
+}
+.input:hover{
+    border-color: var(--sunray);
+}
+.input:focus{
+    outline:none;
+    border-color: var(--sunray);
+
+    background: #fff;
+}
+.hint{
+    color:#7a5a58;
+    font-size: 12.5px;
+}
+
+/* 액션 바: 상단과 하단 둘 다 배치 가능 */
+.actions{
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    padding: 16px 22px;
+    border-top:1px solid var(--line);
+    background: color-mix(in srgb, var(--cream) 55%, white);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* 버튼 */
+.btn{
+    padding:11px 18px;
+    border:none;
+    border-radius:12px;
+    background:var(--sunray);
+    color:#3a1c00;
+    font-weight:900;
+    cursor:pointer;
+    transition: transform .06s ease, box-shadow .16s ease, background-color .16s ease;
+
+}
+.btn:hover{
+    transform: translateY(-1px);
+    box-shadow:0 10px 24px rgba(254,178,41,0.32);
+}
+.btn:active{ transform: translateY(0) }
+
+.btn.-ghost{
+    background: var(--cream);
+    color: var(--maroon);
+    border:1px solid var(--maroon);
+    box-shadow:none;
+}
+.btn.-ghost:hover{
+    background: color-mix(in srgb, var(--cream) 70%, var(--vanilla));
+}
+
+/* 섹션 라벨 */
+.section-label{
+    margin: 4px 0 12px;
+    font-size:12px;
+    letter-spacing:.6px;
+    color:#7a5a58;
+    text-transform: uppercase;
+    font-weight: 800;
+}

@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <title>메인</title>
 
-    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/css.css"/>
 
 
 </head>

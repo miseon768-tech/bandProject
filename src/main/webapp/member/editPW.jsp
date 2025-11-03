@@ -9,7 +9,9 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <style>
+
+    </style>
 </head>
 <body>
 <%@ include file="/template/header.jspf" %>

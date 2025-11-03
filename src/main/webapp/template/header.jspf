@@ -3,25 +3,117 @@
 <html>
 <head>
   <link rel="stylesheet" href="/css/css.css"/>
+  <style>
+    :root {
+      --white: #ffffff;
+      --cream: #fff7ea;
+      --vanilla: #ffedc1;
+      --sunray: #feb229;
+      --maroon: #470102;
+    }
+
+    /* ▼ 드롭다운 메뉴 ▼ */
+    #dropdownMenu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: var(--cream);
+      border: 1px solid var(--vanilla);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(71, 1, 2, 0.15);
+      min-width: 150px;
+      overflow: hidden;
+      z-index: 1000;
+      font-family: "맑은 고딕", system-ui, sans-serif;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    #dropdownMenu button {
+      display: block;
+      width: 90%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: var(--maroon);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #dropdownMenu button:hover {
+      background-color: var(--vanilla);
+      color: var(--sunray);
+    }
+
+    /* ▼ 설정 버튼 ▼ */
+    #toggleBtn {
+      border: 1px solid var(--vanilla);
+      border-radius: 8px;
+      padding: 6px 14px;
+      background: var(--cream);
+      color: var(--maroon);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #toggleBtn:hover {
+      background: var(--sunray);
+      color: var(--white);
+      box-shadow: 0 2px 6px rgba(71, 1, 2, 0.2);
+    }
+
+    /* ▼ 페이드 애니메이션 ▼ */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
+
 <body>
 <div class="header">
-  <div>BAND</div>
+  <div style="color: var(--maroon); font-weight: 900;">BAND</div>
+
   <c:choose>
     <c:when test="${auth}">
-      <div>
-        <button>알림</button>
-        <button>설정</button>
-        <a href="/logout"><button>로그아웃</button></a>
+      <div style="position: relative; display: inline-block;">
+        <button type="button" id="toggleBtn">설정</button>
+
+        <div id="dropdownMenu">
+          <button type="button" onclick="location.href='/profile'">프로필 설정</button>
+          <button type="button" onclick="location.href='/deleteAccount'">계정 삭제</button>
+        </div>
+
+        <a href="/logout"><button type="button" style="margin-left:8px;">로그아웃</button></a>
       </div>
     </c:when>
     <c:otherwise>
       <div>
-        <button onclick="location.href='/login'">로그인</button>
-        <a href="/signup"><button>회원가입</button></a>
+        <button type="button" onclick="location.href='/login'">로그인</button>
+        <a href="/signup"><button type="button">회원가입</button></a>
       </div>
     </c:otherwise>
   </c:choose>
 </div>
+
+<script>
+  const toggleBtn = document.getElementById("toggleBtn");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+
+  toggleBtn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    dropdownMenu.style.display =
+            (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") ? "block" : "none";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!toggleBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
