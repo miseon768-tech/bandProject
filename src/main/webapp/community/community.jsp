@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>BAND 메인화면</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/band.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css" />
 </head>
 <body>
-<%@ include file="/template/header.jspf" %>
+
 
 <div class="band-wrapper">
     <!-- 상단바: 좌측 로고 / 우측 검색+버튼들 -->
