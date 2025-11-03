@@ -17,10 +17,8 @@
             <div class="search-bar">
                 🔍 <input type="text" placeholder="검색" />
             </div>
-            <button class="top-btn">알림</button>
-            <button class="top-btn">설정</button>
             <button class="top-btn" onclick="location.href='../member/logout.jsp'">로그아웃</button>
-            <button class="top-btn" onclick="location.href='../member/editprofile.jsp'">프로필</button>
+            <button class="top-btn" onclick="location.href='../member/editprofile.jsp'">설정</button>
         </div>
     </div>
 
@@ -32,9 +30,7 @@
             <a class="avatar-link" href="${pageContext.request.contextPath}/member/editProfile.jsp" title="프로필 이미지 변경">
                 이미지
             </a>
-
-            <button class="side-btn" onclick="location.href='${pageContext.request.contextPath}/article/new'">게시글 작성</button>
-            <button class="side-btn" onclick="location.href='${pageContext.request.contextPath}/article/new'">프로필수정</button>
+            밴드네임
             <button class="side-btn gray" onclick="location.href='../member/editprofile.jsp'">승인</button>
         </aside>
 
@@ -50,7 +46,7 @@
                     <textarea class="textarea" rows="3" maxlength="20" placeholder="내용(20자 이내로 작성해 주세요)"></textarea>
                 </div>
                 <div class="actions">
-                    <button class="btn gray">사진추가</button>
+
                     <button class="btn blue">게시하기</button>
                 </div>
             </section>
