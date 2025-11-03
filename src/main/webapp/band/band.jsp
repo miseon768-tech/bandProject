@@ -21,35 +21,42 @@
 <%@ include file="/template/header.jspf" %>
 
 <div class="wrap">
-    <h2>밴드에 가입하기</h2>
+    <h2>밴드 생성하기</h2>
 
     <form class="card" method="post" action="${pageContext.request.contextPath}/band" id="bandForm">
 
+        <div class="field">
+            <label class="label" for="name">이름 설정</label>
+            <input class="input" id="name" name="name" type="text"
+                   placeholder="이름 입력"
+                   value="<c:out value='${not empty name ? name : ""}'/>"
+                   required>
+
         <!-- 닉네임 입력 -->
         <div class="field">
-            <label class="label" for="Nickname">닉네임 설정</label>
-            <input class="input" id="Nickname" name="Nickname" type="text"
+            <label class="label" for="nickname">닉네임 설정</label>
+            <input class="input" id="nickname" name="nickname" type="text"
                    placeholder="닉네임 입력"
-                   value="<c:out value='${not empty Nickname ? Nickname : ""}'/>"
+                   value="<c:out value='${not empty nickname ? nickname : ""}'/>"
                    required>
-            <small class="hint">닉네임을 입력해주세요.</small>
+
         </div>
 
-        <!-- 가입 인사 -->
+        <!--  밴드 설명  -->
         <div class="field">
-            <label class="label" for="description">가입 인사글</label>
+            <label class="label" for="description">밴드 설명</label>
             <textarea class="textarea" id="description" name="description"
-                      placeholder="안녕하세요!"></textarea>
+                      placeholder="생성할 밴드의 설명을 입력해주세요"></textarea>
         </div>
 
 
         <!-- 버튼 -->
         <div class="actions">
             <button type="button" class="btn" onclick="history.back()">이전</button>
-            <button type="submit" class="btn btn-primary">가입하기</button>
+            <button type="submit" class="btn btn-primary">생성하기</button>
         </div>
 
-        <!-- 가입 결과 메시지 -->
+        <!-- 생성 결과 메시지 -->
         <c:if test="${not empty success}">
             <p class="msg">✅ <c:out value="${success}"/></p>
         </c:if>
@@ -59,18 +66,5 @@
     </form>
 </div>
 
-<script>
-    // 간단 클라이언트 검증(닉네임 최소 2자)
-    document.getElementById('bandForm').addEventListener('submit', function (e) {
-        const nm = document.getElementById('nickname').value.trim();
-
-        if (nm.length < 2) {
-            alert('닉네임을 2자 이상 입력해 주세요.');
-            e.preventDefault();
-            return;
-        }
-
-    });
-</script>
 </body>
 </html>
