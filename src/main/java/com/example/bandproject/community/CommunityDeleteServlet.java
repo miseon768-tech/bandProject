@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@WebServlet("/community/delete")
+@WebServlet("/community/setting")
 public class     CommunityDeleteServlet extends HttpServlet {
 
     @Override

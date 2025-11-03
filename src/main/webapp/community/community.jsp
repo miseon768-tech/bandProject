@@ -21,7 +21,7 @@
 
             <!-- community.jsp 상단 “설정” 버튼 -->
             <button class="top-btn"
-                    onclick="location.href='${pageContext.request.contextPath}/band/setting'">설정
+                    onclick="location.href='${pageContext.request.contextPath}/community/setting'">설정
             </button>
 
         </div>
@@ -32,7 +32,7 @@
         <!-- 좌측 사이드 -->
         <aside class="sidebar">
             <!-- 동그라미 이미지: 링크 가능 (프로필 이미지 업로드/수정 페이지로 연결) -->
-            <a class="avatar-link" href="${pageContext.request.contextPath}/member/edit-profile.jsp" title="프로필 이미지 변경">
+            <a class="avatar-link" href="${pageContext.request.contextPath}/community/edit-profile.jsp" title="프로필 이미지 변경">
                 이미지
             </a>
             밴드네임

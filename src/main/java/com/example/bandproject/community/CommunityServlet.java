@@ -73,7 +73,7 @@ public class CommunityServlet extends HttpServlet {
                 sqlSession.close();
             }
         }
-        req.getRequestDispatcher("/community.jsp").forward(req, resp);
+        req.getRequestDispatcher("/community/community.jsp").forward(req, resp);
     }
 
 }

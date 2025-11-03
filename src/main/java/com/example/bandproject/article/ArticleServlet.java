@@ -27,6 +27,8 @@ public class ArticleServlet extends HttpServlet {
             return;
         }
 
+        String no = req.getParameter("no");
+
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         sqlSession.update("mappers.ArticleMapper.updateViewCnt", Integer.parseInt(no));
         Article found = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", Integer.parseInt(no));
