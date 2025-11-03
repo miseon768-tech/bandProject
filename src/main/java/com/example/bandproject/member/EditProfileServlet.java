@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/editProfile")
+@WebServlet("/member/edit-profile")
 public class EditProfileServlet extends HttpServlet {
 
     @Override
@@ -30,7 +30,7 @@ public class EditProfileServlet extends HttpServlet {
         Member found = sqlSession.selectOne("mappers.MemberMapper.selectById", logonUser.getId());
         req.setAttribute("member", found);
         sqlSession.close();
-        req.getRequestDispatcher("/member/editprofile.jsp").forward(req, resp);
+        req.getRequestDispatcher("/member/edit-profile.jsp").forward(req, resp);
     }
 
 
@@ -53,7 +53,7 @@ public class EditProfileServlet extends HttpServlet {
 
         int r = sqlSession.update("mappers.MemberMapper.updateOne", p);
 
-        resp.sendRedirect("/editprofile");
+        resp.sendRedirect("/member/edit-profile");
 
     }
 }

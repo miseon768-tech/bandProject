@@ -1,0 +1,105 @@
+/* ===== 기본 설정 ===== */
+body {
+    font-family: "맑은 고딕", sans-serif;
+    background: #fdfafb;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== 전체 박스 ===== */
+.setting-wrapper {
+    width: 500px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 40px 30px;
+    text-align: center;
+}
+
+/* ===== 제목, 설명 ===== */
+h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.desc {
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* ===== 버튼 영역 ===== */
+.btn-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+/* ===== 버튼 기본 스타일 (크기 통일) ===== */
+.btn {
+    width: 320px;            /* ✅ 가로폭 고정 (80% 대신 절대값 사용) */
+    height: 52px;            /* 세로 높이 동일 */
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;     /* ✅ flex 대신 inline-flex로 균형 유지 */
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;   /* ✅ padding 포함 계산 */
+}
+
+/* form 안의 버튼도 동일하게 적용 */
+form {
+    width: 320px;             /* ✅ 폼도 버튼 크기에 맞춰 고정 */
+    margin: 0;
+}
+
+/* ===== 버튼 영역 정렬 ===== */
+.btn-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+
+/* ===== 버튼별 색상 ===== */
+.btn.edit {
+    background: #0066cc;
+}
+.btn.edit:hover {
+    background: #004f99;
+}
+
+.btn.delete {
+    background: #d9534f;
+}
+.btn.delete:hover {
+    background: #b52f2b;
+}
+
+.btn.back {
+    background: #999;
+}
+.btn.back:hover {
+    background: #777;
+}
+
+/* ===== 아이콘과 텍스트 간격 ===== */
+.btn i {
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
