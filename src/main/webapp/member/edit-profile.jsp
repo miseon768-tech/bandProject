@@ -185,7 +185,7 @@
         .btn.-pink:hover{
             background: var(--pink);
             transform: translateY(-1px);
-            box-shadow:0 10px 24px rgba(255,127,169,0.35);
+
         }
 
         /* 돌아가기 = 노랑 */
@@ -196,7 +196,7 @@
         .btn.-yellow:hover{
             background:var(--sunray);
             transform: translateY(-1px);
-            box-shadow:0 10px 24px rgba(254,178,41,0.32);
+
         }
 
         .section-label{
