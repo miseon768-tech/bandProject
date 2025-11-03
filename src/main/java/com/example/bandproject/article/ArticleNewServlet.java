@@ -18,12 +18,18 @@ public class ArticleNewServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("logonUser") == null) {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
             resp.sendRedirect("/login");
             return;
         }
 
-        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
+
         req.setAttribute("auth", true);
         req.setAttribute("logonUser", req.getSession().getAttribute("logonUser"));
         req.setAttribute("logonUserNickname", logonUser.getNickname());

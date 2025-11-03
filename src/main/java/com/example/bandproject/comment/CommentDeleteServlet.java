@@ -1,8 +1,7 @@
 package com.example.bandproject.comment;
 
-import com.example.bandproject.model.Article;
-import com.example.bandproject.model.BandMember;
 import com.example.bandproject.model.Comment;
+import com.example.bandproject.model.Member;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,20 +12,51 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 
-@WebServlet("/comment/delete?articleNo={articleNo}")
-public class CommentDeleteServlet  extends HttpServlet {
+@WebServlet("/comment/delete")
+public class CommentDeleteServlet extends HttpServlet {
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int no = Integer.parseInt(req.getParameter("no"));
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
+
+        int commentNo = Integer.parseInt(req.getParameter("commentNo"));
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
+        int articleNo = Integer.parseInt(req.getParameter("articleNo"));
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-        BandMember user = (BandMember) req.getSession().getAttribute("logonUser");
+        try {
+            // 댓글 정보 조회해서 작성자 확인
+            Comment comment = sqlSession.selectOne("mappers.CommentMapper.selectByNo", commentNo);
+            if (comment == null) {
+                req.getRequestDispatcher("/comment/delete.jsp").forward(req, resp);
+                return;
+            }
+            if (!comment.getWriterId().equals(logonUser.getId())) {
+                req.getRequestDispatcher("/comment/delete.jsp").forward(req, resp);
+                return;
+            }
 
-        Comment comment = sqlSession.selectOne("mappers.CommentMapper.selectByArticleNo", no);
+            // 댓글 삭제
+            sqlSession.delete("mappers.CommentMapper.deleteByNo", commentNo);
+            /*// 댓글 카운트 감소(밴드, 글)
+            sqlSession.update("mappers.BandMapper.decreaseCommentCnt", bandNo);
+            sqlSession.update("mappers.ArticleMapper.decreaseCommentCnt", articleNo);*/
 
-        if(user != null && comment != null && comment.getWriterId().equals(user.getId())) {
-            sqlSession.delete("mappers.CommentMapper.deleteByNo", no);
+        } finally {
+            sqlSession.close();
         }
-        resp.sendRedirect("/community");
+
+        // 원래 게시글로 이동
+        resp.sendRedirect("/band?no=" + bandNo + "&articleNo=" + articleNo);
     }
 }

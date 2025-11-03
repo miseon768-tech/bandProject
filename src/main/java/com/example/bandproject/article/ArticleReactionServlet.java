@@ -17,11 +17,20 @@ import java.io.IOException;
 public class ArticleReactionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
 
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
         int articleNo = Integer.parseInt(req.getParameter("no"));
 
-        Member member = (Member) req.getSession().getAttribute("logonUser");
-        String memberId = member.getId();
+        String memberId = logonUser.getId();
 
         ArticleLike t = new ArticleLike();
         t.setArticleNo(articleNo);

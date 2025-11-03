@@ -16,14 +16,24 @@ import java.io.IOException;
 public class ArticleEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        if (logonUser == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
 
         int no = Integer.parseInt(req.getParameter("no"));
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-        Member user = (Member)req.getSession().getAttribute("logonUser");
         Article article = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", no);
         sqlSession.close();
 
-        if(user != null && article != null && article.getWriterId().equals(user.getId())) {
+        if(logonUser != null && article != null && article.getWriterId().equals(logonUser.getId())) {
             req.setAttribute("article", article);
             req.getRequestDispatcher("/article/edit.jsp").forward(req, resp);
         }/*else{

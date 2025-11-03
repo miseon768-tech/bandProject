@@ -17,10 +17,15 @@ public class CommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
         if (logonUser == null) {
             resp.sendRedirect("/login");
+            return;
+        }
+
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if (bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
             return;
         }
 
@@ -29,17 +34,6 @@ public class CommentServlet extends HttpServlet {
         String content = req.getParameter("content");
         String writerId = logonUser.getId();
 
-        /*boolean isBandMember = false;
-        try (SqlSession sqlSession = MyBatisUtil.build().openSession()) {
-            // 승인된 멤버인지 확인
-            int count = sqlSession.selectOne("mappers.BandMapper.checkApprovedMember",
-                    new BandMemberCheckParam(bandNo, logonUser.getId()));
-            isBandMember = count > 0;
-        }
-        if (!isBandMember) {
-            resp.sendRedirect("/error?msg=승인된 밴드 멤버만 코멘트를 작성할 수 있습니다.");
-            return;
-        }*/
 
 
         Comment comment = new Comment();
