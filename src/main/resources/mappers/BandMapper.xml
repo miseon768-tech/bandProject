@@ -70,5 +70,10 @@
         delete from band where no=#{no}
     </delete>
 
+ <!--   <select id="checkApprovedMember" parameterType="BandMemberCheckParam" resultType="int">
+        SELECT COUNT(*) FROM banMembers
+        WHERE bandNo = #{bandNo} AND memberId = #{memberId} AND approved = 1
+    </select>-->
+
 
 </mapper>

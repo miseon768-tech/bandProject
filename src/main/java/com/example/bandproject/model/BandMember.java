@@ -13,12 +13,12 @@ public class BandMember {
     int no;
     int memberNo;
     int bandNo;
-    String id; //회원 번호
-    String name; //밴드 이름
-    String nickname; //밴드 닉네임
+    String id;
+    String name;
+    String nickname;
     String role; //역할: MASTER 또는 MEMBER
     boolean approved; //가입 승인 여부
-    LocalDateTime joinedAt; //가입일
+    LocalDateTime joinedAt;
 
 }
 
