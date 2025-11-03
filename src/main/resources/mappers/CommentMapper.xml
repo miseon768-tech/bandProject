@@ -7,12 +7,12 @@
         INSERT INTO comment (memberNo, bandNo, bandMemberNo, articleNo, content)
         VALUES (#{memberNo}, #{bandNo}, #{bandMemberNo}, #{articleNo}, #{content})
     </insert>
-    <!-- 특정 게시글의 모든 댓글 조회 -->
+    <!--&lt;!&ndash; 특정 게시글의 모든 댓글 조회 &ndash;&gt;
     <select id="selectByArticleNo" parameterType="int" resultType="comment">
         select * from comment where articleNo=#{no} order by commentedAt desc
     </select>
-    <!-- 댓글 수 카운트 -->
+    &lt;!&ndash; 댓글 수 카운트 &ndash;&gt;
     <delete id="deleteByNo" parameterType="int">
         delete from comment where articleNo=#{articleNo}
-    </delete>
+    </delete>-->
 </mapper>
