@@ -24,6 +24,14 @@ public class CommunityDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Boolean approved = (Boolean) req.getAttribute("bandApproved");
+        String role = (String) req.getAttribute("bandRole");
+
+        if (approved == null || !approved || !"MASTER".equals(role)) {
+            req.getRequestDispatcher("/community/edit-fail.jsp").forward(req, resp);
+            return;
+        }
+
         int articleNo = Integer.parseInt(req.getParameter("no"));
         int bandNo = Integer.parseInt(req.getParameter("bandNo"));
 
