@@ -238,7 +238,7 @@
     <aside class="settings-nav">
         <h3>설정</h3>
         <nav class="nav-list">
-            <a class="nav-item -active" href="${pageContext.request.contextPath}/member/editprofile">
+            <a class="nav-item -active" href="${pageContext.request.contextPath}/member/edit-profile">
                 <span class="nav-dot"></span> 프로필
             </a>
             <a class="nav-item" href="${pageContext.request.contextPath}/editPW">
@@ -257,12 +257,12 @@
                 <h2 class="title">프로필 설정</h2>
                 <p class="card-desc">공개 프로필과 연락 정보를 관리하세요.</p>
             </div>
-            <form method="post" action="${pageContext.request.contextPath}/member/editprofile">
+            <form method="post" action="${pageContext.request.contextPath}/member/edit-profile">
                 <button class="btn -pink" type="submit">저장</button>
             </form>
         </header>
 
-        <form class="card-body" method="post" action="${pageContext.request.contextPath}/member/editprofile">
+        <form class="card-body" method="post" action="${pageContext.request.contextPath}/member/edit-profile">
             <div class="section-label">기본 정보</div>
 
             <div class="form-grid">
