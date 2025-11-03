@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @WebServlet("/community/delete")
-public class CommunityDeleteServlet extends HttpServlet {
+public class     CommunityDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

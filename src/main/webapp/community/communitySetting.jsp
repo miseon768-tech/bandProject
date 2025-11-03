@@ -14,7 +14,7 @@
     <div class="btn-area">
         <!-- ❗수정: 편집 화면으로 이동만 (예: /band/band.jsp 를 편집폼으로 사용) -->
         <button type="button" class="btn edit"
-                onclick="location.href='${pageContext.request.contextPath}/band/band.jsp'">
+                onclick="location.href='../band/band.jsp'">
             🛠 밴드 수정
         </button>
 
