@@ -2,6 +2,7 @@
 package com.example.bandproject.community;
 
 import com.example.bandproject.model.Article;
+import com.example.bandproject.model.BandMember;
 import com.example.bandproject.model.WriteCounter;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
@@ -25,7 +26,6 @@ public class CommunityServlet extends HttpServlet {
             req.setAttribute("auth", true);
         else
             req.setAttribute("auth", false);
-
 
 
         int page = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
@@ -57,5 +57,24 @@ public class CommunityServlet extends HttpServlet {
         req.setAttribute("count", count);
         req.setAttribute("keyword", keyword);
         req.getRequestDispatcher("/community/community.jsp").forward(req, resp);
+
+        String bandNoStr = req.getParameter("bandNo");
+        if (bandNoStr != null) {
+            int bandNo = Integer.parseInt(bandNoStr);
+
+            try {
+                // 승인 대기자 목록 조회
+                List<BandMember> pendingMembers
+                        = sqlSession.selectList("mappers.BandMemberMapper.selectPendingMembers", bandNo);
+
+                req.setAttribute("pendingMembers", pendingMembers);
+
+            } finally {
+                sqlSession.close();
+            }
+        }
+        req.getRequestDispatcher("/community.jsp").forward(req, resp);
     }
+
 }
+

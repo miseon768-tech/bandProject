@@ -31,12 +31,29 @@
         WHERE name = #{bandName};
     </select>
 
+    <!-- 멤버 번호와 밴드 번호로 밴드 멤버 조회 -->
+    <select id="selectByMemberAndBand" parameterType="map" resultType="BandMember">
+        SELECT * FROM bandMember WHERE memberNo=#{memberNo} AND bandNo=#{bandNo}
+    </select>
+
+    <!-- 승인 대기 중인 밴드 멤버 조회 -->
+    <select id="selectPendingMembers" resultType="BandMember">
+        SELECT * FROM bandMember WHERE bandNo = #{bandNo} AND approved = false
+    </select>
+
     <!-- 승인 상태 변경 -->
-    <update id="updateApproval" parameterType="BandMember">
+    <update id="updateApprovalStatus" parameterType="BandMember">
         UPDATE bandMember
         SET approved = #{approved}
-        WHERE no = #{bandNo};
+        WHERE no = #{bandMemberNo};
     </update>
+
+    <!-- 승인된 밴드 멤버 조회 -->
+    <select id="selectApprovedBandMembers" resultType="BandMember">
+        SELECT * FROM bandMember
+        WHERE approved = #{approved}
+    </select>
+
 
     <!-- 밴드 멤버 닉네임 수정 -->
     <update id="updateOne" parameterType="band">

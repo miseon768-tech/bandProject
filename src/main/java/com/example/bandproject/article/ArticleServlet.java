@@ -34,6 +34,7 @@ public class ArticleServlet extends HttpServlet {
         }
 
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+
         if(logonUser == null) {
             req.setAttribute("alreadyLike", false);
         }else {
@@ -41,6 +42,7 @@ public class ArticleServlet extends HttpServlet {
             int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
             req.setAttribute("alreadyLike", cnt == 1);
         }
+
         if(logonUser == null || !found.getWriterId().equals(logonUser.getId()) ) {
             req.setAttribute("owner", false);
         }else {
