@@ -24,9 +24,9 @@ public class BandMemberApprovalListener implements ServletRequestListener {
         String bandNoStr = req.getParameter("bandNo");
         boolean approved = false;
 
-        if (session == null || bandNoStr == null) {
+        if (session != null && bandNoStr != null) {
             Member member = (Member) session.getAttribute("logonUser");
-            if (member == null) {
+            if (member != null) {
                 try(SqlSession sqlSession = MyBatisUtil.build().openSession(true)) {
                     Map<String, Object> cond = new HashMap<>();
                     cond.put("memberNo", member.getNo());
@@ -34,8 +34,10 @@ public class BandMemberApprovalListener implements ServletRequestListener {
 
                     BandMember bandMember = sqlSession.selectOne("mappers.BandMemberMapper.selectByMemberAndBand", cond);
 
-                    // 승인된 멤버인지 확인
                     approved = bandMember != null && bandMember.isApproved();
+                    if (approved && bandMember != null) {
+                        req.setAttribute("bandRole", bandMember.getRole()); // 역할 추가 저장
+                    }
                 } catch (Exception e) {
                     System.out.println("BandMemberApprovalListener 오류: " + e.getMessage());
                 }
