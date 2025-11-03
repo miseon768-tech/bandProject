@@ -1,5 +1,5 @@
-
 package com.example.bandproject.article;
+
 import com.example.bandproject.model.Article;
 import com.example.bandproject.model.Comment;
 import com.example.bandproject.model.Member;
@@ -20,11 +20,18 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
+        if(bandApproved == null || !bandApproved) {
+            resp.sendRedirect("/community");
+            return;
+        }
+
         String no = req.getParameter("no");
         if (no == null || !no.matches("\\d+")) {
             resp.sendRedirect("/community");
             return;
         }
+
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         sqlSession.update("mappers.ArticleMapper.updateViewCnt", Integer.parseInt(no));
         Article found = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", Integer.parseInt(no));
@@ -38,7 +45,7 @@ public class ArticleServlet extends HttpServlet {
         if(logonUser == null) {
             req.setAttribute("alreadyLike", false);
         }else {
-            Map map = Map.of("bandMemberId", logonUser.getId(), "articleNo", no);
+            Map<String, Object> map = Map.of("bandMemberId", logonUser.getId(), "articleNo", no);
             int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
             req.setAttribute("alreadyLike", cnt == 1);
         }
@@ -49,17 +56,14 @@ public class ArticleServlet extends HttpServlet {
             req.setAttribute("owner", true);
         }
 
-
         List<Comment> comments
                 =sqlSession.selectList("mappers.CommentMapper.selectByArticleNo", Integer.parseInt(no));
         req.setAttribute("comments", comments);
 
         sqlSession.close();
 
-
         req.setAttribute("auth", req.getSession().getAttribute("logonUser") != null);
         req.setAttribute("article", found);
-
 
         req.getRequestDispatcher("/article.jsp").forward(req, resp);
     }
