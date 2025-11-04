@@ -11,7 +11,7 @@
       --vanilla: #ffedc1;
       --sunray: #feb229;
       --maroon: #470102;
-      --ink: #3b2423; /* 본문 색상 */
+      --ink: #3b2423;
     }
 
     /* ▼ 드롭다운 메뉴 ▼ */
@@ -70,12 +70,12 @@
     /* ▼ 환영 문구 ▼ */
     .welcome {
       margin-right: 12px;
-      font-size: 13px;                /* 글씨 크기 ↓ */
-      color: rgba(71, 1, 2, 0.55);     /* 색상 연하게 */
+      font-size: 13px;
+      color: rgba(71, 1, 2, 0.55);
       font-weight: 500;
     }
 
-    /* ▼ 페이드 애니메이션 ▼ */
+    /*  페이드 애니메이션  */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-4px); }
       to { opacity: 1; transform: translateY(0); }
