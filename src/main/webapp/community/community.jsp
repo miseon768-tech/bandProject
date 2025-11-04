@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,12 +36,24 @@
             <a class="avatar-link" href="${pageContext.request.contextPath}/community/edit-profile.jsp" title="프로필 이미지 변경">
                 이미지
             </a>
+            <p>
             ${band.name}
-            <button class="side-btn gray"
-                    onclick="location.href='${pageContext.request.contextPath}/community?action=approve&memberId=${logonUser.id}'">
-                승인
-            </button>
-            좋아요
+            <c:choose>
+                <c:when test="${bandRole == 'NOT_JOINED'}">
+                    <button class="side-btn gray" onclick="openJoinModal()">가입하기</button>
+                </c:when>
+                <c:when test="${bandRole =='MEMBER_WAITING'}">
+                    <button class="side-btn gray" >가입 신청중</button>
+                </c:when>
+                <c:when test="${bandRole == 'MEMBER'}">
+                    <button class="side-btn gray" onclick="focusWriteForm()">글쓰기</button>
+                </c:when>
+                <c:when test="${bandRole =='MASTER'}">
+                    <button class="side-btn gray" >멤버관리</button>
+                </c:when>
+
+            </c:choose>
+            </p>
 
         </aside>
 
@@ -50,7 +63,7 @@
             <section class="new-post">
                 <h3>🖋 새 글 작성하기</h3>
                 <div class="field">
-                    <input class="input" type="text" maxlength="50" placeholder="제목을 입력하세요 (최대 50자)" />
+                    <input class="input" type="text" maxlength="50" placeholder="제목을 입력하세요 (최대 50자)" id="title"/>
                 </div>
                 <div class="field">
                     <textarea class="textarea" rows="3" maxlength="20" placeholder="내용(20자 이내로 작성해 주세요)"></textarea>
@@ -70,6 +83,24 @@
         </aside>
     </div>
 </div>
+
+<!-- ✅ 모달 영역 -->
+<div class="modal-backdrop" id="joinModal">
+    <form class="modal" action="/band/member" method="post">
+        <input type="hidden" name="bandNo" value="${band.no}" />
+        <input type="hidden" name="action" value="apply"/>
+        <h3>밴드 가입 신청</h3>
+        <p style="color: dimgray">
+            밴드에서 사용할 닉네임을 설정해주세요.
+        </p>
+        <input type="text" name="nickname" placeholder="밴드에서 사용할 닉네임을 설정해주세요" value="${sessionScope.logonUser.nickname}" />
+        <div>
+            <button id="submitJoin" style="width: 100%">확인</button>
+
+        </div>
+    </form>
+</div>
+
 <script>
     const toggleBtn = document.getElementById("toggleBtn");
     const dropdownMenu = document.getElementById("dropdownMenu");
@@ -83,6 +114,33 @@
     document.addEventListener("click", function(e) {
         if (!toggleBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
             dropdownMenu.style.display = "none";
+        }
+    });
+
+    // ✅ 모달 토글 스크립트
+
+    const joinModal = document.getElementById("joinModal");
+    const closeModal = document.getElementById("closeModal");
+    const submitJoin = document.getElementById("submitJoin");
+
+    function openJoinModal()  {
+        joinModal.style.display = "flex";
+    };
+    function focusWriteForm() {
+        document.getElementById("title").focus();
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && joinModal.style.display === "flex") {
+            joinModal.style.display = "none";
+        }
+    });
+
+    // 바깥 클릭으로 닫기
+    joinModal.addEventListener("click", (e) => {
+        // 모달 외부 영역 클릭 시 닫기
+        if (e.target === joinModal) {
+            joinModal.style.display = "none";
         }
     });
 </script>

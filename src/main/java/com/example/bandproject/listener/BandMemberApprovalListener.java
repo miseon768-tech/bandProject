@@ -18,7 +18,10 @@ public class BandMemberApprovalListener implements ServletRequestListener {
 
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
+
         HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
+
+
         HttpSession session = req.getSession(false);
 
         String bandNoStr = req.getParameter("bandNo");
@@ -34,10 +37,18 @@ public class BandMemberApprovalListener implements ServletRequestListener {
 
                     BandMember bandMember = sqlSession.selectOne("mappers.BandMemberMapper.selectByMemberAndBand", cond);
 
-                    approved = bandMember != null && bandMember.isApproved();
-                    if (approved && bandMember != null) {
-                        req.setAttribute("bandRole", bandMember.getRole()); // 역할 추가 저장
+                    if(bandMember==null){
+                        req.setAttribute("bandRole", "NOT_JOINED");
+                    }else if(bandMember.getRole().equals("MASTER")){
+                        req.setAttribute("bandRole", "MASTER");
+                    }else if(bandMember.getRole().equals("MEMBER") && bandMember.isApproved()){
+                        req.setAttribute("bandRole", "MEMBER");
+                    }else if(bandMember.getRole().equals("MEMBER")){
+                        req.setAttribute("bandRole", "MEMBER_WAITING");
+                    }else {
+                        req.setAttribute("bandRole", "ERROR");
                     }
+
                 } catch (Exception e) {
                     System.out.println("BandMemberApprovalListener 오류: " + e.getMessage());
                 }

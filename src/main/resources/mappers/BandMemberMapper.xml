@@ -46,7 +46,7 @@
     <update id="updateApprovalStatus" parameterType="BandMember">
         UPDATE bandMember
         SET approved = #{approved}
-        WHERE no = #{bandMemberNo}
+        WHERE no = #{No}
     </update>
 
     <!-- 승인된 밴드 멤버 조회 -->

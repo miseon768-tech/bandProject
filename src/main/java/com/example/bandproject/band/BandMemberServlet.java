@@ -64,7 +64,7 @@ public class BandMemberServlet extends HttpServlet {
                 bandMember.setApproved(approved);
 
                 sqlSession.update("mappers.BandMemberMapper.updateApprovalStatus", bandMember);
-                resp.sendRedirect("/community?bandNo=" + bandNo + "&result=" + (approved ? "approved" : "denied"));
+                resp.sendRedirect("community?bandNo=" + bandNo + "&result=" + (approved ? "approved" : "denied"));
             } else {
                 resp.sendRedirect("/band/index");
             }
