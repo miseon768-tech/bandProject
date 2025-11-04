@@ -28,7 +28,7 @@ public class CommunityDeleteServlet extends HttpServlet {
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/delete-fail.jsp").forward(req, resp);
+            resp.sendRedirect("/community");
             return;
         }
 
@@ -61,8 +61,10 @@ public class CommunityDeleteServlet extends HttpServlet {
             req.setAttribute("band", band);
             req.setAttribute("article", article);
             req.getRequestDispatcher("/community/delete.jsp").forward(req, resp);
+
         } else {
-            req.getRequestDispatcher("/community/delete-fail.jsp").forward(req, resp);
+            resp.sendRedirect("/community");
+
         }
     }
 }

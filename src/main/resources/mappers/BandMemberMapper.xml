@@ -25,10 +25,11 @@
     </select>
 
     <!-- 특정 멤버가 속한 밴드 조회 -->
-    <select id="selectByMemberId" parameterType="String" resultType="BandMember">
+    <select id="selectBandsByMemberId" parameterType="string" resultType="Band">
         SELECT *
-        FROM bandMember
-        WHERE name = #{bandName};
+        FROM band
+        JOIN band_member bm ON b.no = bm.band_no
+        WHERE bm.member_no = #{memberNo}
     </select>
 
     <!-- 멤버 번호와 밴드 번호로 밴드 멤버 조회 -->

@@ -40,7 +40,8 @@
     <select id="selectLikedBandsByMemberId"
             parameterType="string" resultType="LikedBand">
         select *
-        from bandLike join band
+        from bandLike
+        join band
         on bandLike.bandNo = band.no
         where bandLike.memberId = #{id}
     </select>
