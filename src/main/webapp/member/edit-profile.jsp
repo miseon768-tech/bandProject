@@ -81,11 +81,11 @@
             transition: background-color .15s ease, transform .05s ease;
         }
         /* fallback hover 배경 */
-        .nav-item:hover{ background:#FFF9E9; } /* vanilla 35% + white 근사치 */
+        .nav-item:hover{ background:#FFF9E9; }
 
         /* active fallback 배경 */
         .nav-item.-active{
-            background:#FFF1D8; /* sunray 18% + white 근사치 */
+            background:#FFF1D8;
             border:1px solid var(--line);
         }
         .nav-dot{
@@ -107,8 +107,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+
             /* fallback */
-            background:#FFFAF2; /* cream 60% + white 근사치 */
+            background:#FFFAF2;
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
         }
@@ -162,7 +163,7 @@
             padding: 16px 22px;
             border-top:1px solid var(--line);
             /* fallback */
-            background:#FFFBF3; /* cream 55% + white 근사치 */
+            background:#FFFBF3;
             border-bottom-left-radius: 16px;
             border-bottom-right-radius: 16px;
         }
