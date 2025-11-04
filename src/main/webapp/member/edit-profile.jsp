@@ -113,7 +113,7 @@
 <%@ include file="/template/header.jspf" %>
 
 <div class="settings">
-    <!-- 왼쪽 -->
+    <!-- 왼쪽 칸-->
     <aside class="settings-nav">
         <h3>설정</h3>
         <nav class="nav-list">
@@ -136,15 +136,22 @@
                 <h2 class="title">프로필 설정</h2>
                 <p class="card-desc">공개 프로필과 연락 정보를 관리하세요.</p>
             </div>
-            <form method="post" action="${pageContext.request.contextPath}/member/edit-profile">
-                <button class="btn -pink" type="submit">저장</button>
-            </form>
+            <!-- 빈 form 제거, 메인 폼 제출 -->
+            <button class="btn -pink" type="submit" form="profileForm">저장</button>
         </header>
 
-        <form class="card-body" method="post" action="${pageContext.request.contextPath}/member/edit-profile">
+        <!-- 메인 폼 -->
+        <form id="profileForm" class="card-body" method="post" action="${pageContext.request.contextPath}/member/edit-profile">
             <div class="section-label">기본 정보</div>
 
             <div class="form-grid">
+                <div class="field">
+                    <label class="label" for="id">아이디</label>
+                    <input class="input" id="id" name="id" type="text"
+                           value="<c:out value='${sessionScope.logonUser.id}' default=''/>">
+                    <small class="hint">로그인에 사용되는 아이디입니다.</small>
+                </div>
+
                 <div class="field">
                     <label class="label" for="nickname">닉네임</label>
                     <input class="input" id="nickname" name="nickname" type="text"
@@ -158,11 +165,11 @@
                            value="<c:out value='${sessionScope.logonUser.name}' default=''/>" required>
                 </div>
 
-                <div class="field" style="grid-column: 1 / -1">
+                <div class="field">
                     <label class="label" for="email">이메일</label>
                     <input class="input" id="email" name="email" type="email"
                            value="<c:out value='${sessionScope.logonUser.email}' default=''/>" required>
-                    <small class="hint">로그인/알림에 사용될 이메일입니다.</small>
+                    <small class="hint">알림 및 비밀번호 복구에 사용됩니다.</small>
                 </div>
 
                 <div class="field" style="grid-column: 1 / -1">
@@ -170,25 +177,6 @@
                     <input class="input" id="interest" name="interest" type="text"
                            value="<c:out value='${sessionScope.logonUser.interest}' default=''/>">
                     <small class="hint">쉼표(,)로 여러 개 입력 가능 예) 음악, 여행, 게임</small>
-                </div>
-            </div>
-
-
-            <div style="margin-top:40px;">
-                <div class="section-label">아이디 변경</div>
-
-                <div class="form-grid">
-                    <div class="field" style="grid-column:1 / -1">
-                        <label class="label" for="currentId">현재 아이디</label>
-                        <input class="input" id="currentId" name="currentId" type="text"
-                               value="<c:out value='${sessionScope.logonUser.id}' default=''/>" readonly>
-                    </div>
-
-                    <div class="field" style="grid-column:1 / -1">
-                        <label class="label" for="newId">새 아이디</label>
-                        <input class="input" id="newId" name="newId" type="text" placeholder="새로운 아이디 입력" required>
-                        <small class="hint">영문, 숫자 조합으로 4~16자 이내</small>
-                    </div>
                 </div>
             </div>
 
