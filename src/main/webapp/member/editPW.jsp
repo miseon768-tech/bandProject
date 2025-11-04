@@ -191,7 +191,7 @@
             <p class="card-desc">현재 비밀번호와 새 비밀번호를 입력하세요.</p>
         </header>
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/member/editPW" method="post">
+            <form action="${pageContext.request.contextPath}/editPW" method="post">
                 <div class="field">
                     <label for="password"><small>현재 비밀번호</small></label>
                     <input type="password" class="input" name="password" id="password" required />
