@@ -67,8 +67,5 @@ public class ArticleNewServlet extends HttpServlet {
 
         }
 
-
-
-
     }
 }

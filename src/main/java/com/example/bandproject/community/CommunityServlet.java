@@ -59,7 +59,6 @@ public class CommunityServlet extends HttpServlet {
         req.setAttribute("page", page);
         req.setAttribute("count", count);
         req.setAttribute("keyword", keyword);
-        //req.getRequestDispatcher("/community/community.jsp").forward(req, resp);
 
         String bandNoStr = req.getParameter("bandNo");
         if (bandNoStr != null) {

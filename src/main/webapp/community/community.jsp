@@ -1,15 +1,51 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
     <title>BAND 메인화면</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css" />
+    <style>
+        /* 가운데 피드 카드 스타일 (필요 시 community.css로 이동) */
+        .content { padding: 16px; }
+        .feed-title { margin: 0 0 12px; color: var(--maroon); }
+        .article-list { display: flex; flex-direction: column; gap: 18px; }
+        .article-card {
+            background: var(--cream);
+            border: 1px solid var(--vanilla);
+            border-radius: 10px;
+            padding: 16px 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform .15s;
+        }
+        .article-card:hover { transform: translateY(-3px); }
+        .article-title a { color: var(--maroon); text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+        .article-meta { color:#666; font-size:.9rem; margin-top:6px; }
+        .article-content { margin-top:10px; color: var(--ink); white-space: pre-wrap; }
+        .empty { text-align:center; color:#aaa; padding:28px 0; }
+        .write-btn {
+            display:inline-block; margin: 0 0 14px; padding:10px 16px;
+            border:none; border-radius:8px; font-weight:700; cursor:pointer;
+            background: var(--sunray); color: var(--maroon);
+        }
+        .write-btn:hover { background: color-mix(in srgb, var(--sunray) 90%, white); }
+
+        /* 3분할 레이아웃이 이미 있다면 건드릴 필요 없음. 없을 때 대비 기본 배치 */
+        .main { display:grid; grid-template-columns: 260px 1fr 280px; gap:16px; }
+        .sidebar, .right { padding:16px; }
+        .top5-list { display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+        .top5-item { font-size:.95rem; }
+        .top5-item a { color: var(--maroon); text-decoration:none; }
+        .brand { font-weight: 900; }
+        #dropdownMenu { display:none; position:absolute; right:0; top:40px; background:var(--cream); border:1px solid var(--vanilla); border-radius:10px; overflow:hidden; }
+        #dropdownMenu button { display:block; width:100%; padding:10px 12px; border:none; background:transparent; cursor:pointer; text-align:left; }
+        #dropdownMenu button:hover { background: var(--vanilla); }
+    </style>
 </head>
 <body>
 <div class="band-wrapper">
-    <!-- 상단바: 좌측 로고 / 우측 검색+버튼들 -->
+    <!-- 상단바 -->
     <div class="header">
         <div class="brand">BAND</div>
         <div class="header-right">
@@ -24,7 +60,6 @@
                 <button type="button" onclick="location.href='/community/edit?bandNo=${band.no}'">밴드 수정</button>
                 <button type="button" onclick="location.href='community/delete'">밴드 삭제</button>
             </div>
-
         </div>
     </div>
 
@@ -32,73 +67,87 @@
     <div class="main">
         <!-- 좌측 사이드 -->
         <aside class="sidebar">
-            <!-- 동그라미 이미지: 링크 가능 (프로필 이미지 업로드/수정 페이지로 연결) -->
+            <!-- 프로필 이미지 -->
             <a class="avatar-link" href="${pageContext.request.contextPath}/community/edit-profile.jsp" title="프로필 이미지 변경">
                 이미지
             </a>
-            <p>
-            ${band.name}
-            <c:choose>
-                <c:when test="${bandRole == 'NOT_JOINED'}">
-                    <button class="side-btn gray" onclick="openJoinModal()">가입하기</button>
-                </c:when>
-                <c:when test="${bandRole =='MEMBER_WAITING'}">
-                    <button class="side-btn gray" >가입 신청중</button>
-                </c:when>
-                <c:when test="${bandRole == 'MEMBER'}">
-                    <button class="side-btn gray" onclick="focusWriteForm()">글쓰기</button>
-                </c:when>
-                <c:when test="${bandRole =='MASTER'}">
-                    <button class="side-btn gray" >멤버관리</button>
-                </c:when>
 
-            </c:choose>
-            </p>
+            <!-- 밴드 이름 -->
+            <div style="margin:10px 0 14px; font-weight:700;">${band.name}</div>
 
+            <!-- 승인 버튼 -->
+            <button class="side-btn gray"
+                    onclick="location.href='${pageContext.request.contextPath}/community?action=approve&memberId=${logonUser.id}'">
+                승인
+            </button>
+
+            <!-- 게시물 작성 버튼 -->
+            <button class="side-btn blue"
+                    onclick="location.href='${pageContext.request.contextPath}/article/new.jsp'">
+                게시물 작성
+            </button>
+
+            좋아요
         </aside>
 
-        <!-- 중앙 -->
-        <main class="center">
-            <!-- 새 글 작성하기 (그대로 유지) -->
-            <section class="new-post">
-                <h3>🖋 새 글 작성하기</h3>
-                <div class="field">
-                    <input class="input" type="text" maxlength="50" placeholder="제목을 입력하세요 (최대 50자)" id="title"/>
-                </div>
-                <div class="field">
-                    <textarea class="textarea" rows="3" maxlength="20" placeholder="내용(20자 이내로 작성해 주세요)"></textarea>
-                </div>
-                <div class="actions">
+        <!-- 가운데 피드 -->
+        <section class="content">
+            <h3 class="feed-title">커뮤니티 게시글</h3>
+            <button class="write-btn" onclick="location.href='${pageContext.request.contextPath}/article/new.jsp'">✏️ 새 글 작성하기</button>
 
-                    <button class="btn blue">게시하기</button>
-                </div>
-            </section>
-
-        </main>
+            <div class="article-list">
+                <c:choose>
+                    <c:when test="${not empty articles}">
+                        <c:forEach var="a" items="${articles}">
+                            <div class="article-card">
+                                <div class="article-title">
+                                    <a href="${pageContext.request.contextPath}/article?no=${a.no}">
+                                        <c:out value="${a.title}" />
+                                    </a>
+                                </div>
+                                <div class="article-meta">
+                                    작성자: <c:out value="${a.writerId}" />
+                                    &nbsp;|&nbsp; 조회수: <c:out value="${a.views}" />
+                                    &nbsp;|&nbsp; 좋아요: <c:out value="${a.likes}" />
+                                    &nbsp;|&nbsp; <c:out value="${a.createdAt}" />
+                                </div>
+                                <div class="article-content">
+                                    <c:out value="${a.content}" />
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="empty">아직 게시물이 없습니다</div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </section>
 
         <!-- 우측 인기글 -->
         <aside class="right">
             <h4>인기글 (Top 5)</h4>
-            <div class="top5-box">(보류 영역)</div>
+            <div class="top5-box">
+                <c:choose>
+                    <c:when test="${not empty top5Likes}">
+                        <div class="top5-list">
+                            <c:forEach var="p" items="${top5Likes}">
+                                <div class="top5-item">
+                                    • <a href="${pageContext.request.contextPath}/article?no=${p.no}">
+                                    <c:out value="${p.title}" />
+                                </a>
+                                    <span style="color:#777;">(좋아요 <c:out value='${p.likes}'/>)</span>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="empty" style="padding:10px 0;">표시할 인기글이 없습니다.</div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </aside>
     </div>
-</div>
-
-<!-- ✅ 모달 영역 -->
-<div class="modal-backdrop" id="joinModal">
-    <form class="modal" action="/band/member" method="post">
-        <input type="hidden" name="bandNo" value="${band.no}" />
-        <input type="hidden" name="action" value="apply"/>
-        <h3>밴드 가입 신청</h3>
-        <p style="color: dimgray">
-            밴드에서 사용할 닉네임을 설정해주세요.
-        </p>
-        <input type="text" name="nickname" placeholder="밴드에서 사용할 닉네임을 설정해주세요" value="${sessionScope.logonUser.nickname}" />
-        <div>
-            <button id="submitJoin" style="width: 100%">확인</button>
-
-        </div>
-    </form>
 </div>
 
 <script>
@@ -114,33 +163,6 @@
     document.addEventListener("click", function(e) {
         if (!toggleBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
             dropdownMenu.style.display = "none";
-        }
-    });
-
-    // ✅ 모달 토글 스크립트
-
-    const joinModal = document.getElementById("joinModal");
-    const closeModal = document.getElementById("closeModal");
-    const submitJoin = document.getElementById("submitJoin");
-
-    function openJoinModal()  {
-        joinModal.style.display = "flex";
-    };
-    function focusWriteForm() {
-        document.getElementById("title").focus();
-    }
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && joinModal.style.display === "flex") {
-            joinModal.style.display = "none";
-        }
-    });
-
-    // 바깥 클릭으로 닫기
-    joinModal.addEventListener("click", (e) => {
-        // 모달 외부 영역 클릭 시 닫기
-        if (e.target === joinModal) {
-            joinModal.style.display = "none";
         }
     });
 </script>
