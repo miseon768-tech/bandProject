@@ -1,17 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: summer
-  Date: 25. 10. 28.
-  Time: 오후 3:42
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 25. 10. 17.
-  Time: 오후 4:25
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <html>
@@ -29,7 +16,7 @@
 
 <div class="signup-wrap">
     <div class="signup">
-        <a href="/">로고</a>
+
         <h2 class="text-center">밴드에 오신것을 환영합니다.</h2>
         <p class="text-center text-gray">
             다양한 취미들이 모여 하나의 즐거움이 되는 공간

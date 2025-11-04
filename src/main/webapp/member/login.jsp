@@ -24,7 +24,7 @@
 <%@ include file="/template/header.jspf" %>
 <div class="signup-wrap">
     <div class="signup">
-        <a href="<%=ctx%>/">로고</a>
+
         <h2 class="text-center">밴드에 오신것을 환영합니다.</h2>
         <p class="text-center text-gray">
             다양한 취미들이 모여 하나의 즐거움이 되는 공간
