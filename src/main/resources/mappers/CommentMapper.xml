@@ -15,7 +15,7 @@
         order by commentedAt desc
     </select>
     <!-- 회원ID와 댓글번호로 좋아요 수 카운트 -->
-    <select id="countByMemberIdAndCommentNo" resultType="int" parameterType="commentLike">
+    <select id="countByMemberIdAndCommentNo" resultType="int" parameterType="comment">
         select count(*) from commentLike
         where memberId=#{memberId} and commentNo=#{commentNo}
     </select>
@@ -29,7 +29,7 @@
     </update>
 
     <!-- 회원ID와 댓글번호로 좋아요 정보 조회 -->
-    <select id="selectByMemberIdAndCommentNo" resultType="commentLike" parameterType="commentLike">
+    <select id="selectByMemberIdAndCommentNo" resultType="commentLike" parameterType="comment">
         select * from commentLike
         where memberId=#{memberId} and commentNo=#{commentNo}
     </select>

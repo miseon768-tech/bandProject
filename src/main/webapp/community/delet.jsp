@@ -1,30 +1,28 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 25. 11. 4.
-  Time: 오전 9:29
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="ko">
 <head>
-    <title>밴드삭제</title>
+    <meta charset="UTF-8">
+    <title>밴드 삭제</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandDelete.css">
 </head>
 <body>
 
-<div class="signup-wrap">
-    <div class="signup">
-        <a href="/">로고</a>
-        <h2>밴드 탈퇴 시 아래와 같이 처리됩니다.</h2>
-        <p style="width: 400px;">
-            밴드 탈퇴일로부터 밴드 닉네임을 포함한 모든것이
-            완전히 삭제되며 더 이상 밴드에 복구할 수 없게 됩니다.
+<div class="delete-overlay">
+    <div class="delete-modal">
+        <h2>⚠️ 밴드 삭제 안내</h2>
+        <p>
+            밴드를 삭제하면 되돌릴 수 없습니다.<br>
+            삭제 시, 밴드의 <strong>모든 게시글 / 멤버 / 이미지 / 설정 정보</strong>가<br>
+            <strong class="warn">영구적으로 삭제</strong>됩니다.<br><br>
+            정말 삭제하시겠습니까?
         </p>
-        <form action="/community/delete" method="post">
-            <button type="button">취소</button>
-            <button type="submit">예 탈퇴하겠습니다.</button>
+
+        <form action="${pageContext.request.contextPath}/community/delete" method="post" class="btn-area">
+            <button type="button" class="btn cancel" onclick="history.back()">취소하기</button>
+            <button type="submit" class="btn delete">예, 삭제하겠습니다</button>
         </form>
     </div>
 </div>
+
 </body>
 </html>
