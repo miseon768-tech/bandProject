@@ -29,14 +29,14 @@
     </update>
 
     <!-- 회원ID와 댓글번호로 좋아요 정보 조회 -->
-    <select id="selectByMemberIdAndCommentNo" resultType="commentLike" parameterType="comment">
+    <select id="selectByMemberIdAndCommentNo" resultType="comment" parameterType="comment">
         select * from commentLike
         where memberId=#{memberId} and commentNo=#{commentNo}
     </select>
 
     <!-- 회원ID로 좋아요한 댓글 조회 -->
     <select id="selectLikedCommentsByMemberId"
-            parameterType="string" resultType="LikedComment">
+            parameterType="string" resultType="Comment">
         select *
         from commentLike join comment
         on commentLike.commentNo = comment.no

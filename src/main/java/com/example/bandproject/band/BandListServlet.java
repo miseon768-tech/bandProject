@@ -31,7 +31,7 @@ public class BandListServlet extends HttpServlet {
 
 
         // 멤버가 가입한 밴드 조회
-        List<Band> joinedBand = sqlSession.selectList("mappers.BandMapper.selectAllJoined", member.getId());
+        List<Band> joinedBand = sqlSession.selectList("mappers.BandMapper.selectAllJoined");
 
 
         // 조회수 TOP 5
