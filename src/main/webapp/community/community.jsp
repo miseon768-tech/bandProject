@@ -36,8 +36,8 @@
             </a>
             <div>밴드네임</div>
 
-            <!-- ✅ 일반 멤버일 경우 승인 요청 버튼 -->
-            <c:if test="${logonUser.role ne 'MASTER'}">
+            <!-- 일반 멤버(로그인 유저)가 있을 때만 승인 요청 버튼 -->
+            <c:if test="${logonUser != null}">
                 <form action="${pageContext.request.contextPath}/band/member" method="post" style="display:inline;">
                     <input type="hidden" name="action" value="apply"/>
                     <input type="hidden" name="bandNo" value="${band.no}"/>
@@ -46,11 +46,11 @@
                 </form>
             </c:if>
 
-            <!-- ✅ MASTER일 경우 승인 관리 버튼 -->
-            <c:if test="${logonUser.role eq 'MASTER'}">
-                <button class="side-btn gray"
-                        onclick="toggleApprovalList()">승인 관리</button>
+            <!-- MASTER일 때 승인 관리 버튼  -->
+            <c:if test="${band.role eq 'MASTER'}">
+                <button class="side-btn gray" onclick="toggleApprovalList()">승인 관리</button>
             </c:if>
+
 
             <div id="approvalList" style="display:none; margin-top:10px; width:100%;">
                 <h4>승인 대기 멤버</h4>
