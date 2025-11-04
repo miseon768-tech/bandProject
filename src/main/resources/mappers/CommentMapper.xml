@@ -14,6 +14,34 @@
         where articleNo=#{no}
         order by commentedAt desc
     </select>
+    <!-- 회원ID와 댓글번호로 좋아요 수 카운트 -->
+    <select id="countByMemberIdAndCommentNo" resultType="int" parameterType="commentLike">
+        select count(*) from commentLike
+        where memberId=#{memberId} and commentNo=#{commentNo}
+    </select>
+    <!-- 좋아요수 증가 -->
+    <update id="increaseLikeCnt" parameterType="int">
+        update comment set likeCnt=likeCnt+ 1 where no=#{no}
+    </update>
+    <!-- 좋아요수 감소 -->
+    <update id="decreaseLikeCnt" parameterType="int">
+        update comment set likeCnt=likeCnt- 1 where no=#{no}
+    </update>
+
+    <!-- 회원ID와 댓글번호로 좋아요 정보 조회 -->
+    <select id="selectByMemberIdAndCommentNo" resultType="commentLike" parameterType="commentLike">
+        select * from commentLike
+        where memberId=#{memberId} and commentNo=#{commentNo}
+    </select>
+
+    <!-- 회원ID로 좋아요한 댓글 조회 -->
+    <select id="selectLikedCommentsByMemberId"
+            parameterType="string" resultType="LikedComment">
+        select *
+        from commentLike join comment
+        on commentLike.commentNo = comment.no
+        where commentLike.memberId = #{id}
+    </select>
     <!-- 댓글 삭제 -->
     <delete id="deleteByNo" parameterType="int">
         delete from comment
