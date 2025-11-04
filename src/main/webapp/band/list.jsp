@@ -10,8 +10,6 @@
 
 <link rel="stylesheet" href="/css/index.css"/>
 
-
-
 <body>
 <%@ include file="/template/header.jspf" %>
 
@@ -41,8 +39,6 @@
             <p class="empty-hint">아직 참여한 밴드가 없어요. ‘만들기’로 새 밴드를 시작해 보세요.</p>
         </c:if>
     </div>
-
-
 
     <section class="my-bands" style="margin-top:64px;">
         <h2 class="page-title">내가 가입한 밴드</h2>
