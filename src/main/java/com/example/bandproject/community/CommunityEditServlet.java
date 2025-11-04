@@ -1,6 +1,7 @@
 package com.example.bandproject.community;
 
 import com.example.bandproject.model.Band;
+import com.example.bandproject.model.Member;
 import com.example.bandproject.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ public class CommunityEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
         Boolean approved = (Boolean) req.getAttribute("bandApproved");
         String role = (String) req.getAttribute("bandRole");
 
@@ -23,27 +25,24 @@ public class CommunityEditServlet extends HttpServlet {
             return;
         }
 
-        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
-
-        try (SqlSession sqlSession = MyBatisUtil.build().openSession(true)) {
-            Band band = sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo);
-            req.setAttribute("band", band);
-        }
-
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+        Member found = sqlSession.selectOne("mappers.BandMapper.selectByNo", logonUser.getId());
+        req.setAttribute("band", found);
+        sqlSession.close();
         req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
     }
-
 
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
         Boolean approved = (Boolean) req.getAttribute("bandApproved");
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community.jsp").forward(req, resp);
             return;
         }
 
