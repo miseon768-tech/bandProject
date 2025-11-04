@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="ko">
 <head>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/css.css"/>
   <style>
     :root {
@@ -31,7 +32,7 @@
 
     #dropdownMenu button {
       display: block;
-      width: 90%;
+      width: 100%;
       background: none;
       border: none;
       text-align: left;
@@ -70,12 +71,25 @@
       from { opacity: 0; transform: translateY(-4px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--vanilla);
+    }
   </style>
 </head>
 
 <body>
 <div class="header">
-  <div style="color: var(--maroon); font-weight: 900;">BAND</div>
+  <a href="/index" style="text-decoration: none;">
+    <div style="color: var(--maroon); font-weight: 800; cursor: pointer;">
+      BAND
+    </div>
+  </a>
 
   <c:choose>
     <c:when test="${auth}">
@@ -87,7 +101,9 @@
           <button type="button" onclick="location.href='/account/delete'">계정 삭제</button>
         </div>
 
-        <a href="/logout"><button type="button" style="margin-left:8px;">로그아웃</button></a>
+        <a href="/logout">
+          <button type="button" style="margin-left:8px;">로그아웃</button>
+        </a>
       </div>
     </c:when>
     <c:otherwise>
@@ -103,14 +119,15 @@
   const toggleBtn = document.getElementById("toggleBtn");
   const dropdownMenu = document.getElementById("dropdownMenu");
 
-  toggleBtn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    dropdownMenu.style.display =
-            (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") ? "block" : "none";
+  toggleBtn.addEventListener("click", function (event) {
+    event.stopPropagation(); // 버튼 클릭 시 이벤트 버블링 방지
+    const isVisible = dropdownMenu.style.display === "block";
+    dropdownMenu.style.display = isVisible ? "none" : "block";
   });
 
-  document.addEventListener("click", function(e) {
-    if (!toggleBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+
+  document.addEventListener("click", function (event) {
+    if (!dropdownMenu.contains(event.target) && event.target !== toggleBtn) {
       dropdownMenu.style.display = "none";
     }
   });
