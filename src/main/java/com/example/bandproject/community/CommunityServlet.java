@@ -32,6 +32,10 @@ public class CommunityServlet extends HttpServlet {
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
+        // 전체 글 목록
+        List<Article> articleList = sqlSession.selectList("mappers.ArticleMapper.selectAll");
+        req.setAttribute("articleList", articleList);
+
         Map param = Map.of("offset", (page - 1) * 10,
                 "keyword", "%" + keyword + "%");
         List<Article> articles =

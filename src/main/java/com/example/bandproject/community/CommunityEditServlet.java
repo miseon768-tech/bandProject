@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
+
 import java.io.IOException;
 
 @WebServlet("/community/edit")
@@ -16,30 +17,28 @@ public class CommunityEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
-        Boolean approved = (Boolean) req.getAttribute("bandApproved");
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
+
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
         String role = (String) req.getAttribute("bandRole");
 
-        if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
+        if (!"MASTER".equals(role)) {
+            req.getRequestDispatcher("/community/edit-fail.jsp").forward(req, resp);
             return;
         }
-
-        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
-        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-        Band band = sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo);
-        req.setAttribute("band", band);
-        sqlSession.close();
-        req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
+        try (SqlSession sqlSession = MyBatisUtil.build().openSession(true)) {
+            Band band = sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo);
+            req.setAttribute("band", band);
+            req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
+        }
     }
-
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Member logonUser =(Member)req.getSession().getAttribute("logonUser");
-        Boolean approved = (Boolean) req.getAttribute("bandApproved");
+        Member logonUser = (Member) req.getSession().getAttribute("logonUser");
+        Boolean approved = (Boolean) req.getAttribute("approved");
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {

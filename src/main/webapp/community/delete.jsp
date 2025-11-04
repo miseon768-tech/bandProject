@@ -17,7 +17,13 @@
             정말 삭제하시겠습니까?
         </p>
 
-        <form action="${pageContext.request.contextPath}/community/delete" method="post" class="btn-area">
+        <form class="btn-area"
+              action="${pageContext.request.contextPath}/community/delete?bandNo=${band.no}"
+              method="post" >
+
+            <!-- ✅ 삭제할 밴드 번호 함께 전달 -->
+            <input type="hidden" name="bandNo" value="${band.no}"/>
+
             <button type="button" class="btn cancel" onclick="history.back()">취소하기</button>
             <button type="submit" class="btn delete">예, 삭제하겠습니다</button>
         </form>
