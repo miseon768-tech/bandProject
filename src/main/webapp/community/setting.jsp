@@ -18,9 +18,9 @@
             🛠 밴드 수정
         </button>
 
-        <!-- ❗삭제: 동일 엔드포인트 /band/setting 으로 POST + action=delete -->
+        <!-- ❗삭제: 동일 엔드포인트 community?bandNo=" + bandNo 으로 POST + action=delete -->
         <form method="post"
-              action="${pageContext.request.contextPath}/band/setting"
+              action="${pageContext.request.contextPath}/community?bandNo=" + bandNo"
               onsubmit="return confirm('정말 밴드를 삭제하시겠습니까?');">
             <input type="hidden" name="action" value="delete">
             <button type="submit" class="btn delete">🗑 밴드 삭제</button>

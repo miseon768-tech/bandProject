@@ -19,7 +19,7 @@ public class CommunityEditServlet extends HttpServlet {
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
             return;
         }
 
@@ -30,7 +30,7 @@ public class CommunityEditServlet extends HttpServlet {
             req.setAttribute("band", band);
         }
 
-        req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+        req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
     }
 
 
@@ -43,7 +43,7 @@ public class CommunityEditServlet extends HttpServlet {
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
             return;
         }
 
@@ -63,6 +63,6 @@ public class CommunityEditServlet extends HttpServlet {
         }
 
         // 수정 성공시 커뮤니티 상세로 이동
-        resp.sendRedirect("/community?bandNo=" + bandNo);
+        resp.sendRedirect("community?bandNo=" + bandNo);
     }
 }

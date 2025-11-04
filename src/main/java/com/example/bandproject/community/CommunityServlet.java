@@ -1,4 +1,3 @@
-
 package com.example.bandproject.community;
 
 import com.example.bandproject.model.Article;
