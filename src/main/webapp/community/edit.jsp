@@ -17,7 +17,7 @@
 
         <!-- ✅ 수정 폼 -->
         <form class="band-edit-form"
-              action="${pageContext.request.contextPath}/community/edit"
+              action="${pageContext.request.contextPath}/community/edit?bandNo=${band.no}"
               method="post">
 
             <!-- ✅ 밴드 번호 (숨김값) -->
@@ -25,11 +25,18 @@
 
             <!-- ✅ 밴드 이름 -->
             <div class="field">
-                <label for="name"><small>밴드 이름</small></label>
+                <label for="name"><small>이름 설정</small></label>
                 <input type="text" id="name" name="name"
                        class="input"
                        value="${band.name}"
-                       placeholder="밴드 이름을 입력하세요 (최대 50자)"
+                       maxlength="50" required/>
+            </div>
+            <!-- ✅ 밴드 닉네임 -->
+            <div class="field">
+                <label for="name"><small>닉네임 설정</small></label>
+                <input type="text" id="nickname" name="nickname"
+                       class="input"
+                       value="${band.nickname}"
                        maxlength="50" required/>
             </div>
 
@@ -38,26 +45,14 @@
                 <label for="description"><small>밴드 설명</small></label>
                 <textarea id="description" name="description" rows="4"
                           class="textarea"
-                          placeholder="밴드 설명을 입력해주세요 (최대 200자)"
                           maxlength="200">${band.description}</textarea>
             </div>
-
-            <!-- ✅ 밴드 닉네임 (선택, Mapper에 없다면 주석 처리 가능) -->
-            <%--
-            <div class="field">
-                <label for="nickname"><small>닉네임 수정</small></label>
-                <input type="text" id="nickname" name="nickname"
-                       class="input"
-                       value="${band.nickname}"
-                       placeholder="수정할 닉네임을 입력하세요 (선택)"/>
-            </div>
-            --%>
 
             <!-- ✅ 버튼 영역 -->
             <div class="btn-area">
                 <button type="submit" class="btn blue">💾 저장하기</button>
                 <button type="button" class="btn gray"
-                        onclick="location.href='${pageContext.request.contextPath}/community?bandNo=${band.no}'">
+                        onclick="location.href='${pageContext.request.contextPath}/community/edit?bandNo=${band.no}'">
                     ← 취소
                 </button>
             </div>

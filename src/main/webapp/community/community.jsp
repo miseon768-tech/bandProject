@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css" />
 </head>
 <body>
-
-
 <div class="band-wrapper">
     <!-- 상단바: 좌측 로고 / 우측 검색+버튼들 -->
     <div class="header">
@@ -22,7 +20,7 @@
             <button type="button" id="toggleBtn">설정</button>
 
             <div id="dropdownMenu">
-                <button type="button" onclick="location.href='/community/edit'">밴드 수정</button>
+                <button type="button" onclick="location.href='/community/edit?bandNo=${band.no}'">밴드 수정</button>
                 <button type="button" onclick="location.href='community/delete'">밴드 삭제</button>
             </div>
 
@@ -37,7 +35,7 @@
             <a class="avatar-link" href="${pageContext.request.contextPath}/community/edit-profile.jsp" title="프로필 이미지 변경">
                 이미지
             </a>
-            밴드네임
+            ${band.name}
             <button class="side-btn gray"
                     onclick="location.href='${pageContext.request.contextPath}/community?action=approve&memberId=${logonUser.id}'">
                 승인

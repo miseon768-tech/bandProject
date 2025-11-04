@@ -55,7 +55,7 @@ public class CommunityServlet extends HttpServlet {
         req.setAttribute("page", page);
         req.setAttribute("count", count);
         req.setAttribute("keyword", keyword);
-        req.getRequestDispatcher("/community/community.jsp").forward(req, resp);
+        //req.getRequestDispatcher("/community/community.jsp").forward(req, resp);
 
         String bandNoStr = req.getParameter("bandNo");
         if (bandNoStr != null) {
@@ -67,7 +67,7 @@ public class CommunityServlet extends HttpServlet {
                         = sqlSession.selectList("mappers.BandMemberMapper.selectPendingMembers", bandNo);
 
                 req.setAttribute("pendingMembers", pendingMembers);
-
+                req.setAttribute("band", sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo));
             } finally {
                 sqlSession.close();
             }

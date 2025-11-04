@@ -25,9 +25,10 @@ public class CommunityEditServlet extends HttpServlet {
             return;
         }
 
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-        Member found = sqlSession.selectOne("mappers.BandMapper.selectByNo", logonUser.getId());
-        req.setAttribute("band", found);
+        Band band = sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo);
+        req.setAttribute("band", band);
         sqlSession.close();
         req.getRequestDispatcher("/community/edit.jsp").forward(req, resp);
     }

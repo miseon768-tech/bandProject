@@ -14,14 +14,14 @@
         SELECT *
         FROM bandMember
         WHERE bandNo = #{bandNo}
-        ORDER BY joinedAt DESC;
+        ORDER BY joinedAt DESC
     </select>
 
     <!-- 밴드 이름으로 모든 멤버 조회 -->
     <select id="selectByBandName" parameterType="String" resultType="BandMember">
         SELECT *
         FROM bandMember
-        WHERE name = #{bandName};
+        WHERE name = #{bandName}
     </select>
 
     <!-- 특정 멤버가 속한 밴드 조회 -->
@@ -46,7 +46,7 @@
     <update id="updateApprovalStatus" parameterType="BandMember">
         UPDATE bandMember
         SET approved = #{approved}
-        WHERE no = #{bandMemberNo};
+        WHERE no = #{bandMemberNo}
     </update>
 
     <!-- 승인된 밴드 멤버 조회 -->
