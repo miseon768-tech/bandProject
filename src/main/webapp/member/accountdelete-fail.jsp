@@ -17,7 +17,8 @@
 <div class="deletemessagefail">
 <div class="container">
     <h2 class="msg">회원탈퇴에 실패하였습니다.</h2>
-    <p>처리 중 오류가 발생했습니다.<br>잠시 후 다시 시도해 주세요.</p>
+    <p>처리 중 오류가 발생했습니다.
+        <br>잠시 후 다시 시도해 주세요.</p>
     <button class="btn" type="button" onclick="location.href='/member/edit-profile'">돌아가기</button>
 </div>
 </div>
