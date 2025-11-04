@@ -61,24 +61,7 @@
                 </div>
             </section>
 
-            <!-- 피드 텍스트 상자들 -->
-            <article class="feed-card">
-                <div class="feed-meta">닉네임 · 1시간 전</div>
-                <div class="feed-title">제목</div>
-                <div class="feed-body">내용</div>
-            </article>
 
-            <article class="feed-card">
-                <div class="feed-meta">닉네임 · 2시간 전</div>
-                <div class="feed-title">제목</div>
-                <div class="feed-body">내용</div>
-            </article>
-
-            <article class="feed-card">
-                <div class="feed-meta">닉네임 · 3시간 전</div>
-                <div class="feed-title">제목</div>
-                <div class="feed-body">내용</div>
-            </article>
         </main>
 
         <!-- 우측 인기글 -->

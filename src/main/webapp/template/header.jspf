@@ -11,6 +11,7 @@
       --vanilla: #ffedc1;
       --sunray: #feb229;
       --maroon: #470102;
+      --ink: #3b2423; /* 본문 색상 */
     }
 
     /* ▼ 드롭다운 메뉴 ▼ */
@@ -66,6 +67,14 @@
       box-shadow: 0 2px 6px rgba(71, 1, 2, 0.2);
     }
 
+    /* ▼ 환영 문구 ▼ */
+    .welcome {
+      margin-right: 12px;
+      font-size: 13px;                /* 글씨 크기 ↓ */
+      color: rgba(71, 1, 2, 0.55);     /* 색상 연하게 */
+      font-weight: 500;
+    }
+
     /* ▼ 페이드 애니메이션 ▼ */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-4px); }
@@ -93,7 +102,12 @@
 
   <c:choose>
     <c:when test="${auth}">
-      <div style="position: relative; display: inline-block;">
+      <div style="position: relative; display: flex; align-items: center;">
+        <!-- ▼ 로그인한 사용자 환영 문구 ▼ -->
+        <span class="welcome">
+          <c:out value="${sessionScope.logonUser.nickname}" default="회원"/>님 환영합니다!
+        </span>
+
         <button type="button" id="toggleBtn">설정</button>
 
         <div id="dropdownMenu">
@@ -120,11 +134,10 @@
   const dropdownMenu = document.getElementById("dropdownMenu");
 
   toggleBtn.addEventListener("click", function (event) {
-    event.stopPropagation(); // 버튼 클릭 시 이벤트 버블링 방지
+    event.stopPropagation();
     const isVisible = dropdownMenu.style.display === "block";
     dropdownMenu.style.display = isVisible ? "none" : "block";
   });
-
 
   document.addEventListener("click", function (event) {
     if (!dropdownMenu.contains(event.target) && event.target !== toggleBtn) {
