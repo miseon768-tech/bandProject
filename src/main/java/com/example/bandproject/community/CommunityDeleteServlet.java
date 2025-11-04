@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @WebServlet("/community/delete")
-public class     CommunityDeleteServlet extends HttpServlet {
+public class CommunityDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class     CommunityDeleteServlet extends HttpServlet {
         String role = (String) req.getAttribute("bandRole");
 
         if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community/delete-fail.jsp").forward(req, resp);
             return;
         }
 
@@ -60,9 +60,9 @@ public class     CommunityDeleteServlet extends HttpServlet {
         if (master && article != null && article.getWriterId().equals(member.getId())) {
             req.setAttribute("band", band);
             req.setAttribute("article", article);
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community/delete.jsp").forward(req, resp);
         } else {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            req.getRequestDispatcher("/community/delete-fail.jsp").forward(req, resp);
         }
     }
 }
