@@ -19,14 +19,12 @@
             </div>
             <button class="top-btn" onclick="location.href='../member/logout.jsp'">로그아웃</button>
 
-            <!-- community.jsp 상단 “설정” 버튼 -->
-            <button class="top-btn" id="toggleBtn">설정</button>
+            <button type="button" id="toggleBtn">설정</button>
 
             <div id="dropdownMenu">
                 <button type="button" onclick="location.href='/community/edit'">밴드 수정</button>
-                <button type="button" onclick="location.href='/community/delete'">밴드 삭제</button>
+                <button type="button" onclick="location.href='community/delete'">밴드 삭제</button>
             </div>
-
 
         </div>
     </div>
@@ -92,5 +90,21 @@
         </aside>
     </div>
 </div>
+<script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    toggleBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        dropdownMenu.style.display =
+            (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") ? "block" : "none";
+    });
+
+    document.addEventListener("click", function(e) {
+        if (!toggleBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+/* ========== 전체 페이지 기본 ========== */
+body {
+    font-family: "맑은 고딕", sans-serif;
+    background-color: #f9f9fb;
+    margin: 0;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    color: #333;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    max-width: 1080px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 40px 60px;
+}
+
+/* ========== 제목 영역 ========== */
+h2 {
+    font-size: 24px;
+    color: #222;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+p {
+    color: #777;
+    margin-bottom: 24px;
+}
+
+/* ========== 입력 필드 공통 스타일 ========== */
+.field {
+    margin-bottom: 18px;
+}
+
+.field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 12px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+/* 텍스트 영역 */
+.textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+/* 파일 입력 필드 */
+input[type="file"] {
+    font-size: 13px;
+    color: #555;
+}
+
+/* ========== 이미지 미리보기 ========== */
+.preview-box {
+    margin-top: 8px;
+}
+
+.preview-box img {
+    max-width: 200px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* ========== 버튼 그룹 ========== */
+.btn-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+}
+
+.btn.blue {
+    background-color: #007bff;
+}
+
+.btn.blue:hover {
+    background-color: #0056b3;
+}
+
+.btn.gray {
+    background-color: #9a9a9a;
+}
+
+.btn.gray:hover {
+    background-color: #777;
+}
+
+/* ========== 반응형 레이아웃 ========== */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .btn-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
