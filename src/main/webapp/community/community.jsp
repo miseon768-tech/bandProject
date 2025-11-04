@@ -20,9 +20,13 @@
             <button class="top-btn" onclick="location.href='../member/logout.jsp'">로그아웃</button>
 
             <!-- community.jsp 상단 “설정” 버튼 -->
-            <button class="top-btn"
-                    onclick="location.href='${pageContext.request.contextPath}/community/setting'">설정
-            </button>
+            <button class="top-btn" id="toggleBtn">설정</button>
+
+            <div id="dropdownMenu">
+                <button type="button" onclick="location.href='/community/edit'">밴드 수정</button>
+                <button type="button" onclick="location.href='/community/delete'">밴드 삭제</button>
+            </div>
+
 
         </div>
     </div>
