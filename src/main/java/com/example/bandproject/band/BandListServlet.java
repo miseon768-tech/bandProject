@@ -27,26 +27,11 @@ public class BandListServlet extends HttpServlet {
         List<Band> bandList = sqlSession.selectList("mappers.BandMapper.selectAll");
 
         HttpSession session = req.getSession(false);
-        Member member = null;
-        if (session != null) {
-            member = (Member) session.getAttribute("logonUser");
-        }
+        Member member = (Member) session.getAttribute("logonUser");
+
 
         // 멤버가 가입한 밴드 조회
-        String bandNoStr = req.getParameter("bandNo");
-        List<BandMember> bandMembers = Collections.emptyList();
-        if (member != null && bandNoStr != null && !bandNoStr.isEmpty()) {
-            try {
-                int bandNo = Integer.parseInt(bandNoStr);
-                Map<String, Object> cond = new HashMap<>();
-                cond.put("memberNo", member.getNo());
-                cond.put("bandNo", bandNo);
-                bandMembers = sqlSession.selectList("mappers.BandMapper.selectAll", cond);
-            } catch (NumberFormatException e) {
-                resp.sendRedirect("/band/list");
-                return; // 예외 발생 시 이후 코드 진행 방지
-            }
-        }
+        List<Band> joinedBand = sqlSession.selectList("mappers.BandMapper.selectAllJoined", member.getId());
 
 
         // 조회수 TOP 5
@@ -60,6 +45,8 @@ public class BandListServlet extends HttpServlet {
         req.setAttribute("bandlist", bandList);
         req.setAttribute("topViews", topViews);
         req.setAttribute("topLikes", topLikes);
+        req.setAttribute("joinedBand", joinedBand);
+
 
         sqlSession.close();
 

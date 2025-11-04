@@ -43,14 +43,12 @@
     </div>
 
 
-    <!-- ======================== 내가 가입한 밴드 ======================== -->
-
 
     <section class="my-bands" style="margin-top:64px;">
         <h2 class="page-title">내가 가입한 밴드</h2>
 
         <div class="band-grid">
-            <c:forEach var="m" items="${myBands}">
+            <c:forEach var="m" items="${joinedBand}">
                 <a class="band-card" href="${ctx}/community?bandNo=${m.no}">
                     <div class="band-cover"></div>
                     <div class="band-info">
@@ -62,7 +60,7 @@
                 </a>
             </c:forEach>
 
-            <c:if test="${empty myBands}">
+            <c:if test="${empty joinedBand}">
                 <p class="empty-hint">아직 가입한 밴드가 없습니다.</p>
             </c:if>
         </div>

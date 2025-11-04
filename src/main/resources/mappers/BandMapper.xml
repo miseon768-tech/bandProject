@@ -15,6 +15,13 @@
         FROM band
         ORDER BY createdAt DESC
     </select>
+    <!-- 전체 밴드 조회 -->
+    <select id="selectAllJoined" resultType="Band">
+        SELECT *
+        FROM band where no in
+        (select bandNo from bandMember where id=#{id})
+        ORDER BY createdAt DESC
+    </select>
 
     <!-- 밴드 번호로 특정 밴드 조회 -->
     <select id="selectByNo" parameterType="int" resultType="Band">
