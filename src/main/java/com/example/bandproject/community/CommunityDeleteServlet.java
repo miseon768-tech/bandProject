@@ -27,14 +27,14 @@ public class     CommunityDeleteServlet extends HttpServlet {
         Boolean approved = (Boolean) req.getAttribute("bandApproved");
         String role = (String) req.getAttribute("bandRole");
 
-        if (approved == null || !approved || !"MASTER".equals(role)) {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
-            return;
-        }
+
 
         int articleNo = Integer.parseInt(req.getParameter("no"));
         int bandNo = Integer.parseInt(req.getParameter("bandNo"));
-
+        if (approved == null || !approved || !"MASTER".equals(role)) {
+            resp.sendRedirect("/community?bandNo="+bandNo);
+            return;
+        }
         Member member = (Member) req.getSession().getAttribute("logonUser");
         if (member == null) {
             resp.sendRedirect("/login");
@@ -60,9 +60,11 @@ public class     CommunityDeleteServlet extends HttpServlet {
         if (master && article != null && article.getWriterId().equals(member.getId())) {
             req.setAttribute("band", band);
             req.setAttribute("article", article);
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            resp.sendRedirect("/community?bandNo="+bandNo);
+            return;
         } else {
-            req.getRequestDispatcher("/community/setting.jsp").forward(req, resp);
+            resp.sendRedirect("/community?bandNo="+bandNo);
+            return;
         }
     }
 }
