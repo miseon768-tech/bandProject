@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @WebServlet("/community/delete")
-public class     CommunityDeleteServlet extends HttpServlet {
+public class CommunityDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,14 +27,14 @@ public class     CommunityDeleteServlet extends HttpServlet {
         Boolean approved = (Boolean) req.getAttribute("bandApproved");
         String role = (String) req.getAttribute("bandRole");
 
-
+        if (approved == null || !approved || !"MASTER".equals(role)) {
+            resp.sendRedirect("/community");
+            return;
+        }
 
         int articleNo = Integer.parseInt(req.getParameter("no"));
         int bandNo = Integer.parseInt(req.getParameter("bandNo"));
-        if (approved == null || !approved || !"MASTER".equals(role)) {
-            resp.sendRedirect("/community?bandNo="+bandNo);
-            return;
-        }
+
         Member member = (Member) req.getSession().getAttribute("logonUser");
         if (member == null) {
             resp.sendRedirect("/login");
@@ -60,11 +60,11 @@ public class     CommunityDeleteServlet extends HttpServlet {
         if (master && article != null && article.getWriterId().equals(member.getId())) {
             req.setAttribute("band", band);
             req.setAttribute("article", article);
-            resp.sendRedirect("/community?bandNo="+bandNo);
-            return;
+            req.getRequestDispatcher("/community/delete.jsp").forward(req, resp);
+
         } else {
-            resp.sendRedirect("/community?bandNo="+bandNo);
-            return;
+            resp.sendRedirect("/community");
+
         }
     }
 }
