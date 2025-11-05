@@ -4,12 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.ArticleMapper">
     <insert id="insertOne" parameterType="Article" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO article (memberNo, writerId, bandNo, bandMemberNo, topic, title, content)
-        VALUES (#{memberNo}, #{writerId}, #{bandNo}, #{bandMemberNo}, #{topic}, #{title}, #{content})
+        INSERT INTO article (memberNo, writerId, bandNo,  title, content)
+        VALUES (#{memberNo}, #{writerId}, #{bandNo},   #{title}, #{content})
     </insert>
     <!-- 전체 게시글 조회 -->
-    <select id="selectAll" resultType="Article">
-        select * from article order by wroteAt desc
+    <select id="selectAll" resultType="Article" parameterType="int">
+        select * from article where bandNo=#{no} order by wroteAt desc
     </select>
     <!-- 게시글 수 카운트 -->
     <select id="countAll" resultType="int">

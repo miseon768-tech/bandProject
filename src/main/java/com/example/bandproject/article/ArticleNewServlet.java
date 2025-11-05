@@ -19,8 +19,8 @@ public class ArticleNewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (logonUser == null || bandApproved == null || !bandApproved) {
+        String bandRole = (String) req.getAttribute("bandRole");
+        if (logonUser == null || bandRole == null || !(bandRole.equals("MEMBER") || bandRole.equals("MASTER"))) {
             resp.sendRedirect(logonUser == null ? "/login" : "/community");
             return;
         }
@@ -36,22 +36,18 @@ public class ArticleNewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Member logonUser = (Member) req.getSession().getAttribute("logonUser");
-        Boolean bandApproved = (Boolean) req.getAttribute("bandApproved");
-        if (logonUser == null || bandApproved == null || !bandApproved) {
-            resp.sendRedirect(logonUser == null ? "/login" : "/community");
-            return;
-        }
 
-        String topic = req.getParameter("topic");
+        int bandNo = Integer.parseInt(req.getParameter("bandNo"));
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
 
         Article article = new Article();
-        article.setTopic(topic);
+        article.setMemberNo(logonUser.getNo());
+        article.setWriterId(logonUser.getId());
+        article.setBandNo(bandNo);
         article.setTitle(title);
         article.setContent(content);
-        article.setWriterId(logonUser.getId());
 
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
 
@@ -60,11 +56,10 @@ public class ArticleNewServlet extends HttpServlet {
 
         sqlSession.close();
 
-        if(r == 1) {
-            resp.sendRedirect("/community");
-        }else {
+        if (r == 1) {
+            resp.sendRedirect("/community?bandNo=" + bandNo);
+        } else {
             req.getRequestDispatcher("/article/new-fail.jsp").forward(req, resp);
-
         }
 
     }

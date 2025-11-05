@@ -27,52 +27,32 @@ public class CommunityServlet extends HttpServlet {
             req.setAttribute("auth", false);
 
 
-        int page = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
-        String keyword = req.getParameter("keyword") != null ? req.getParameter("keyword") : "";
 
-        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
-
-        // 전체 글 목록
-        List<Article> articleList = sqlSession.selectList("mappers.ArticleMapper.selectAll");
-        req.setAttribute("articleList", articleList);
-
-        Map param = Map.of("offset", (page - 1) * 10,
-                "keyword", "%" + keyword + "%");
-        List<Article> articles =
-                sqlSession.selectList("mappers.ArticleMapper.selectLikeKeywordByOffset", param);
-
-        int count = sqlSession.selectOne("mappers.ArticleMapper.countLikeKeyword"
-                , "%" + keyword + "%");
-        int lastPage = count / 10 + (count % 10 > 0 ? 1 : 0);
-
-        // 조회수 TOP 5
-        List<Article> top5Likes = sqlSession.selectList("mappers.ArticleMapper.selectTop5Likes", LocalDate.now().minusDays(7));
-
-        // 좋아요 TOP 5
-        List<WriteCounter> top5Writer = sqlSession.selectList("mappers.ArticleMapper.selectTop5Writer");
-
-        req.setAttribute("top5Likes", top5Likes);
-        req.setAttribute("top5Writer", top5Writer);
-
-        req.setAttribute("articles", articles);
-        req.setAttribute("lastPage", lastPage);
-        req.setAttribute("page", page);
-        req.setAttribute("count", count);
-        req.setAttribute("keyword", keyword);
 
         String bandNoStr = req.getParameter("bandNo");
         if (bandNoStr != null) {
             int bandNo = Integer.parseInt(bandNoStr);
 
-            try {
+            try(SqlSession sqlSession = MyBatisUtil.build().openSession(true)) {
+                req.setAttribute("band", sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo));
                 // 승인 대기자 목록 조회
                 List<BandMember> pendingMembers
                         = sqlSession.selectList("mappers.BandMemberMapper.selectPendingMembers", bandNo);
 
                 req.setAttribute("pendingMembers", pendingMembers);
                 req.setAttribute("band", sqlSession.selectOne("mappers.BandMapper.selectByNo", bandNo));
-            } finally {
-                sqlSession.close();
+                int page = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
+                String keyword = req.getParameter("keyword") != null ? req.getParameter("keyword") : "";
+
+
+
+                // 전체 글 목록
+                List<Article> articleList = sqlSession.selectList("mappers.ArticleMapper.selectAll",bandNo );
+                req.setAttribute("articleList", articleList);
+
+                req.setAttribute("keyword", keyword);
+            } catch(Exception e) {
+                e.printStackTrace();
             }
         }
         req.getRequestDispatcher("/community/community.jsp").forward(req, resp);

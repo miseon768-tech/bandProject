@@ -53,7 +53,7 @@ public class ArticleEditServlet extends HttpServlet {
 
         Article one= new Article();
         one.setNo(no);
-        one.setTopic(topic);
+
         one.setTitle(title);
         one.setContent(content);
 

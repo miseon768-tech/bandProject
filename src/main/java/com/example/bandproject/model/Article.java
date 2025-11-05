@@ -8,9 +8,10 @@ import java.time.LocalDateTime;
 @Setter
 public class Article {
     private int no;
+    private int memberNo;
     private String writerId;
     private int bandNo;
-    private String topic;
+
     private String title;
     private String content;
     private LocalDateTime wroteAt;

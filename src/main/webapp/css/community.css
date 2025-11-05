@@ -1,25 +1,15 @@
 /* ========== [0] 전체 프레임: 1280 x 720 ========== */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "맑은 고딕", sans-serif;
-    background: #fffafc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+
 
 .band-wrapper {
     width: 1280px;
-    height: 720px;
     background: #fff;
-    border: 1px solid #ddd;
+
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin : auto;
 }
 
 /* ========== [1] 상단바 ========== */
@@ -79,7 +69,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 2px;
 }
 
 .avatar-link {
@@ -316,20 +306,15 @@ body {
     font-family: "맑은 고딕", sans-serif;
     background-color: #f9f9fb;
     margin: 0;
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
     color: #333;
 }
 
 .main {
     display: flex;
     width: 100%;
-    max-width: 1080px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 40px 60px;
+   padding: 10px 10px;
 }
 
 /* ========== 제목 영역 ========== */
