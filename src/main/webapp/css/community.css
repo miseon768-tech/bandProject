@@ -46,25 +46,7 @@ body {
     gap: 12px;
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #cfcfcf;
-    border-radius: 24px;
-    padding: 6px 14px;
-    width: 280px;
-    background: #fff;
-    color: #888;
-}
 
-.search-bar input {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 14px;
-    background: transparent;
-}
 
 .top-btn {
     border: 1px solid #e0e0e0;

@@ -24,7 +24,7 @@
 .delete-modal h2 {
     font-size: 22px;
     font-weight: 800;
-    color: #d9534f; /* 경고 레드 */
+    color: #d9534f;
     margin-bottom: 16px;
 }
 
@@ -62,7 +62,6 @@
     background: #ccc;
     color: #333;
 }
-
 .btn.cancel:hover {
     background: #b1b1b1;
 }
@@ -72,12 +71,32 @@
     background: #d9534f;
     color: #fff;
 }
-
 .btn.delete:hover {
     background: #b84441;
 }
 
-/* 애니메이션 효과 */
+/* ✅ 디버그 표시 */
+.debug {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+/* ✅ 삭제 성공 메시지 */
+.success-message {
+    display: none;
+    text-align: center;
+    background-color: #f6fff6;
+    border: 1px solid #b6e2b6;
+    color: #216421;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* === 페이드 인 애니메이션 === */
 @keyframes fadeIn {
     from {
         opacity: 0;

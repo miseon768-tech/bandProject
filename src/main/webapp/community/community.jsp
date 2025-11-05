@@ -49,16 +49,17 @@
     <div class="header">
         <div class="brand">BAND</div>
         <div class="header-right">
-            <div class="search-bar">
-                🔍 <input type="text" placeholder="검색" />
-            </div>
+
             <button class="top-btn" onclick="location.href='../member/logout.jsp'">로그아웃</button>
 
             <button type="button" id="toggleBtn">설정</button>
 
             <div id="dropdownMenu">
                 <button type="button" onclick="location.href='/community/edit?bandNo=${band.no}'">밴드 수정</button>
-                <button type="button" onclick="location.href='community/delete'">밴드 삭제</button>
+                <button type="button"
+                        onclick="location.href='${pageContext.request.contextPath}/community/delete?bandNo=${band.no}'">
+                    밴드 삭제
+                </button>
             </div>
         </div>
     </div>
@@ -75,25 +76,21 @@
             <!-- 밴드 이름 -->
             <div style="margin:10px 0 14px; font-weight:700;">${band.name}</div>
 
-            <!-- 승인 버튼 -->
-            <button class="side-btn gray"
-                    onclick="location.href='${pageContext.request.contextPath}/community?action=approve&memberId=${logonUser.id}'">
-                승인
-            </button>
+
 
             <!-- 게시물 작성 버튼 -->
             <button class="side-btn blue"
-                    onclick="location.href='${pageContext.request.contextPath}/article/new.jsp'">
+                    onclick="location.href='${pageContext.request.contextPath}/article/new'">
                 게시물 작성
             </button>
 
-            좋아요
+
         </aside>
 
         <!-- 가운데 피드 -->
         <section class="content">
             <h3 class="feed-title">커뮤니티 게시글</h3>
-            <button class="write-btn" onclick="location.href='${pageContext.request.contextPath}/article/new.jsp'">✏️ 새 글 작성하기</button>
+            <button class="write-btn" onclick="location.href='${pageContext.request.contextPath}/article/new'">✏️ 새 글 작성하기</button>
 
             <div class="article-list">
                 <c:choose>

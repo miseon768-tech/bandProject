@@ -78,7 +78,7 @@
     </update>
 
     <!-- 게시글 삭제 -->
-    <delete id="deleteByNo" parameterType="int">
-        delete from article where no=#{no}
+    <delete id="deleteByBandNo" parameterType="int">
+        DELETE FROM article WHERE bandNo = #{bandNo}
     </delete>
 </mapper>

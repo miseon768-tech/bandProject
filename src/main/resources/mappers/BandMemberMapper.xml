@@ -68,5 +68,9 @@
         DELETE FROM bandMember
         WHERE no = #{bandNo};
     </delete>
+    <select id="selectRoleByBandAndMember" parameterType="map" resultType="string">
+        SELECT role FROM band_member
+        WHERE band_no = #{bandNo} AND member_id = #{memberId}
+    </select>
 
 </mapper>
